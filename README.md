@@ -3,7 +3,7 @@
 
 ## Secciones: Esquema de ficheros
 ```
-inicio.html
+index.html
 |_ registro.html
 |_ login.html
     |_ mundos.html
