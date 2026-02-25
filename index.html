@@ -3,13 +3,10 @@
 	<head> 
 		<meta charset="utf-8"> 
 		<title>El Mundo Interior</title> 
+        <link rel="stylesheet" href="style.css">
 	</head> 
 	<body>
-        <header>
-            <h1 id="title">El Mundo Interior</h1> 
-		    <p id="description">Descripción</p>
-        </header>
-		<nav>
+        <nav class="navbar">
             <!-- links a secciones de planetas -->
             <a href="#artistico">Mundo artístico</a>
             <a href="#espiritual">Mundo espiritual</a>
@@ -18,8 +15,12 @@
             <a href="#personal">Mundo personal</a>
             <a href="#reflexivo">Mundo reflexivo</a>
         </nav>
+        <header>
+            <h1>El Mundo Interior</h1>
+		    <p id="description">Descripción</p>
+        </header>
         <main>
-            <section id="planets">
+            <section class="planets">
                 <!-- sección que describe a todos los planetas -->
                 <div>
                     <h2 id="artistico">Mundo artístico</h2>
@@ -47,10 +48,10 @@
                 </div>
                 
             </section>
-            <section id="other-users">
+            <section class="other-users">
                 <!-- sección con publicaciones de otros usuarios -->
             </section>
-            <section id="suscriptions">
+            <section class="suscriptions">
                 <!-- sección que describe las suscripciones -->
             </section>
         </main>
