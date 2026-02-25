@@ -1,76 +1,141 @@
-<!DOCTYPE html> 
-<html> 
-	<head> 
+<!DOCTYPE html>
+<html lang="es"> 
+	<head>
 		<meta charset="utf-8"> 
+        <meta name="viewport" content="width=device-width, initial-scale=1"> 
+        <!-- modifica el ancho dependiendo del dispositivo -->
 		<title>El Mundo Interior</title> 
         <link rel="stylesheet" href="style.css">
-	</head> 
-	<body>
-        <nav class="navbar">
-            <!-- links a secciones de planetas -->
-            <a href="#artistico">Mundo artístico</a>
-            <a href="#espiritual">Mundo espiritual</a>
-            <a href="#fisico">Mundo físico</a>
-            <a href="#mental">Mundo mental</a>
-            <a href="#personal">Mundo personal</a>
-            <a href="#reflexivo">Mundo reflexivo</a>
+	</head>
+
+	<body class="page page__home">
+        <nav class="nav">
+            <ul class="nav__list">
+                <li class="nav__item">
+                    <details class="nav__dropdown">
+                        <summary class="nav__toggle">Mundos</summary>
+                        <ul class="nav__submenu">
+                            <li><a href="#artistico">Mundo artístico</a></li>
+                            <li><a href="#espiritual">Mundo espiritual</a></li>
+                            <li><a href="#fisico">Mundo físico</a></li>
+                            <li><a href="#mental">Mundo mental</a></li>
+                            <li><a href="#personal">Mundo personal</a></li>
+                            <li><a href="#reflexivo">Mundo reflexivo</a></li>
+                        </ul>
+                    </details>
+                </li>
+                <li><a href="#other-users">Otros usuarios</a></li>
+                <li><a href="#suscriptions">Suscripciones</a></li>
+            </ul>
         </nav>
-        <header>
-            <h1>El Mundo Interior</h1>
-		    <p id="description">Descripción</p>
+        <header class="hero">
+            <div class="container">
+                <h1 class="hero__title" id="title">El Mundo Interior</h1>
+                <p class="hero__subtitle" id="description">Descripción</p>
+                <!-- a implementar en próximas versiones los botones -->
+                <button>Iniciar Sesión</button>
+                <button>Registrarse</button>
+                <!-- a implementar en próximas versiones los botones -->
+            </div>
         </header>
-        <main>
-            <section class="planets">
-                <!-- sección que describe a todos los planetas -->
-                <div>
-                    <h2 id="artistico">Mundo artístico</h2>
-                    <p>Descripcion</p>
-                </div>
-                <div>
-                    <h2 id="espiritual">Mundo espiritual</h2>
-                    <p>Descripcion</p>
-                </div>
-                <div>
-                    <h2 id="fisico">Mundo físico</h2>
-                    <p>Descripcion</p>
-                </div>
-                <div>
-                    <h2 id="mental">Mundo mental</h2>
-                    <p>Descripcion</p>
-                </div>
-                <div>
-                    <h2 id="personal">Mundo personal</h2>
-                    <p>Descripcion</p>
-                </div>
-                <div>
-                    <h2 id="reflexivo">Mundo reflexivo</h2>
-                    <p>Descripcion</p>
-                </div>
-                
-            </section>
-            <section class="other-users">
-                <!-- sección con publicaciones de otros usuarios -->
-            </section>
-            <section class="suscriptions">
-                <!-- sección que describe las suscripciones -->
-            </section>
+        <main class="main">
+            <div class="container">
+                <section class="planet-list" id="planets">
+                    <!-- sección que describe a todos los planetas -->
+                    <article class="planet" id="artistico">
+                        <h2 class="planet__title">Mundo artístico</h2>
+                        <p class="planet__text">Descripción</p>
+                    </article>
+
+                    <article class="planet" id="espiritual">
+                        <h2 class="planet__title">Mundo espiritual</h2>
+                        <p class="planet__text">Descripción</p>
+                    </article>
+
+                    <article class="planet" id="fisico">
+                        <h2 class="planet__title">Mundo físico</h2>
+                        <p class="planet__text">Descripción</p>
+                    </article>
+
+                    <article class="planet" id="mental">
+                        <h2 class="planet__title">Mundo mental</h2>
+                        <p class="planet__text">Descripción</p>
+                    </article>
+
+                    <article class="planet" id="personal">
+                        <h2 class="planet__title">Mundo personal</h2>
+                        <p class="planet__text">Descripción</p>
+                    </article>
+
+                    <article class="planet" id="reflexivo">
+                        <h2 class="planet__title">Mundo reflexivo</h2>
+                        <p class="planet__text">Descripción</p>
+                    </article>
+                </section>
+                <section class="community" id="other-users">
+                    <h2 class="community__title">Publicaciones de otros usuarios</h2>
+                    <div class="community__list">
+                        <!-- TODO rellenar -->
+                    </div>
+                </section>
+
+                <section class="plans" id="suscripciones">
+                    <h2 class="plans__title">Suscripciones</h2>
+                    <div class="plans__list">
+                        <article class="plan" id="free-plan">
+                            <h3>Gratis</h3>
+                            <ul>
+                                <!-- TODO rellenar -->
+                            </ul>
+                        </article>
+                        <article class="plan">
+                            <h3>Plus</h3>
+                            <ul>
+                                <!-- TODO rellenar -->
+                            </ul>
+                        </article>
+                        <article class="plan">
+                            <h3>Pro</h3>
+                            <ul>
+                                <!-- TODO rellenar -->
+                            </ul>
+                        </article>
+                    </div>
+                </section>
+            </div>
         </main>
-        <footer>
-            <ul id="help">
-                <!-- ayuda -->
-            </ul>
-            <ul id="company">
-                <!-- compañía -->
-            </ul>
-            <form>
-                <label for="name">Nombre</label><br>
-                <input type="text" id="name" name="name" required><br>
-                <label for="email">Correo</label><br>
-                <input type="email" id="email" name="email" required><br>
-                <label for="message">Mensaje</label><br>
-                <textarea id="message" name="message" required></textarea><br>
-                <button type="submit">Enviar</button>
-            </form>
+        <footer class="footer">
+            <div class="container">
+                <div class="footer__columns">
+                    <ul class="footer__list footer__list--about" id="about">
+                        <h3>Sobre nosotros</h3>
+                        <li class="footer__item">Item1</li>
+                        <li class="footer__item">Item2</li>
+                        <li class="footer__item">Item3</li>
+                    </ul>
+                </div>
+
+                <form class="contact" action="#" method="post">
+                    <h2 class="contact__title">Contacto</h2>
+
+                    <div class="contact__field">
+                    <label class="contact__label" for="name">Nombre</label>
+                    <input class="contact__input" type="text" id="name" name="name" required>
+                    </div>
+
+                    <div class="contact__field">
+                    <label class="contact__label" for="email">Correo</label>
+                    <input class="contact__input" type="email" id="email" name="email" required>
+                    </div>
+
+                    <div class="contact__field">
+                    <label class="contact__label" for="message">Mensaje</label>
+                    <textarea class="contact__textarea" id="message" name="message" required></textarea>
+                    </div>
+
+                    <button class="contact__button" type="submit">Enviar</button>
+                </form>
+                </div>
         </footer>
 	</body> 
 </html>
