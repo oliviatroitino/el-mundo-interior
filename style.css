@@ -1,0 +1,16 @@
+/* colores:
+- NEGRO: 0F1A20
+- BLANCO: F7F5FB
+- AZUL: 698996
+- MAUVE: 6E4555
+- LAVANDA: 925E78
+- ROSA: C98686
+- CAFE: 704E2E
+*/
+
+.nav {
+    overflow: hidden;
+    position: fixed; /* Set the navbar to fixed position */
+    top: 0; /* Position the navbar at the top of the page */
+    width: 100%; /* Full width */
+}
