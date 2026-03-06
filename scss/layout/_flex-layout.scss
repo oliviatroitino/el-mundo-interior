@@ -40,3 +40,15 @@
     flex-direction: row;
   }
 }
+
+/* layout para imagenes planetas*/
+.planet-list {
+  display: flex;
+  flex-direction: column;
+  gap: $space-lg;
+
+  @include desktop {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+}
