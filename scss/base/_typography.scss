@@ -1,0 +1,31 @@
+@use "../abstracts/variables" as *;
+
+/* base del documento */
+body {
+  font-family: "Inter", system-ui, sans-serif;
+  font-size: $font-base;
+  line-height: $line-height-base;
+  color: $color-text;
+}
+
+/* títulos */
+h1 {
+  font-size: $font-xl;
+  font-weight: $font-weight-bold;
+}
+
+h2 {
+  font-size: $font-large;
+  font-weight: $font-weight-bold;
+}
+
+h3 {
+  font-size: $font-medium;
+  font-weight: $font-weight-semibold;
+}
+
+/* texto */
+p {
+  font-size: $font-base;
+  line-height: 1.6;
+}

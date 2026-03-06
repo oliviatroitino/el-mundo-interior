@@ -1,8 +1,43 @@
 /* layout/_flex-layout.scss */
-@use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
 
+.post {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  @include desktop {
+    flex-direction: row;
+  }
+}
+
+@use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
+
+
+/* elementos en columna con espacio automático */
 .stack {
   display: flex;
   flex-direction: column;
   gap: $space-md;
+}
+
+
+/* grupo horizontal adaptable */
+.cluster {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $space-sm;
+  align-items: center;
+}
+
+
+/* layout responsive */
+.split {
+  display: flex;
+  flex-direction: column;
+  gap: $space-md;
+  @include desktop {
+    flex-direction: row;
+  }
 }

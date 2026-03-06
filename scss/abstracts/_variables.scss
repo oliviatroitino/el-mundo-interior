@@ -1,3 +1,4 @@
+/* COLORES */
 /* Tipografía principal */
 $color-text: #353839; // Onyx (negro suave)
 /* Fondo de la página */
@@ -5,7 +6,7 @@ $color-background: #F0F8FF; // Alice Blue
 /* Barra de navegación */
 $color-navbar: #CCCCFF; // Periwinkle
 /* Bordes de contenedores */
-$color-border: #8DA8D0; // Wisteria Blue
+$color-border-container: #8DA8D0; // Wisteria Blue
 
 /* ESPACIADO */
 $space-sm: 0.5rem;
@@ -16,8 +17,22 @@ $space-lg: 2rem;
 /* CONTENEDOR */
 $container-width: 72rem;
 
-/* BREAKPOINTS */
-$bp-mobile: 480px;
-$bp-tablet: 768px;
+/* BREAKPOINT: RESPONSIVE*/
 $bp-desktop: 1024px;
-$bp-wide: 1280px;
+
+
+/* TIPOGRAFÍA */
+$font-base: 1rem;
+$font-medium: 1.25rem;
+$font-large: 1.56rem;
+$font-xl: 1.95rem;
+
+
+/* INTERLINEADO */
+$line-height-base: 1.5;
+
+
+/* PESOS */
+$font-weight-normal: 400;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;

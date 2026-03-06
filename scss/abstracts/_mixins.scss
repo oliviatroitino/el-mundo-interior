@@ -1,0 +1,8 @@
+@use "variables" as *;
+
+/* DESKTOP BREAKPOINT */
+@mixin desktop {
+  @media (min-width: $bp-desktop) {
+    @content;
+  }
+}
