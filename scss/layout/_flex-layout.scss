@@ -1,4 +1,5 @@
 /* layout/_flex-layout.scss */
+@use "../abstracts/variables" as *;
 @use "../abstracts/mixins" as *;
 
 .post {
@@ -11,8 +12,6 @@
   }
 }
 
-@use "../abstracts/variables" as *;
-@use "../abstracts/mixins" as *;
 
 
 /* elementos en columna con espacio automático */
