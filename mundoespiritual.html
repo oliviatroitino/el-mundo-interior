@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Mundo Espiritual</title>
+        <link rel="stylesheet" href="">
+    </head>
+
+    <body class="page page__espiritual">
+
+        <!-- NAV -->
+        <nav class="nav">
+            <ul class="nav__list">
+                <li class="nav__item">
+                    <a href="index.html" class="nav__home">Inicio</a>
+                </li>
+
+                <li class="nav__item">
+                    <details class="nav__dropdown">
+                        <summary class="nav__toggle">Secciones</summary>
+                        <ul class="nav__submenu">
+                            <li><a href="#ejerciciosespirituales">Ejercicios Espirituales</a></li>
+                            <li><a href="#renovacionenergia">Renovación de Energía</a></li>
+                            <li><a href="#practicasfilosoficas">Prácticas Filosóficas y Espirituales</a></li>
+                        </ul>
+                    </details>
+                </li>
+
+                <li class="nav__item nav__worldname">
+                    Mundo Espiritual
+                </li>
+
+                <li class="nav__item">
+                    <details class="nav__userdropdown">
+                        <summary class="nav__toggle">Usuario</summary>
+                        <ul class="nav__submenu">
+                            <li><a href="#">Perfil</a></li>
+                            <li><a href="#">Cerrar sesión</a></li>
+                        </ul>
+                    </details>
+                </li>
+            </ul>
+        </nav>
+
+        <main class="main">
+            <div class="container">
+
+                <!-- POST FORM -->
+                <section class="post-form">
+
+                    <div class="post-form__profile-pic">
+                        <img src="" alt="Foto de perfil">
+                    </div>
+
+                    <form class="post-form__form" action="#" method="post">
+
+                        <textarea class="post-form__text" 
+                                placeholder="Comparte algo sobre tu práctica espiritual..."></textarea>
+
+                        <div class="post-form__options">
+                            <button type="button" class="post-form__upload">Subir imagen</button>
+                            <button type="button" class="post-form__location">Agregar ubicación</button>
+
+                            <select class="post-form__section-select">
+                                <option value="">Sección</option>
+                                <option value="ejerciciosespirituales">Ejercicios Espirituales</option>
+                                <option value="renovacionenergia">Renovación de Energía</option>
+                                <option value="practicasfilosoficas">Prácticas Filosóficas y Espirituales</option>
+                            </select>
+
+                            <button type="submit" class="post-form__submit">Publicar</button>
+                        </div>
+                    </form>
+                </section>
+
+                <!-- SECTIONS -->
+                <section class="sections">
+
+                    <h2 class="sections__title">Secciones</h2>
+
+                    <div class="sections__list">
+                        <article class="sections__item" id="ejerciciosespirituales">
+                            <h3 class="sections__item-title">Ejercicios Espirituales</h3>
+                        </article>
+
+                        <article class="sections__item" id="renovacionenergia">
+                            <h3 class="sections__item-title">Renovación de Energía</h3>
+                        </article>
+
+                        <article class="sections__item" id="practicasfilosoficas">
+                            <h3 class="sections__item-title">Prácticas Filosóficas y Espirituales</h3>
+                        </article>
+                    </div>
+
+                </section>
+
+                <!-- POST LIST -->
+                <section class="post-list">
+
+                    <h2 class="post-list__title">Publicaciones de otros usuarios</h2>
+
+                    <article class="post">
+                        <header class="post__header">
+                            <span class="post__user">UsuarioEspiritual1</span>
+                            <span class="post__location">Quito</span>
+                        </header>
+
+                        <h3 class="post__title">Respirar antes de reaccionar</h3>
+
+                        <p class="post__text">
+                            Practicar presencia me ayudó a responder con calma en momentos que antes me desbordaban.
+                        </p>
+                    </article>
+
+                    <article class="post">
+                        <header class="post__header">
+                            <span class="post__user">UsuarioEspiritual2</span>
+                            <span class="post__location">Valencia</span>
+                        </header>
+
+                        <h3 class="post__title">Coherencia diaria</h3>
+
+                        <p class="post__text">
+                            Estoy trabajando en alinear mis decisiones con mis valores, incluso en lo cotidiano.
+                        </p>
+                    </article>
+
+                    <button class="post-list__load-more">
+                        Cargar más
+                    </button>
+
+                </section>
+
+            </div>
+        </main>
+
+    </body>
+</html>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Mundo Físico</title>
+        <link rel="stylesheet" href="">
+    </head>
+
+    <body class="page page__fisico">
+
+        <!-- NAV -->
+        <nav class="nav">
+            <ul class="nav__list">
+                <li class="nav__item">
+                    <a href="index.html" class="nav__home">Inicio</a>
+                </li>
+
+                <li class="nav__item">
+                    <details class="nav__dropdown">
+                        <summary class="nav__toggle">Secciones</summary>
+                        <ul class="nav__submenu">
+                            <li><a href="#concienciacorporal">Conciencia corporal</a></li>
+                            <li><a href="#cuidadocorporal">Cuidado corporal</a></li>
+                            <li><a href="#descanso">Descanso y recuperación</a></li>
+                        </ul>
+                    </details>
+                </li>
+
+                <li class="nav__item nav__worldname">
+                    Mundo Físico
+                </li>
+
+                <li class="nav__item">
+                    <details class="nav__userdropdown">
+                        <summary class="nav__toggle">Usuario</summary>
+                        <ul class="nav__submenu">
+                            <li><a href="#">Perfil</a></li>
+                            <li><a href="#">Cerrar sesión</a></li>
+                        </ul>
+                    </details>
+                </li>
+            </ul>
+        </nav>
+
+        <main class="main">
+            <div class="container">
+
+                <!-- POST FORM -->
+                <section class="post-form">
+
+                    <div class="post-form__profile-pic">
+                        <img src="" alt="Foto de perfil">
+                    </div>
+
+                    <form class="post-form__form" action="#" method="post">
+
+                        <textarea class="post-form__text" 
+                                placeholder="Comparte algo sobre tu bienestar físico..."></textarea>
+
+                        <div class="post-form__options">
+                            <button type="button" class="post-form__upload">Subir imagen</button>
+                            <button type="button" class="post-form__location">Agregar ubicación</button>
+
+                            <select class="post-form__section-select">
+                                <option value="">Sección</option>
+                                <option value="concienciacorporal">Conciencia corporal</option>
+                                <option value="cuidadocorporal">Cuidado corporal</option>
+                                <option value="descansorecuperacion">Descanso y recuperación</option>
+                            </select>
+
+                            <button type="submit" class="post-form__submit">Publicar</button>
+                        </div>
+                    </form>
+                </section>
+
+                <!-- SECTIONS -->
+                <section class="sections">
+
+                    <h2 class="sections__title">Secciones</h2>
+
+                    <div class="sections__list">
+
+                        <article class="sections__item" id="concienciacorporal">
+                            <h3 class="sections__item-title">Conciencia corporal</h3>
+                        </article>
+
+                        <article class="sections__item" id="cuidadocorporal">
+                            <h3 class="sections__item-title">Cuidado corporal</h3>
+                        </article>
+
+                        <article class="sections__item" id="descanso">
+                            <h3 class="sections__item-title">Descanso y recuperación</h3>
+                        </article>
+                        
+                    </div>
+
+                </section>
+
+                <!-- POST LIST -->
+                <section class="post-list">
+
+                    <h2 class="post-list__title">Publicaciones de otros usuarios</h2>
+
+                    <article class="post">
+                        <header class="post__header">
+                            <span class="post__user">UsuarioFisico1</span>
+                            <span class="post__location">Montevideo</span>
+                        </header>
+
+                        <h3 class="post__title">Volver a moverme</h3>
+
+                        <p class="post__text">
+                            Retomé el ejercicio después de meses y me sorprendió cómo cambió mi energía en pocos días.
+                        </p>
+                    </article>
+
+                    <article class="post">
+                        <header class="post__header">
+                            <span class="post__user">UsuarioFisico2</span>
+                            <span class="post__location">Lima</span>
+                        </header>
+
+                        <h3 class="post__title">Dormir mejor</h3>
+
+                        <p class="post__text">
+                            Ajustar mi rutina nocturna mejoró mi descanso y mi concentración durante el día.
+                        </p>
+                    </article>
+
+                    <button class="post-list__load-more">
+                        Cargar más
+                    </button>
+
+                </section>
+
+            </div>
+        </main>
+
+    </body>
+</html>
