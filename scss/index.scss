@@ -7,7 +7,6 @@
 
 @use "components/button";
 @use "components/forms";
-@use "components/nav";
 @use "components/planet";
 @use "components/post";
 @use "components/hero";
@@ -15,3 +14,4 @@
 @use "layout/container";
 @use "layout/flex-layout";
 @use "layout/page";
+@use "layout/nav";
