@@ -1,0 +1,102 @@
+@charset "UTF-8";
+/* COLORES */
+/* Tipografía principal */
+/* Fondo de la página */
+/* Barra de navegación */
+/* Bordes de contenedores */
+/* ESPACIADO */
+/* CONTENEDOR */
+/* BREAKPOINT: RESPONSIVE*/
+/* TIPOGRAFÍA */
+/* INTERLINEADO */
+/* PESOS */
+/* DESKTOP BREAKPOINT */
+.nav__list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  display: flex;
+  justify-content: space-around;
+}
+
+.nav__item {
+  margin: 20px;
+}
+
+/* base del documento */
+body {
+  font-family: "Inter", system-ui, sans-serif;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #353839;
+}
+
+/* títulos */
+h1 {
+  font-size: 1.95rem;
+  font-weight: 700;
+}
+
+h2 {
+  font-size: 1.56rem;
+  font-weight: 700;
+}
+
+h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+/* texto */
+p {
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+/* contenedor general de la web */
+.container {
+  width: min(100% - 2rem, 72rem);
+  margin-inline: auto;
+}
+
+/* layout/_flex-layout.scss */
+.post {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+@media (min-width: 1024px) {
+  .post {
+    flex-direction: row;
+  }
+}
+
+/* elementos en columna con espacio automático */
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* grupo horizontal adaptable */
+.cluster {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+/* layout responsive */
+.split {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+@media (min-width: 1024px) {
+  .split {
+    flex-direction: row;
+  }
+}
+
+/*# sourceMappingURL=index.css.map */
