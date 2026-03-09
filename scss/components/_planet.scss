@@ -1,27 +1,43 @@
-@use "../abstracts/variables" as *;
+// @use "../abstracts/variables" as *;
 
 .planet {
-  width: 220px;
   text-align: center;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 20px;
 }
 
-.planet__img {
+.planet__image {
   width: 100%;
   height: auto;
   max-width: 180px;
-  margin-inline: auto;
-
-  aspect-ratio: 1 / 1;
-  object-fit: contain;
 }
 
-.planet__title {
-  margin-top: $space-sm;
-  font-size: $font-medium;
-  font-weight: $font-weight-semibold;
+.planet__description {
+  margin-left: 20px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
 }
 
-.planet__text {
-  margin-top: $space-sm;
-  font-size: $font-base;
-}
+// .planet__img {
+//   width: 100%;
+//   height: auto;
+//   max-width: 180px;
+//   margin-inline: auto;
+
+//   aspect-ratio: 1 / 1;
+//   object-fit: contain;
+// }
+
+// .planet__title {
+//   margin-top: $space-sm;
+//   font-size: $font-medium;
+//   font-weight: $font-weight-semibold;
+// }
+
+// .planet__text {
+//   margin-top: $space-sm;
+//   font-size: $font-base;
+// }

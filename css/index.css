@@ -11,19 +11,6 @@
 /* INTERLINEADO */
 /* PESOS */
 /* DESKTOP BREAKPOINT */
-.nav__list {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  display: flex;
-  justify-content: space-around;
-}
-
-.nav__item {
-  margin: 20px;
-}
-
 /* base del documento */
 body {
   font-family: "Inter", system-ui, sans-serif;
@@ -52,6 +39,48 @@ h3 {
 p {
   font-size: 1rem;
   line-height: 1.6;
+}
+
+.nav__list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  display: flex;
+  justify-content: space-around;
+}
+
+.nav__item {
+  margin: 20px;
+}
+
+.planet {
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 20px;
+}
+
+.planet__image {
+  width: 100%;
+  height: auto;
+  max-width: 180px;
+}
+
+.planet__description {
+  margin-left: 20px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+}
+
+.hero__title {
+  text-align: center;
+}
+
+.hero__description {
+  text-align: center;
 }
 
 /* contenedor general de la web */

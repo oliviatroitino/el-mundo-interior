@@ -1,16 +1,17 @@
-@use "abstracts/_variables";
-@use "abstracts/_mixins";
+@use "abstracts/variables";
+@use "abstracts/mixins";
 
-@use "base/_reset";
-@use "base/_globals";
-@use "base/_typography";
+@use "base/reset";
+@use "base/globals";
+@use "base/typography";
 
-@use "components/_button";
-@use "components/_forms";
-@use "components/_nav";
-@use "components/_planet";
-@use "components/_post";
+@use "components/button";
+@use "components/forms";
+@use "components/nav";
+@use "components/planet";
+@use "components/post";
+@use "components/hero";
 
-@use "layout/_container";
-@use "layout/_flex-layout";
-@use "layout/_page";
+@use "layout/container";
+@use "layout/flex-layout";
+@use "layout/page";
