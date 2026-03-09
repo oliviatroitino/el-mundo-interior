@@ -11,6 +11,10 @@
 /* INTERLINEADO */
 /* PESOS */
 /* DESKTOP BREAKPOINT */
+@font-face {
+  font-family: logoFont;
+  src: url(../assets/fonts/amoera-Regular.ttf);
+}
 /* base del documento */
 body {
   font-family: "Inter", system-ui, sans-serif;
@@ -39,6 +43,13 @@ h3 {
 p {
   font-size: 1rem;
   line-height: 1.6;
+}
+
+.nav {
+  background-color: #CCCCFF;
+  position: fixed;
+  top: 0;
+  width: 100%;
 }
 
 .nav__list {
@@ -77,6 +88,8 @@ p {
 
 .hero__title {
   text-align: center;
+  font-family: logoFont;
+  font-size: 6rem;
 }
 
 .hero__description {

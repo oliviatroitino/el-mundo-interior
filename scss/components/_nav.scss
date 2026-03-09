@@ -1,3 +1,12 @@
+@use "../abstracts/variables" as *;
+
+.nav {
+    background-color: $color-navbar;
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
 .nav__list {
     list-style-type: none;
     margin: 0;
