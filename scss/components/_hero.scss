@@ -1,5 +1,9 @@
 @use "../abstracts/variables" as *;
 
+.hero, .main {
+    margin-top: 100px;
+}
+
 .hero__title {
     text-align: center;  
     font-family: logoFont;
