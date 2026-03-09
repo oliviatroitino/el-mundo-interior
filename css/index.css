@@ -80,6 +80,17 @@ p {
   text-align: center;
 }
 
+.hero__buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+}
+
+.hero__button {
+  width: 100px;
+}
+
 /* contenedor general de la web */
 .container {
   width: min(100% - 2rem, 72rem);
@@ -156,11 +167,6 @@ p {
 
 .nav__item {
   margin: 20px;
-}
-
-.nav__toggle img {
-  width: 24px;
-  height: 24px;
 }
 
 .nav__icon {

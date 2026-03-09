@@ -13,3 +13,14 @@
 .hero__description {
     text-align: center;
 }
+
+.hero__buttons {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+}
+
+.hero__button {
+    width: 100px;
+}
