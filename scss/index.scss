@@ -1,10 +1,16 @@
-@use "abstracts/variables";
-@use "abstracts/mixins";
+@use "abstracts/_variables";
+@use "abstracts/_mixins";
 
-@use "base/reset";
-@use "base/globals";
-@use "base/typography";
+@use "base/_reset";
+@use "base/_globals";
+@use "base/_typography";
 
-@use "layout/container";
-@use "layout/flex-layout";
-@use "layout/page";
+@use "components/_button";
+@use "components/_forms";
+@use "components/_nav";
+@use "components/_planet";
+@use "components/_post";
+
+@use "layout/_container";
+@use "layout/_flex-layout";
+@use "layout/_page";
