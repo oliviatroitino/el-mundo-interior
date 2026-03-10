@@ -1,10 +1,11 @@
 @use "../abstracts/variables" as *;
 
 .nav {
-    background-color: $color-navbar;
     position: fixed;
     top: 0;
     width: 100%;
+    background-color: $color-navbar;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
 .nav__list {

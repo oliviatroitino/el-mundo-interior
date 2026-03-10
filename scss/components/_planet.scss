@@ -1,22 +1,29 @@
-// @use "../abstracts/variables" as *;
+@use "../abstracts/variables" as *;
 
 .planet {
-  text-align: center;
   display: flex;
-  flex-direction: row;
   align-items: center;
-  margin: 20px;
+}
+
+.planet--reverse {
+  flex-direction: row-reverse;
 }
 
 .planet__image {
-  width: 100%;
-  height: auto;
-  max-width: 180px;
+  width: clamp(140px, 18vw, 180px);
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  object-fit: cover;
 }
 
 .planet__description {
   margin-left: 20px;
-  text-align: left;
   display: flex;
   flex-direction: column;
+  text-align: left;
+}
+
+.planet--reverse .planet__description {
+  margin-left: 0;
+  margin-right: 20px;
 }

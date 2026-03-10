@@ -1,9 +1,11 @@
 @use "../abstracts/variables" as *;
+@import url("https://fonts.googleapis.com/css2?family=Zain:wght@300;400;500;600;700&display=swap");
 
 @font-face {
   font-family: logoFont;
   src: url(../assets/fonts/amoera-Regular.ttf);
 }
+
 
 /* base del documento */
 body {
