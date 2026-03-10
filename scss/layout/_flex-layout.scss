@@ -12,32 +12,6 @@
   }
 }
 
-/* elementos en columna con espacio automático */
-.stack {
-  display: flex;
-  flex-direction: column;
-  gap: $space-md;
-}
-
-
-/* grupo horizontal adaptable */
-.cluster {
-  display: flex;
-  flex-wrap: wrap;
-  gap: $space-sm;
-  align-items: center;
-}
-
-
-/* layout responsive */
-.split {
-  display: flex;
-  flex-direction: column;
-  gap: $space-md;
-  @include desktop {
-    flex-direction: row;
-  }
-}
 
 /* layout para imagenes planetas*/
 .planet-list {
