@@ -4,7 +4,7 @@
 		<meta charset="utf-8"> 
         <meta name="viewport" content="width=device-width, initial-scale=1"> 
         <!-- modifica el ancho dependiendo del dispositivo -->
-		<title>El Mundo Interior</title> 
+		<title>Introspecta</title> 
         <link rel="stylesheet" href="css/index.css">
 	</head>
 
@@ -30,8 +30,8 @@
         </nav>
         <header class="hero">
             <div class="container">
-                <h1 class="hero__title" id="title">El Mundo Interior</h1>
-                <p class="hero__description" id="description">Descripción</p>
+                <h1 class="hero__title" id="title">Introspecta</h1>
+                <p class="hero__description" id="description">Tu Mundo Interior</p>
                 <!-- a implementar en próximas versiones los botones -->
                 <div class="hero__buttons">
                     <button class="hero__button hero__button--login">Iniciar Sesión</button>
@@ -44,7 +44,7 @@
             <div class="container">
                 <section class="planet-list" id="planets">
                     <!-- sección que describe a todos los planetas -->
-                    <article class="planet" id="artistico">
+                    <article class="planet card" id="artistico">
                         <img src="assets/image/avif/planeta1.avif" alt="Mundo artístico" class="planet__image">
                         <div class="planet__description">
                             <h2 class="planet__title">Mundo artístico</h2>
@@ -52,7 +52,7 @@
                         </div>
                     </article>
 
-                    <article class="planet" id="espiritual">
+                    <article class="planet card planet--reverse" id="espiritual">
                         <img src="assets/image/avif/planeta2.avif" alt="Mundo espiritual" class="planet__image">
                         <div class="planet__description">
                             <h2 class="planet__title">Mundo espiritual</h2>
@@ -60,7 +60,7 @@
                         </div>
                     </article>
 
-                    <article class="planet" id="fisico">
+                    <article class="planet card" id="fisico">
                         <img src="assets/image/avif/planeta3.avif" alt="Mundo físico" class="planet__image">
                         <div class="planet__description">
                             <h2 class="planet__title">Mundo físico</h2>
@@ -68,7 +68,7 @@
                         </div>
                     </article>
 
-                    <article class="planet" id="mental">
+                    <article class="planet card planet--reverse" id="mental">
                         <img src="assets/image/avif/planeta4.avif" alt="Mundo mental" class="planet__image">
                         <div class="planet__description">
                             <h2 class="planet__title">Mundo mental</h2>
@@ -76,7 +76,7 @@
                         </div>
                     </article>
 
-                    <article class="planet" id="personal">
+                    <article class="planet card" id="personal">
                         <img src="assets/image/avif/planeta5.avif" alt="Mundo personal" class="planet__image">
                         <div class="planet__description">
                             <h2 class="planet__title">Mundo personal</h2>
@@ -84,7 +84,7 @@
                         </div>
                     </article>
 
-                    <article class="planet" id="reflexivo">
+                    <article class="planet card planet--reverse" id="reflexivo">
                         <img src="assets/image/avif/planeta6.avif" alt="Mundo reflexivo" class="planet__image">
                         <div class="planet__description">
                             <h2 class="planet__title">Mundo reflexivo</h2>
@@ -104,7 +104,7 @@
 
                     <div class="plans__list">
 
-                        <article class="plan" id="free-plan">
+                        <article class="plan card" id="free-plan">
                             <h3>Gratis</h3>
                             <ul>
                                 <li>Acceso a todos los mundos</li>
@@ -114,7 +114,7 @@
                             </ul>
                         </article>
 
-                        <article class="plan">
+                        <article class="plan card">
                             <h3>Plus</h3>
                             <ul>
                                 <li>Todo lo incluido en Gratis</li>
@@ -125,7 +125,7 @@
                             </ul>
                         </article>
 
-                        <article class="plan">
+                        <article class="plan card">
                             <h3>Pro</h3>
                             <ul>
                                 <li>Todo lo incluido en Plus</li>
