@@ -1,0 +1,11 @@
+.subsections {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    margin-bottom: 5vh;
+    align-items: stretch;
+}
+
+.subsection {
+    flex: 1;
+}
