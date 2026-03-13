@@ -186,6 +186,34 @@ p {
   margin-right: 20px;
 }
 
+.post {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  text-align: left;
+}
+.post__user, .post__location, .post__title, .post__text, .post__date {
+  margin: 0.5vw;
+}
+.post__title {
+  font-weight: bold;
+}
+.post__location, .post__date {
+  color: gray;
+}
+.post__header {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+.post__footer {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
 .hero, .main {
   margin-top: 150px;
 }
@@ -289,7 +317,7 @@ p {
 }
 @media (min-width: 1024px) {
   .post {
-    flex-direction: row;
+    flex-direction: column;
   }
 }
 

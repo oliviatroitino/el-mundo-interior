@@ -1,28 +1,17 @@
-# El Mundo Interior
-**Objetivo**:
+# Template Post
 
-## Secciones: Esquema de ficheros
-```
-index.html
-|_ registro.html
-|_ login.html
-    |_ mundos.html
-        |_ mundoartistico.html
-        |_ mundoespiritual.html
-        |_ mundofisico.html
-        |_ mundomental.html
-        |_ mundopersonal.html
-        |_ mundoreflexivo.html
-```
+<article class="post card">
+    <header class="post__header">
+        <span class="post__user">Tú</span>
+        <span class="post__location">Madrid</span>
+        <h3 class="post__title">Mi obra reciente</h3>
+    </header>
 
-### Mundo Artístico
+    <p class="post__text">
+        Descripción de mi obra.
+    </p>
 
-### Mundo Espiritual
-
-### Mundo Físico
-
-### Mundo Mental
-
-### Mundo Personal
-
-### Mundo Reflexivo
+    <div class="post__media">
+        <img src="" alt="Imagen de mi obra">
+    </div>
+</article>
