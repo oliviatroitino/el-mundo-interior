@@ -18,6 +18,11 @@ body {
   margin: 0;
 }
 
+ul {
+  padding-left: 0;
+  margin-left: 1vw;
+}
+
 @font-face {
   font-family: logoFont;
   src: url(../assets/fonts/amoera-Regular.ttf);
@@ -211,7 +216,7 @@ p {
 .card {
   background: #d5dfee;
   border-radius: 12px;
-  border: 3px solid #8DA8D0;
+  border: 2px solid #8DA8D0;
   overflow: hidden;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   padding: 40px;
@@ -222,6 +227,30 @@ p {
   display: flex;
   align-items: center;
   flex-direction: row;
+  margin-bottom: 5vh;
+}
+
+.footer {
+  background-color: #c6c6e2;
+  padding: 5vw;
+  box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.footer__container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.contact__input, .contact__textarea {
+  width: 15vw;
+}
+
+.contact__field {
+  display: grid;
+  grid-template-columns: 5vw 15vw;
+  gap: 10px;
+  align-items: center;
 }
 
 /* contenedor general de la web */
