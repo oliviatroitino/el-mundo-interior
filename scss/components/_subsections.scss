@@ -1,4 +1,4 @@
-.subsections {
+.subsections, .sections__list {
     display: flex;
     align-items: center;
     flex-direction: row;
@@ -6,6 +6,6 @@
     align-items: stretch;
 }
 
-.subsection {
+.subsection, .sections__item {
     flex: 1;
 }
