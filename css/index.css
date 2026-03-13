@@ -253,6 +253,18 @@ p {
   align-items: center;
 }
 
+.community__list {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  margin-bottom: 5vh;
+  align-items: stretch;
+}
+
+.community__item {
+  flex: 1;
+}
+
 /* contenedor general de la web */
 .container {
   width: min(100% - 2rem, 72rem);
