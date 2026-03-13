@@ -1,4 +1,4 @@
-.plans__list {
+.community__list {
     display: flex;
     align-items: center;
     flex-direction: row;
@@ -6,11 +6,6 @@
     align-items: stretch;
 }
 
-.plan {
+.community__item {
     flex: 1;
-}
-
-.plan:nth-child(2) {
-    flex: 1.2;
-    transform: scale(1.05);
 }

@@ -1,0 +1,32 @@
+.post{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    text-align: left;
+
+    &__user, &__location, &__title, &__text, &__date{
+        margin: 0.5vw;
+    }
+
+    &__title{
+        font-weight: bold;
+    }
+
+    &__location, &__date{
+        color: gray;
+    }
+
+    &__header{
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+    }
+
+    &__footer{
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+    }
+}

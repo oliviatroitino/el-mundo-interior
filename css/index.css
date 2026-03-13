@@ -18,6 +18,11 @@ body {
   margin: 0;
 }
 
+ul {
+  padding-left: 0;
+  margin-left: 1vw;
+}
+
 @font-face {
   font-family: logoFont;
   src: url(../assets/fonts/amoera-Regular.ttf);
@@ -181,6 +186,34 @@ p {
   margin-right: 20px;
 }
 
+.post {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  text-align: left;
+}
+.post__user, .post__location, .post__title, .post__text, .post__date {
+  margin: 0.5vw;
+}
+.post__title {
+  font-weight: bold;
+}
+.post__location, .post__date {
+  color: gray;
+}
+.post__header {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+.post__footer {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
 .hero, .main {
   margin-top: 150px;
 }
@@ -211,7 +244,7 @@ p {
 .card {
   background: #d5dfee;
   border-radius: 12px;
-  border: 3px solid #8DA8D0;
+  border: 2px solid #8DA8D0;
   overflow: hidden;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   padding: 40px;
@@ -222,6 +255,64 @@ p {
   display: flex;
   align-items: center;
   flex-direction: row;
+  margin-bottom: 5vh;
+  align-items: stretch;
+}
+
+.plan {
+  flex: 1;
+}
+
+.plan:nth-child(2) {
+  flex: 1.2;
+  transform: scale(1.05);
+}
+
+.footer {
+  background-color: #c6c6e2;
+  padding: 5vw;
+  box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.footer__container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.contact__input, .contact__textarea {
+  width: 15vw;
+}
+
+.contact__field {
+  display: grid;
+  grid-template-columns: 5vw 15vw;
+  gap: 10px;
+  align-items: center;
+}
+
+.community__list {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  margin-bottom: 5vh;
+  align-items: stretch;
+}
+
+.community__item {
+  flex: 1;
+}
+
+.subsections, .sections__list {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  margin-bottom: 5vh;
+  align-items: stretch;
+}
+
+.subsection, .sections__item {
+  flex: 1;
 }
 
 /* contenedor general de la web */
@@ -238,7 +329,7 @@ p {
 }
 @media (min-width: 1024px) {
   .post {
-    flex-direction: row;
+    flex-direction: column;
   }
 }
 
