@@ -2,27 +2,27 @@
 
 .hero, .main {
     margin-top: 150px;
-}
 
-.hero__title {
-    text-align: center;  
-    font-family: logoFont;
-    font-size: $font-logo;
-    margin-bottom: 0;
-}
+    &__title{
+        text-align: center;  
+        font-family: logoFont;
+        font-size: $font-logo;
+        margin-bottom: 0;
+    }
 
-.hero__description {
-    text-align: center;
-    margin-top: 0;
-}
+    &__description {
+        text-align: center;
+        margin-top: 0;
+    }
 
-.hero__buttons {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 20px;
-}
+    &__buttons {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 20px;
+    }
 
-.hero__button {
-    width: 100px;
+    &__button {
+        width: 100px;
+    }
 }

@@ -6,32 +6,32 @@
   text-decoration: none;
   color: inherit;
   transition: transform 0.2s ease;
-}
 
-.planet:hover {
-  transform: translateY(-2px);
-  filter: brightness(0.95);
-}
+  &:hover {
+    transform: translateY(-2px);
+    filter: brightness(0.95);
+  }
 
-.planet--reverse {
-  flex-direction: row-reverse;
-}
+  &__reverse {
+    flex-direction: row-reverse;
+  }
 
-.planet__image {
-  width: clamp(140px, 18vw, 180px);
-  aspect-ratio: 1 / 1;
-  border-radius: 50%;
-  object-fit: cover;
-}
+  &__reverse &__description {
+      margin-left: 0;
+      margin-right: 20px;
+    }
 
-.planet__description {
-  margin-left: 20px;
-  display: flex;
-  flex-direction: column;
-  text-align: left;
-}
+  &__image {
+    width: clamp(140px, 18vw, 180px);
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    object-fit: cover;
+  }
 
-.planet--reverse .planet__description {
-  margin-left: 0;
-  margin-right: 20px;
+  &__description {
+    margin-left: 20px;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+  }
 }

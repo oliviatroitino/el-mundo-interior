@@ -165,33 +165,28 @@ p {
   color: inherit;
   transition: transform 0.2s ease;
 }
-
 .planet:hover {
   transform: translateY(-2px);
   filter: brightness(0.95);
 }
-
-.planet--reverse {
+.planet__reverse {
   flex-direction: row-reverse;
 }
-
+.planet__reverse .planet__description {
+  margin-left: 0;
+  margin-right: 20px;
+}
 .planet__image {
   width: clamp(140px, 18vw, 180px);
   aspect-ratio: 1/1;
   border-radius: 50%;
   object-fit: cover;
 }
-
 .planet__description {
   margin-left: 20px;
   display: flex;
   flex-direction: column;
   text-align: left;
-}
-
-.planet--reverse .planet__description {
-  margin-left: 0;
-  margin-right: 20px;
 }
 
 .post {
@@ -225,27 +220,23 @@ p {
 .hero, .main {
   margin-top: 150px;
 }
-
-.hero__title {
+.hero__title, .main__title {
   text-align: center;
   font-family: logoFont;
   font-size: 6rem;
   margin-bottom: 0;
 }
-
-.hero__description {
+.hero__description, .main__description {
   text-align: center;
   margin-top: 0;
 }
-
-.hero__buttons {
+.hero__buttons, .main__buttons {
   display: flex;
   flex-direction: column;
   justify-content: center;
   gap: 20px;
 }
-
-.hero__button {
+.hero__button, .main__button {
   width: 100px;
 }
 
@@ -270,7 +261,6 @@ p {
 .plan {
   flex: 1;
 }
-
 .plan:nth-child(2) {
   flex: 1.2;
   transform: scale(1.05);
@@ -281,7 +271,6 @@ p {
   padding: 5vw;
   box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.1);
 }
-
 .footer__container {
   display: flex;
   flex-wrap: wrap;
