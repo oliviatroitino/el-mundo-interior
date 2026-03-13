@@ -375,3 +375,21 @@ p {
 }
 
 /*# sourceMappingURL=index.css.map */
+
+a,
+a:link,
+a:visited,
+a:hover,
+a:active {
+  text-decoration: none;
+  color: inherit;
+}
+
+.btn,
+.btn:link,
+.btn:visited,
+.btn:hover,
+.btn:active,
+.btn span {
+  text-decoration: none;
+}

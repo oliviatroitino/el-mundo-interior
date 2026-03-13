@@ -16,6 +16,7 @@
 
   background: white;
   color: black;
+  text-decoration: none; 
 
   font-size: 0.9rem;
   font-weight: 600;
@@ -25,10 +26,26 @@
   transition: all 0.2s ease;
 }
 
+.btn,
+.btn:link,
+.btn:visited {
+  text-decoration: none;
+  color: inherit;
+}
+
+.btn:hover {
+  text-decoration: none;
+}
+
+.btn span {
+  text-decoration: none;
+}
+
 /* estados */
 .btn:hover {
   background: black;
   color: white;
+  text-decoration: none;
 }
 
 /* elementos internos */
@@ -50,6 +67,10 @@
 .btn__arrow {
   font-size: 1.1rem;
   line-height: 1;
+}
+
+.btn span {
+  text-decoration: none;
 }
 
 /* =========================
@@ -95,6 +116,20 @@
    RESPONSIVE MÓVIL
    ========================= */
 
+/* tablet */
+@media (max-width: 768px) {
+  .btn {
+    font-size: 0.9rem;
+    padding: 0.65rem 1.1rem;
+    gap: 0.55rem;
+  }
+
+  .btn__arrow {
+    font-size: 1.05rem;
+  }
+}
+
+/* móvil */
 @media (max-width: 480px) {
   .btn {
     font-size: 0.85rem;
