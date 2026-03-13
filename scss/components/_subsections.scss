@@ -9,3 +9,9 @@
 .subsection, .sections__item {
     flex: 1;
 }
+
+.sections__item {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+}

@@ -315,6 +315,12 @@ p {
   flex: 1;
 }
 
+.sections__item {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
 /* contenedor general de la web */
 .container {
   width: min(100% - 2rem, 72rem);
