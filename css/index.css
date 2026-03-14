@@ -473,6 +473,19 @@ p {
   color: inherit;
 }
 
+.question-generator__item {
+  padding: 10px;
+  text-align: center;
+  margin-left: 15vw;
+  margin-right: 15vw;
+}
+.question-generator__title {
+  text-align: center;
+}
+.question-generator {
+  margin-bottom: 7vh;
+}
+
 /* contenedor general de la web */
 .container {
   width: min(100% - 2rem, 72rem);
