@@ -23,6 +23,11 @@ ul {
   margin-left: 1vw;
 }
 
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
 @font-face {
   font-family: logoFont;
   src: url(../assets/fonts/amoera-Regular.ttf);
@@ -231,6 +236,10 @@ p {
     margin-left: 0;
     margin-right: 20px;
   }
+  .planet__reverse .planet__title, .planet__reverse .planet__actions {
+    text-align: right;
+    align-self: flex-end;
+  }
 }
 
 .post {
@@ -264,42 +273,52 @@ p {
 .hero {
   margin-top: 7rem;
 }
+.hero__header {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+}
 .hero__title {
   text-align: center;
   font-family: logoFont;
   font-size: clamp(3rem, 8vw, 6rem);
-  margin-bottom: 0.3rem;
+  margin: 0;
   line-height: 1;
 }
 .hero__description {
   text-align: center;
   margin-top: 0;
   margin-bottom: 2.5rem;
-  font-size: 1rem;
-}
-.hero__cta {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 3rem;
-  margin-top: 2rem;
-  flex-wrap: wrap;
+  font-size: 1.25rem;
 }
 .hero__logo {
-  width: clamp(170px, 24vw, 260px);
-  height: auto;
-  display: block;
-  flex-shrink: 0;
+  width: clamp(50px, 18vw, 100px);
+}
+@media (min-width: 1024px) {
+  .hero__logo {
+    width: clamp(80px, 18vw, 120px);
+  }
 }
 .hero__buttons {
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
+  width: min(100%, 260px);
+  margin-inline: auto;
+  margin-bottom: 3vh;
 }
 .hero__button {
-  min-width: 190px;
+  width: 100%;
+  min-width: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
   padding: 0.9rem 1.2rem;
   border: 2px solid black;
   border-radius: 12px;
@@ -314,40 +333,6 @@ p {
   color: white;
 }
 
-@media (max-width: 768px) {
-  .hero {
-    margin-top: 5rem;
-  }
-  .hero__cta {
-    flex-direction: column;
-    gap: 1.5rem;
-    text-align: center;
-  }
-  .hero__logo {
-    width: clamp(150px, 45vw, 220px);
-  }
-  .hero__buttons {
-    align-items: center;
-  }
-  .hero__button {
-    min-width: 180px;
-  }
-}
-@media (max-width: 480px) {
-  .hero {
-    margin-top: 4rem;
-  }
-  .hero__description {
-    margin-bottom: 2rem;
-  }
-  .hero__logo {
-    width: 160px;
-  }
-  .hero__button {
-    width: 100%;
-    max-width: 220px;
-  }
-}
 .card {
   background: #d5dfee;
   border-radius: 12px;

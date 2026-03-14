@@ -38,5 +38,11 @@
       margin-left: 0;
       margin-right: 20px;
     }
+
+    &__reverse &__title,
+    &__reverse &__actions {
+      text-align: right;
+      align-self: flex-end;
+    }
   }
 }
