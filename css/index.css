@@ -71,6 +71,7 @@ p {
   border-radius: 12px;
   background: white;
   color: black;
+  text-decoration: none;
   font-size: 0.9rem;
   font-weight: 600;
   line-height: 1;
@@ -78,10 +79,26 @@ p {
   transition: all 0.2s ease;
 }
 
+.btn,
+.btn:link,
+.btn:visited {
+  text-decoration: none;
+  color: inherit;
+}
+
+.btn:hover {
+  text-decoration: none;
+}
+
+.btn span {
+  text-decoration: none;
+}
+
 /* estados */
 .btn:hover {
   background: black;
   color: white;
+  text-decoration: none;
 }
 
 /* elementos internos */
@@ -103,6 +120,10 @@ p {
 .btn__arrow {
   font-size: 1.1rem;
   line-height: 1;
+}
+
+.btn span {
+  text-decoration: none;
 }
 
 /* =========================
@@ -138,9 +159,26 @@ p {
   padding: 0.7rem;
 }
 
+/* botón descubrir más */
+.btn--discover {
+  min-width: 10rem;
+}
+
 /* =========================
    RESPONSIVE MÓVIL
    ========================= */
+/* tablet */
+@media (max-width: 768px) {
+  .btn {
+    font-size: 0.9rem;
+    padding: 0.65rem 1.1rem;
+    gap: 0.55rem;
+  }
+  .btn__arrow {
+    font-size: 1.05rem;
+  }
+}
+/* móvil */
 @media (max-width: 480px) {
   .btn {
     font-size: 0.85rem;
@@ -164,17 +202,11 @@ p {
   text-decoration: none;
   color: inherit;
   transition: transform 0.2s ease;
+  flex-direction: column;
 }
 .planet:hover {
   transform: translateY(-2px);
   filter: brightness(0.95);
-}
-.planet__reverse {
-  flex-direction: row-reverse;
-}
-.planet__reverse .planet__description {
-  margin-left: 0;
-  margin-right: 20px;
 }
 .planet__image {
   width: clamp(140px, 18vw, 180px);
@@ -187,6 +219,18 @@ p {
   display: flex;
   flex-direction: column;
   text-align: left;
+}
+@media (min-width: 1024px) {
+  .planet {
+    flex-direction: row;
+  }
+  .planet__reverse {
+    flex-direction: row-reverse;
+  }
+  .planet__reverse .planet__description {
+    margin-left: 0;
+    margin-right: 20px;
+  }
 }
 
 .post {
@@ -217,29 +261,93 @@ p {
   width: 100%;
 }
 
-.hero, .main {
-  margin-top: 150px;
+.hero {
+  margin-top: 7rem;
 }
-.hero__title, .main__title {
+.hero__title {
   text-align: center;
   font-family: logoFont;
-  font-size: 6rem;
-  margin-bottom: 0;
+  font-size: clamp(3rem, 8vw, 6rem);
+  margin-bottom: 0.3rem;
+  line-height: 1;
 }
-.hero__description, .main__description {
+.hero__description {
   text-align: center;
   margin-top: 0;
+  margin-bottom: 2.5rem;
+  font-size: 1rem;
 }
-.hero__buttons, .main__buttons {
+.hero__cta {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3rem;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+}
+.hero__logo {
+  width: clamp(170px, 24vw, 260px);
+  height: auto;
+  display: block;
+  flex-shrink: 0;
+}
+.hero__buttons {
   display: flex;
   flex-direction: column;
+  gap: 1rem;
+  align-items: flex-start;
   justify-content: center;
-  gap: 20px;
 }
-.hero__button, .main__button {
-  width: 100px;
+.hero__button {
+  min-width: 190px;
+  padding: 0.9rem 1.2rem;
+  border: 2px solid black;
+  border-radius: 12px;
+  background: white;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+.hero__button:hover {
+  background: black;
+  color: white;
 }
 
+@media (max-width: 768px) {
+  .hero {
+    margin-top: 5rem;
+  }
+  .hero__cta {
+    flex-direction: column;
+    gap: 1.5rem;
+    text-align: center;
+  }
+  .hero__logo {
+    width: clamp(150px, 45vw, 220px);
+  }
+  .hero__buttons {
+    align-items: center;
+  }
+  .hero__button {
+    min-width: 180px;
+  }
+}
+@media (max-width: 480px) {
+  .hero {
+    margin-top: 4rem;
+  }
+  .hero__description {
+    margin-bottom: 2rem;
+  }
+  .hero__logo {
+    width: 160px;
+  }
+  .hero__button {
+    width: 100%;
+    max-width: 220px;
+  }
+}
 .card {
   background: #d5dfee;
   border-radius: 12px;
@@ -253,9 +361,14 @@ p {
 .plans__list {
   display: flex;
   align-items: center;
-  flex-direction: row;
+  flex-direction: column;
   margin-bottom: 5vh;
   align-items: stretch;
+}
+@media (min-width: 1024px) {
+  .plans__list {
+    flex-direction: row;
+  }
 }
 
 .plan {
@@ -291,9 +404,14 @@ p {
 .community__list {
   display: flex;
   align-items: center;
-  flex-direction: row;
+  flex-direction: column;
   margin-bottom: 5vh;
   align-items: stretch;
+}
+@media (min-width: 1024px) {
+  .community__list {
+    flex-direction: row;
+  }
 }
 
 .community__item {
@@ -353,7 +471,7 @@ p {
   position: fixed;
   top: 0;
   width: 100%;
-  z-index: 1000;
+  z-index: 1000; /* Recomendación de IA: Mantener el navbar por encima de otros elementos usando un valor alto de z-index */
   background-color: #c6c6e2;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }

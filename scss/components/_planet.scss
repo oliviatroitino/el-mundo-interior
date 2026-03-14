@@ -1,3 +1,4 @@
+@use "../abstracts/mixins" as *;
 @use "../abstracts/variables" as *;
 
 .planet {
@@ -6,20 +7,12 @@
   text-decoration: none;
   color: inherit;
   transition: transform 0.2s ease;
+  flex-direction: column;
 
   &:hover {
     transform: translateY(-2px);
     filter: brightness(0.95);
   }
-
-  &__reverse {
-    flex-direction: row-reverse;
-  }
-
-  &__reverse &__description {
-      margin-left: 0;
-      margin-right: 20px;
-    }
 
   &__image {
     width: clamp(140px, 18vw, 180px);
@@ -33,5 +26,17 @@
     display: flex;
     flex-direction: column;
     text-align: left;
+  }
+
+  @include desktop {
+    flex-direction: row;
+    &__reverse {
+      flex-direction: row-reverse;
+    }
+
+    &__reverse &__description {
+      margin-left: 0;
+      margin-right: 20px;
+    }
   }
 }
