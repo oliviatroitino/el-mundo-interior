@@ -7,6 +7,15 @@
     z-index: 1000; /* Recomendación de IA: Mantener el navbar por encima de otros elementos usando un valor alto de z-index */
     background-color: $color-navbar;
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+
+    &__toggle {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        &__title {
+            margin-left: 8px;
+        }
+    }
 }
 
 .nav__list {

@@ -512,6 +512,14 @@ p {
   background-color: #c6c6e2;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
+.nav__toggle {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.nav__toggle__title {
+  margin-left: 8px;
+}
 
 .nav__list {
   list-style-type: none;
