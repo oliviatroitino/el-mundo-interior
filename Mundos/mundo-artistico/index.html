@@ -53,27 +53,38 @@
                 <!-- POST FORM -->
                 <section class="post-form">
 
-                    <div class="post-form__profile-pic">
-                        <img src="" alt="Foto de perfil">
-                    </div>
-
                     <form class="post-form__form" action="#" method="post">
 
-                        <textarea class="post-form__text" 
-                                placeholder="Comparte tu inspiración artística..."></textarea>
+                        <div class="post-form__profile-pic">
+                            <img src="../../assets/icons/users.svg" alt="Foto de perfil">
+                        </div>  
+                            
+                        <div class="post-form__input">
+                            <textarea class="post-form__text" 
+                                    placeholder="Comparte tu inspiración artística..."></textarea>
 
-                        <div class="post-form__options">
-                            <button type="button" class="post-form__upload">Subir imagen</button>
-                            <button type="button" class="post-form__location">Agregar ubicación</button>
 
-                            <select class="post-form__section-select">
-                                <option value="">Sección</option>
-                                <option value="artes-visuales">Artes Visuales</option>
-                                <option value="artes-narrativas-escenicas">Artes Narrativas y Escénicas</option>
-                                <option value="cultura-pensamiento">Cultura y pensamiento</option>
-                            </select>
+                            <div class="post-form__options">
 
-                            <button type="submit" class="post-form__submit">Publicar</button>
+                                <button type="button" class="post-form__upload" aria-label="Subir imagen">
+                                    <img src="../../assets/icons/attach.svg" alt="" aria-hidden="true">
+                                </button>
+
+                                <button type="button" class="post-form__location" aria-label="Agregar ubicación">
+                                    <img src="../../assets/icons/location.svg" alt="" aria-hidden="true">
+                                </button>
+
+                                <select class="post-form__section-select">
+                                    <option value="">Sección</option>
+                                    <option value="artes-visuales">Artes Visuales</option>
+                                    <option value="artes-narrativas-escenicas">Artes Narrativas y Escénicas</option>
+                                    <option value="cultura-pensamiento">Cultura y pensamiento</option>
+                                </select>
+
+                                <button type="submit" class="post-form__submit" aria-label="Publicar">
+                                    <img src="../../assets/icons/send.svg" alt="" aria-hidden="true">
+                                </button>
+                            </div>
                         </div>
                     </form>
                 </section>
@@ -122,6 +133,8 @@
 
                         <footer class="post__footer">
                             <p class="post__location">Valparaíso</p>
+                            <p class="post__date">2025-11-01</p>
+                        </footer>
                     </article>
 
                     <button class="post-list__load-more">

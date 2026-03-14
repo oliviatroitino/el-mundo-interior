@@ -28,6 +28,15 @@ a {
   color: inherit;
 }
 
+/* Force SVG icons to render in black globally. */
+img[src$=".svg"] {
+  filter: brightness(0) saturate(100%);
+}
+
+.main {
+  margin-top: 7vh;
+}
+
 @font-face {
   font-family: logoFont;
   src: url(../assets/fonts/amoera-Regular.ttf);
@@ -270,6 +279,41 @@ p {
   width: 100%;
 }
 
+.post-form {
+  margin-top: 15vh;
+}
+.post-form__form {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+.post-form__input {
+  flex: 1;
+  min-width: 0;
+}
+.post-form__text {
+  width: 100%;
+  min-height: 16rem;
+  box-sizing: border-box;
+  display: block;
+  resize: vertical;
+}
+.post-form__options {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-top: 0.6rem;
+}
+.post-form__section-select {
+  flex: 1;
+}
+@media (min-width: 1024px) {
+  .post-form {
+    margin-top: 10vh;
+  }
+}
+
 .hero {
   margin-top: 7rem;
 }
@@ -310,7 +354,6 @@ p {
   justify-content: center;
   width: min(100%, 260px);
   margin-inline: auto;
-  margin-bottom: 3vh;
 }
 .hero__button {
   width: 100%;
@@ -406,9 +449,18 @@ p {
 .subsections, .sections__list {
   display: flex;
   align-items: center;
-  flex-direction: row;
+  flex-direction: column;
   margin-bottom: 5vh;
   align-items: stretch;
+}
+@media (min-width: 1024px) {
+  .subsections, .sections__list {
+    flex-direction: row;
+  }
+}
+
+.subsections {
+  margin-top: 10vh;
 }
 
 .subsection, .sections__item {

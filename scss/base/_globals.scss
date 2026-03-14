@@ -14,3 +14,14 @@ a {
   text-decoration: none;
   color: inherit;
 }
+
+/* Force SVG icons to render in black globally. */
+img[src$=".svg"] {
+  filter: brightness(0) saturate(100%);
+}
+
+
+.main {
+  margin-top: 7vh;
+}
+

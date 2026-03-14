@@ -1,9 +1,20 @@
+@use "../abstracts/mixins" as *;
+@use "../abstracts/variables" as *;
+
 .subsections, .sections__list {
     display: flex;
     align-items: center;
-    flex-direction: row;
+    flex-direction: column;
     margin-bottom: 5vh;
     align-items: stretch;
+
+    @include desktop {
+        flex-direction: row;
+    }
+}
+
+.subsections {
+    margin-top: 10vh;
 }
 
 .subsection, .sections__item {

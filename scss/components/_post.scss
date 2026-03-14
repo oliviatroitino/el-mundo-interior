@@ -1,3 +1,6 @@
+@use "../abstracts/mixins" as *;
+@use "../abstracts/variables" as *;
+
 .post{
     display: flex;
     flex-direction: column;
@@ -28,5 +31,44 @@
         display: flex;
         justify-content: space-between;
         width: 100%;
+    }
+}
+
+.post-form{
+    margin-top: 15vh;
+
+    &__form {
+        display: flex;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+    &__input{
+        flex: 1;
+        min-width: 0;
+    }
+
+    &__text {
+        width: 100%;
+        min-height: 16rem;
+        box-sizing: border-box;
+        display: block;
+        resize: vertical;
+    }
+
+    &__options {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+        margin-top: 0.6rem;
+    }
+
+    &__section-select {
+        flex: 1;
+    }
+
+    @include desktop {
+        margin-top: 10vh;
     }
 }
