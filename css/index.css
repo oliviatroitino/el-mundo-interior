@@ -353,6 +353,7 @@ p {
   position: fixed;
   top: 0;
   width: 100%;
+  z-index: 1000;
   background-color: #c6c6e2;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
