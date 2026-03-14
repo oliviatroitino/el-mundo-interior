@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Hábitos y Rutinas</title>
-        <link rel="stylesheet" href="">
+        <link rel="stylesheet" href="../../../css/index.css">
     </head>
 
     <body class="page page__habitos">
@@ -13,22 +13,34 @@
         <nav class="nav">
             <ul class="nav__list">
                 <li class="nav__item">
-                    <a href="index.html" class="nav__home">Inicio</a>
+                    <a href="../../../index.html" class="nav__home">Inicio</a>
+                </li>
+
+                <li class="nav__item nav__worlds">
+                    <details class="nav__dropdown">
+                        <summary class="nav__toggle">
+                            <img src="../../../assets/image/avif/planeta5.avif" alt="Mundo Personal" class="nav__icon">
+                            <span class="nav__toggle__title">Mundo Personal</span>
+                        </summary>
+                        <ul class="nav__submenu">
+                            <li><a href="../../mundo-artistico/index.html">Mundo Artístico</a></li>
+                            <li><a href="../../mundo-espiritual/index.html">Mundo Espiritual</a></li>
+                            <li><a href="../../mundo-fisico/index.html">Mundo Físico</a></li>
+                            <li><a href="../../mundo-mental/index.html">Mundo Mental</a></li>
+                            <li><a href="../../mundo-reflexivo/index.html">Mundo Reflexivo</a></li>
+                        </ul>
+                    </details>
                 </li>
 
                 <li class="nav__item">
                     <details class="nav__dropdown">
-                        <summary class="nav__toggle">Secciones</summary>
+                        <summary class="nav__toggle">Hábitos y Rutinas</summary>
                         <ul class="nav__submenu">
                             <li><a href="../diario/index.html">Diario Personal</a></li>
                             <li><a href="">Hábitos y Rutinas</a></li>
                             <li><a href="../proyectos/index.html">Proyectos Personales</a></li>
                         </ul>
                     </details>
-                </li>
-
-                <li class="nav__item nav__worldname">
-                    Mundo Personal
                 </li>
 
                 <li class="nav__item">
@@ -96,22 +108,26 @@
 
                     <h2 class="post-list__title">Mis Publicaciones</h2>
 
-                    <article class="post">
+                    <article class="post card">
                         <header class="post__header">
-                            <span class="post__user">Tú</span>
-                            <span class="post__location">Madrid</span>
-                            <span class="post__subsection">Rutinas diarias</span>
+                            <p class="post__user">@tu</p>
+                            <p class="post__title">Mi rutina de mañana</p>
                         </header>
 
-                        <h3 class="post__title">Mi rutina de mañana</h3>
+                        <div class="post__content">
+                            <p class="post__text">
+                                Estoy organizando una rutina más estable para empezar el día con más energía y enfoque.
+                            </p>
 
-                        <p class="post__text">
-                            Estoy organizando una rutina más estable para empezar el día con más energía y enfoque.
-                        </p>
-
-                        <div class="post__media">
-                            <img src="" alt="Imagen de una rutina diaria">
+                            <div class="post__media">
+                                <img src="" alt="Imagen de una rutina diaria">
+                            </div>
                         </div>
+
+                        <footer class="post__footer">
+                            <p class="post__location">Madrid</p>
+                            <p class="post__date">2025-11-01</p>
+                        </footer>
                     </article>
 
                     <button class="post-list__load-more">
@@ -125,36 +141,44 @@
 
                     <h2 class="post-list__title">Publicaciones de otros usuarios</h2>
 
-                    <article class="post">
+                    <article class="post card">
                         <header class="post__header">
-                            <span class="post__user">Usuario1</span>
-                            <span class="post__location">Valencia</span>
-                            <span class="post__subsection">Construcción de hábitos</span>
+                            <p class="post__user">@usuario1</p>
+                            <p class="post__title">Empezar con pequeños cambios</p>
                         </header>
 
-                        <h3 class="post__title">Empezar con pequeños cambios</h3>
+                        <div class="post__content">
+                            <p class="post__text">
+                                Comparto cómo he conseguido mantener un hábito nuevo centrándome en pasos pequeños.
+                            </p>
 
-                        <p class="post__text">
-                            Comparto cómo he conseguido mantener un hábito nuevo centrándome en pasos pequeños.
-                        </p>
-
-                        <div class="post__media">
-                            <img src="" alt="Imagen sobre construcción de hábitos">
+                            <div class="post__media">
+                                <img src="" alt="Imagen sobre construcción de hábitos">
+                            </div>
                         </div>
+
+                        <footer class="post__footer">
+                            <p class="post__location">Valencia</p>
+                            <p class="post__date">2025-11-02</p>
+                        </footer>
                     </article>
 
-                    <article class="post">
+                    <article class="post card">
                         <header class="post__header">
-                            <span class="post__user">Usuario2</span>
-                            <span class="post__location">Madrid</span>
-                            <span class="post__subsection">Seguimiento de progreso</span>
+                            <p class="post__user">@usuario2</p>
+                            <p class="post__title">Revisando avances semanales</p>
                         </header>
 
-                        <h3 class="post__title">Revisando avances semanales</h3>
+                        <div class="post__content">
+                            <p class="post__text">
+                                Una reflexión sobre la importancia de medir el progreso sin obsesionarse con la perfección.
+                            </p>
+                        </div>
 
-                        <p class="post__text">
-                            Una reflexión sobre la importancia de medir el progreso sin obsesionarse con la perfección.
-                        </p>
+                        <footer class="post__footer">
+                            <p class="post__location">Madrid</p>
+                            <p class="post__date">2025-11-03</p>
+                        </footer>
                     </article>
 
                     <button class="post-list__load-more">

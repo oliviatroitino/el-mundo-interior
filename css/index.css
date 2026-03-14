@@ -516,9 +516,24 @@ p {
   display: flex;
   flex-direction: row;
   align-items: center;
+  gap: 0.4rem;
+  cursor: pointer;
+}
+.nav__toggle::before {
+  content: "▾";
+  font-size: 1.25rem;
+  line-height: 1;
+  transition: transform 0.2s ease;
+}
+.nav__toggle::-webkit-details-marker {
+  display: none;
 }
 .nav__toggle__title {
   margin-left: 8px;
+}
+
+.nav details[open] > .nav__toggle::before {
+  transform: rotate(180deg);
 }
 
 .nav__list {
