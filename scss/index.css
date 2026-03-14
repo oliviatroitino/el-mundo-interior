@@ -226,7 +226,8 @@ p {
   width: clamp(140px, 18vw, 180px);
   aspect-ratio: 1/1;
   border-radius: 50%;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 .planet__description {
   margin-left: 20px;
@@ -513,7 +514,8 @@ p {
 .question-generator__more-icon {
   width: 1.8rem;
   height: 1.8rem;
-  object-fit: contain;
+  -o-object-fit: contain;
+     object-fit: contain;
 }
 
 /* contenedor general de la web */
@@ -596,7 +598,8 @@ p {
   width: 24px;
   height: 24px;
   max-width: 24px;
-  object-fit: contain;
+  -o-object-fit: contain;
+     object-fit: contain;
 }
 
 .nav__logo {
@@ -640,7 +643,6 @@ p {
 .nav__home-icon {
   width: 1.8rem;
   height: 1.8rem;
-  object-fit: contain;
-}
-
-/*# sourceMappingURL=index.css.map */
+  -o-object-fit: contain;
+     object-fit: contain;
+}/*# sourceMappingURL=index.css.map */

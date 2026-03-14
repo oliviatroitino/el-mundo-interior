@@ -13,7 +13,10 @@
         <nav class="nav">
             <ul class="nav__list">
                 <li class="nav__item">
-                    <a href="../../../index.html" class="nav__home">Inicio</a>
+                <a href="../../../index.html" class="nav__home" aria-label="Inicio">
+                    <img src="../../../assets/icons/home.svg" alt="Inicio" class="nav__home-icon">
+                    <img src="../../../assets/image/avif/logo.avif" alt="Logo Introspecta" class="nav__logo">
+                </a>
                 </li>
 
                 <li class="nav__item nav__worlds">
@@ -132,7 +135,12 @@
                                 ¿Qué sonido, ritmo o silencio describe mejor tu estado interno hoy?
                             </p>
                         </article>
-                    </div>
+
+                        <div class="question-generator__more">
+                            <button type="button" class="question-generator__more-link" aria-label="Generar pregunta">
+                            <img src="../../../assets/icons/cargarmas.svg" alt="Generar pregunta" class="question-generator__more-icon">
+                            </button>
+                        </div>
                 </section>
 
                 <!-- MY POST LIST -->

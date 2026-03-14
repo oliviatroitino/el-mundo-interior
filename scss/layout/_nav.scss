@@ -1,5 +1,5 @@
 @use "../abstracts/variables" as *;
-@use "../abstracts/mixins" as *; // Si tienes mixins
+@use "../abstracts/mixins" as *; 
 
 .nav {
     position: fixed;
@@ -64,3 +64,44 @@
     margin-left: 0.5em; /* Espaciado entre "Inicio" y el logo */
     vertical-align: middle; /* Alinea el logo con el texto */
 }
+
+.nav__submenu {
+  list-style: none;
+  padding-left: 0;
+  margin-left: 0;
+}
+
+.nav__submenu li {
+  list-style: none;
+}
+
+.nav__submenu li::marker {
+  content: "";
+}
+
+
+:root {
+  --nav-height: 76px;
+}
+
+.nav {
+  min-height: var(--nav-height);
+}
+
+.page .main {
+  margin-top: calc(var(--nav-height) + 16px); // separación extra bajo el nav
+}
+
+
+.nav__home {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.nav__home-icon {
+  width: 1.8rem;   // antes 1.2rem aprox
+  height: 1.8rem;
+  object-fit: contain;
+}
+

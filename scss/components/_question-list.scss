@@ -13,3 +13,28 @@
 
     margin-bottom: 7vh;
 }
+
+.question-generator__more {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: .5rem;
+  margin-left: 15vw;   // mismo margen que las cards
+  margin-right: 15vw;  // mismo margen que las cards
+}
+
+.question-generator__more-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+}
+
+.question-generator__more-icon {
+  width: 1.8rem;
+  height: 1.8rem;
+  object-fit: contain;
+}
+
