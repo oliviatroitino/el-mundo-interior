@@ -569,4 +569,10 @@ p {
   object-fit: contain;
 }
 
+.nav__logo {
+  height: 2.5em; /* Ajusta el tamaño del logo */
+  margin-left: 0.5em; /* Espaciado entre "Inicio" y el logo */
+  vertical-align: middle; /* Alinea el logo con el texto */
+}
+
 /*# sourceMappingURL=index.css.map */
