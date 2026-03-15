@@ -1,12 +1,10 @@
 @use "abstracts/variables";
 @use "abstracts/mixins";
 
-@use "base/reset";
 @use "base/globals";
 @use "base/typography";
 
 @use "components/button";
-@use "components/forms";
 @use "components/planet";
 @use "components/post";
 @use "components/hero";
