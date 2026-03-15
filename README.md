@@ -36,3 +36,4 @@ Introspecta abarca seis áreas llamadas **"Mundos"**, donde el usuario puede des
 - Agregar funcionalidad de registro y login de usuarios
 - Agregar JS para hacer el proyecto más dinámico
 - Agregar página de `mundos.html` para que una vez que el usuario haga login, tenga su propia página de usuario
+- Adaptar el responsive para tablets
