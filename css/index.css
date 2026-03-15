@@ -252,7 +252,7 @@ p {
 }
 
 .planet#artistico {
-  --card-bg: #D3C7B5;
+  --card-bg: #EFEBDC;
   --card-border: #4F3A2A;
 }
 
@@ -591,8 +591,8 @@ p {
 .page__artes-visuales,
 .page__artes-narrativas,
 .page__cultura-pensamiento {
-  background-color: #EFEBDC;
-  --card-bg: #D3C7B5;
+  background-color: rgb(222, 214, 203);
+  --card-bg: #EFEBDC;
   --card-border: #4F3A2A;
 }
 
