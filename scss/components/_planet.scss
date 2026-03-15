@@ -46,3 +46,33 @@
     }
   }
 }
+
+.planet#artistico {
+  --card-bg: #{$color-card-1};
+  --card-border: #{$color-card-border-1};
+}
+
+.planet#espiritual {
+  --card-bg: #{$color-card-2};
+  --card-border: #{$color-card-border-2};
+}
+
+.planet#fisico {
+  --card-bg: #{$color-card-3};
+  --card-border: #{$color-card-border-3};
+}
+
+.planet#mental {
+  --card-bg: #{$color-card-4};
+  --card-border: #{$color-card-border-4};
+}
+
+.planet#personal {
+  --card-bg: #{$color-card-5};
+  --card-border: #{$color-card-border-5};
+}
+
+.planet#reflexivo {
+  --card-bg: #{$color-card-6};
+  --card-border: #{$color-card-border-6};
+}

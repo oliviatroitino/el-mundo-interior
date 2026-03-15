@@ -25,8 +25,12 @@
     display: block;
     text-decoration: none;
     color: inherit;
-}
 
+    &:hover {
+        transform: translateY(-2px);
+        filter: brightness(0.95);
+    }
+}
 
 .subsection__links a {
   color: #1f4d8f;

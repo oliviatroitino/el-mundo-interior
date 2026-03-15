@@ -251,6 +251,36 @@ p {
   }
 }
 
+.planet#artistico {
+  --card-bg: #D3C7B5;
+  --card-border: #4F3A2A;
+}
+
+.planet#espiritual {
+  --card-bg: #EDF8FB;
+  --card-border: #96c4ce;
+}
+
+.planet#fisico {
+  --card-bg: #FFF3DF;
+  --card-border: #E7C998;
+}
+
+.planet#mental {
+  --card-bg: #E9FDFF;
+  --card-border: #9EDFE4;
+}
+
+.planet#personal {
+  --card-bg: #F0E9E3;
+  --card-border: #C2B3A4;
+}
+
+.planet#reflexivo {
+  --card-bg: #E5EFED;
+  --card-border: #9CB3AF;
+}
+
 .post {
   display: flex;
   flex-direction: column;
@@ -480,6 +510,10 @@ p {
   display: block;
   text-decoration: none;
   color: inherit;
+}
+.sections__item:hover {
+  transform: translateY(-2px);
+  filter: brightness(0.95);
 }
 
 .subsection__links a {
