@@ -1,4 +1,5 @@
 @use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
 
 .footer {
     background-color: $color-navbar;
@@ -10,15 +11,26 @@
         flex-wrap: wrap;
         justify-content: space-between;
     }
-}
 
-.contact__input, .contact__textarea{
-    width: 15vw
-}
+    &__contact-field {
+        display: grid;
 
-.contact__field {
-    display: grid;
-    grid-template-columns: 5vw 15vw;
-    gap: 10px;
-    align-items: center;
+        grid-template-columns: 15vw 65vw;
+
+        @include desktop {
+            grid-template-columns: 5vw 15vw;
+        }
+
+        gap: 10px;
+        align-items: center;
+    }
+
+    &__contact-input, &__contact-textarea {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    &__contact-textarea {
+        resize: vertical;
+    }
 }

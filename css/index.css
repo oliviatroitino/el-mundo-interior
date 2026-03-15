@@ -417,16 +417,25 @@ p {
   flex-wrap: wrap;
   justify-content: space-between;
 }
-
-.contact__input, .contact__textarea {
-  width: 15vw;
-}
-
-.contact__field {
+.footer__contact-field {
   display: grid;
-  grid-template-columns: 5vw 15vw;
+  grid-template-columns: 15vw 65vw;
+}
+@media (min-width: 1024px) {
+  .footer__contact-field {
+    grid-template-columns: 5vw 15vw;
+  }
+}
+.footer__contact-field {
   gap: 10px;
   align-items: center;
+}
+.footer__contact-input, .footer__contact-textarea {
+  width: 100%;
+  box-sizing: border-box;
+}
+.footer__contact-textarea {
+  resize: vertical;
 }
 
 .community__list {
