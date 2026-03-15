@@ -500,7 +500,6 @@ p {
 .question-generator {
   margin-bottom: 7vh;
 }
-
 .question-generator__more {
   display: flex;
   justify-content: flex-end;
@@ -508,7 +507,6 @@ p {
   margin-left: 15vw;
   margin-right: 15vw;
 }
-
 .question-generator__more-link {
   display: inline-flex;
   align-items: center;
@@ -518,7 +516,6 @@ p {
   padding: 0;
   cursor: pointer;
 }
-
 .question-generator__more-icon {
   width: 1.8rem;
   height: 1.8rem;
