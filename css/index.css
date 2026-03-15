@@ -377,9 +377,9 @@ p {
 }
 
 .card {
-  background: #d5dfee;
+  background: var(--card-bg, #d5dfee);
   border-radius: 12px;
-  border: 2px solid #8DA8D0;
+  border: 2px solid var(--card-border, #8DA8D0);
   overflow: hidden;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   padding: 40px;
@@ -553,12 +553,67 @@ p {
   }
 }
 
+.page__artistico,
+.page__artes-visuales,
+.page__artes-narrativas,
+.page__cultura-pensamiento {
+  background-color: #EFEBDC;
+  --card-bg: #D3C7B5;
+  --card-border: #4F3A2A;
+}
+
+.page__espiritual,
+.page__ejercicios-espirituales,
+.page__renovacion-energia,
+.page__practicas-filosoficas-espirituales {
+  background-color: #D9EFF3;
+  --card-bg: #EDF8FB;
+  --card-border: #96c4ce;
+}
+
+.page__fisico,
+.page__conciencia,
+.page__cuidado,
+.page__descanso {
+  background-color: #FCE5C5;
+  --card-bg: #FFF3DF;
+  --card-border: #E7C998;
+}
+
+.page__mental,
+.page__atencion,
+.page__percepcion,
+.page__aprendizaje {
+  background-color: #D4F4F5;
+  --card-bg: #E9FDFF;
+  --card-border: #9EDFE4;
+}
+
+.page__personal,
+.page__diario,
+.page__habitos,
+.page__proyectos {
+  background-color: #D5CCC3;
+  --card-bg: #F0E9E3;
+  --card-border: #C2B3A4;
+}
+
+.page__reflexivo,
+.page__autoconcepto,
+.page__emociones,
+.page__sentido {
+  background-color: #B9CAC7;
+  --card-bg: #E5EFED;
+  --card-border: #9CB3AF;
+}
+
 .nav {
   position: fixed;
   top: 0;
   width: 100%;
   z-index: 1000; /* Recomendación de IA: Mantener el navbar por encima de otros elementos usando un valor alto de z-index */
-  background-color: #c6c6e2;
+  background-color: var(--card-bg, #c6c6e2);
+  border-bottom: 2px solid var(--card-border, #9494b9);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 .nav__toggle {

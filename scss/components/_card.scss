@@ -1,9 +1,9 @@
 @use "../abstracts/variables" as *;
 
 .card {
-    background: $color-card-background;
+    background: var(--card-bg, #{$color-card-background});
     border-radius: 12px;
-    border: 2px solid $color-border-container;
+    border: 2px solid var(--card-border, #{$color-border-container});
     overflow: hidden;
 
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);

@@ -6,7 +6,8 @@
     top: 0;
     width: 100%;
     z-index: 1000; /* Recomendación de IA: Mantener el navbar por encima de otros elementos usando un valor alto de z-index */
-    background-color: $color-navbar;
+  background-color: var(--card-bg, #{$color-navbar});
+  border-bottom: 2px solid var(--card-border, #{$color-navbar-border});
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 
     &__toggle {

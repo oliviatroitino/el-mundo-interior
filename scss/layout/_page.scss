@@ -1,0 +1,55 @@
+@use "../abstracts/variables" as *;
+
+.page__artistico,
+.page__artes-visuales,
+.page__artes-narrativas,
+.page__cultura-pensamiento {
+	background-color: $color-planet-1;
+	--card-bg: #{$color-card-1};
+	--card-border: #{$color-card-border-1};
+}
+
+.page__espiritual,
+.page__ejercicios-espirituales,
+.page__renovacion-energia,
+.page__practicas-filosoficas-espirituales {
+	background-color: $color-planet-2;
+	--card-bg: #{$color-card-2};
+	--card-border: #{$color-card-border-2};
+}
+
+.page__fisico,
+.page__conciencia,
+.page__cuidado,
+.page__descanso {
+	background-color: $color-planet-3;
+	--card-bg: #{$color-card-3};
+	--card-border: #{$color-card-border-3};
+}
+
+.page__mental,
+.page__atencion,
+.page__percepcion,
+.page__aprendizaje {
+	background-color: $color-planet-4;
+	--card-bg: #{$color-card-4};
+	--card-border: #{$color-card-border-4};
+}
+
+.page__personal,
+.page__diario,
+.page__habitos,
+.page__proyectos {
+	background-color: $color-planet-5;
+	--card-bg: #{$color-card-5};
+	--card-border: #{$color-card-border-5};
+}
+
+.page__reflexivo,
+.page__autoconcepto,
+.page__emociones,
+.page__sentido {
+	background-color: $color-planet-6;
+	--card-bg: #{$color-card-6};
+	--card-border: #{$color-card-border-6};
+}
