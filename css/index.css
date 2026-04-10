@@ -14,7 +14,6 @@
 /* PESOS */
 /* DESKTOP BREAKPOINT */
 body {
-  background-color: #F0F8FF;
   margin: 0;
 }
 
@@ -587,55 +586,35 @@ p {
   }
 }
 
-.page__artistico,
-.page__artes-visuales,
-.page__artes-narrativas,
-.page__cultura-pensamiento {
+.page__home {
+  background-color: #F0F8FF;
+}
+.page__mundo-artistico, .page__artes-visuales, .page__artes-narrativas, .page__cultura-pensamiento {
   background-color: rgb(222, 214, 203);
   --card-bg: #EFEBDC;
   --card-border: #4F3A2A;
 }
-
-.page__espiritual,
-.page__ejercicios-espirituales,
-.page__renovacion-energia,
-.page__practicas-filosoficas-espirituales {
+.page__mundo-espiritual, .page__ejercicios-espirituales, .page__renovacion-energia, .page__practicas-filosoficas-espirituales {
   background-color: #D9EFF3;
   --card-bg: #EDF8FB;
   --card-border: #96c4ce;
 }
-
-.page__fisico,
-.page__conciencia,
-.page__cuidado,
-.page__descanso {
+.page__mundo-fisico, .page__conciencia, .page__cuidado, .page__descanso {
   background-color: #FCE5C5;
   --card-bg: #FFF3DF;
   --card-border: #E7C998;
 }
-
-.page__mental,
-.page__atencion,
-.page__percepcion,
-.page__aprendizaje {
+.page__mundo-mental, .page__atencion, .page__percepcion, .page__aprendizaje {
   background-color: #D4F4F5;
   --card-bg: #E9FDFF;
   --card-border: #9EDFE4;
 }
-
-.page__personal,
-.page__diario,
-.page__habitos,
-.page__proyectos {
+.page__mundo-personal, .page__diario, .page__habitos, .page__proyectos {
   background-color: #D5CCC3;
   --card-bg: #F0E9E3;
   --card-border: #C2B3A4;
 }
-
-.page__reflexivo,
-.page__autoconcepto,
-.page__emociones,
-.page__sentido {
+.page__mundo-reflexivo, .page__autoconcepto, .page__emociones, .page__sentido {
   background-color: #B9CAC7;
   --card-bg: #E5EFED;
   --card-border: #9CB3AF;
