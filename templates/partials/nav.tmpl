@@ -1,58 +1,25 @@
+{{/* filepath: c:\Users\camil\Documents\el-mundo-interior\templates\partials\nav.tmpl */}}
 {{define "nav"}}
-<nav class="nav">
-    <ul class="nav__list">
+<nav class="navbar">
+    <a class="navbar__logo" href="/">El Mundo Interior</a>
 
-        <li class="nav__item">
-            <a href="/" class="nav__home" aria-label="Inicio">
-                <img src="/assets/image/avif/logo.avif" alt="Logo Introspecta" class="nav__logo">
+    {{if .Worlds}}
+    <ul class="navbar__worlds">
+        {{range .Worlds}}
+        <li>
+            <a class="navbar__world-link {{if .Active}}navbar__world-link--active{{end}}"
+               href="/mundos/{{.Slug}}">
+                <span>{{.Icon}}</span>
+                {{.Title}}
             </a>
         </li>
-
-        <li class="nav__item nav__worlds">
-            <details class="nav__dropdown">
-                <summary class="nav__toggle">
-                    {{if .ActiveWorld}}
-                        <img src="/assets/image/avif/{{.ActiveWorld.Icon}}" alt="{{.ActiveWorld.Name}}" class="nav__icon">
-                        <span class="nav__toggle__title">{{.ActiveWorld.Name}}</span>
-                    {{else}}
-                        <span class="nav__toggle__title">Mundos</span>
-                    {{end}}
-                </summary>
-                <ul class="nav__submenu">
-                    <li>
-                        <a href="/mundos/mundo-mental">
-                            <img src="/assets/image/avif/planeta4.avif" alt="Mundo Mental" class="nav__icon">
-                            Mundo Mental
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/mundos/mundo-personal">
-                            <img src="/assets/image/avif/planeta5.avif" alt="Mundo Personal" class="nav__icon">
-                            Mundo Personal
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/mundos/mundo-reflexivo">
-                            <img src="/assets/image/avif/planeta6.avif" alt="Mundo Reflexivo" class="nav__icon">
-                            Mundo Reflexivo
-                        </a>
-                    </li>
-                </ul>
-            </details>
-        </li>
-
-        <li class="nav__item">
-            <details class="nav__userdropdown">
-                <summary class="nav__toggle" aria-label="Usuario">
-                    <img src="/assets/icons/users.svg" alt="Usuario" class="nav__icon">
-                </summary>
-                <ul class="nav__submenu">
-                    <li><a href="#">Perfil</a></li>
-                    <li><a href="#">Cerrar sesión</a></li>
-                </ul>
-            </details>
-        </li>
-
+        {{end}}
     </ul>
+    {{end}}
+
+    <div class="navbar__auth">
+        <a href="/login">Entrar</a>
+        <a href="/registro">Registro</a>
+    </div>
 </nav>
 {{end}}
