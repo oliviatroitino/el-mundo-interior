@@ -1,0 +1,25 @@
+{{/* filepath: c:\Users\camil\Documents\el-mundo-interior\templates\partials\nav.tmpl */}}
+{{define "nav"}}
+<nav class="navbar">
+    <a class="navbar__logo" href="/">El Mundo Interior</a>
+
+    {{if .Worlds}}
+    <ul class="navbar__worlds">
+        {{range .Worlds}}
+        <li>
+            <a class="navbar__world-link {{if .Active}}navbar__world-link--active{{end}}"
+               href="/mundos/{{.Slug}}">
+                <span>{{.Icon}}</span>
+                {{.Title}}
+            </a>
+        </li>
+        {{end}}
+    </ul>
+    {{end}}
+
+    <div class="navbar__auth">
+        <a href="/login">Entrar</a>
+        <a href="/registro">Registro</a>
+    </div>
+</nav>
+{{end}}

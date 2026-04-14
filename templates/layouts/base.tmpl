@@ -1,0 +1,21 @@
+{{/* filepath: c:\Users\camil\Documents\el-mundo-interior\templates\layouts\base.tmpl */}}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{block "title" .}}El Mundo Interior{{end}}</title>
+    <link rel="stylesheet" href="/static/css/index.css">
+</head>
+<body>
+
+    {{template "nav" .}}
+
+    <main>
+        {{block "content" .}}{{end}}
+    </main>
+
+    {{template "footer" .}}
+
+</body>
+</html>
