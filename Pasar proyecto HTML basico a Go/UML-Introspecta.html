@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>UML – Introspecta (PEC 2)</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.6.1/mermaid.min.js"></script>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f6f9;
+      padding: 40px 24px;
+      color: #1a1a2e;
+    }
+    h1 {
+      text-align: center;
+      font-size: 1.5rem;
+      margin-bottom: 6px;
+    }
+    .subtitle {
+      text-align: center;
+      font-size: 0.9rem;
+      color: #666;
+      margin-bottom: 32px;
+    }
+    .legend {
+      display: flex;
+      justify-content: center;
+      gap: 28px;
+      margin-bottom: 32px;
+      flex-wrap: wrap;
+    }
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.83rem;
+      color: #444;
+    }
+    .dot {
+      width: 14px;
+      height: 14px;
+      border-radius: 3px;
+    }
+    .dot-model   { background: #c8e6c9; border: 1.5px solid #388e3c; }
+    .dot-handler { background: #bbdefb; border: 1.5px solid #1565c0; }
+    .dot-vm      { background: #ffe0b2; border: 1.5px solid #e65100; }
+    .dot-infra   { background: #e1bee7; border: 1.5px solid #6a1b9a; }
+    .diagram-wrap {
+      background: white;
+      border-radius: 12px;
+      padding: 32px;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+      overflow-x: auto;
+    }
+    .mermaid { display: flex; justify-content: center; }
+  </style>
+</head>
+<body>
+
+  <h1>Diagrama de Clases UML — Introspecta</h1>
+  <p class="subtitle">PEC 2 · Redes y Sistemas Web · Go 1.22 · Arquitectura MVC</p>
+
+  <div class="legend">
+    <div class="legend-item"><div class="dot dot-model"></div> Modelo</div>
+    <div class="legend-item"><div class="dot dot-handler"></div> Controlador (handlers)</div>
+    <div class="legend-item"><div class="dot dot-vm"></div> ViewModel</div>
+    <div class="legend-item"><div class="dot dot-infra"></div> Infraestructura</div>
+  </div>
+
+  <div class="diagram-wrap">
+    <div class="mermaid">
+classDiagram
+  direction TB
+
+  class Server {
+    -addr string
+    -http http.Server
+    +NewServer(addr string) Server
+    +Start() error
+    +routes() http.Handler
+  }
+
+  class WorldRepository {
+    +GetWorldBySlug(slug string) World
+    +GetSectionBySlug(ws string, ss string) WorldSection
+    +OrderedWorlds() World
+  }
+
+  class UserRepository {
+    +LoadUsers() User
+    +SaveUsers(users User) error
+  }
+
+  class ContactRepository {
+    +SaveContact(msg ContactMessage) error
+  }
+
+  class World {
+    +Slug string
+    +Title string
+    +Description string
+    +Icon string
+    +Sections WorldSection
+  }
+
+  class WorldSection {
+    +Slug string
+    +Title string
+    +Path string
+    +SubSections SubSection
+  }
+
+  class SubSection {
+    +Slug string
+    +Title string
+  }
+
+  class User {
+    +ID string
+    +Name string
+    +Email string
+    +Password string
+    +CreatedAt string
+  }
+
+  class ContactMessage {
+    +Name string
+    +Email string
+    +Message string
+    +SentAt string
+  }
+
+  class WorldNavItem {
+    +Slug string
+    +Title string
+    +Icon string
+    +Active bool
+  }
+
+  class HomePageData {
+    +Worlds World
+  }
+
+  class WorldPageData {
+    +Slug string
+    +Title string
+    +Description string
+    +Icon string
+    +Sections WorldSection
+    +Worlds WorldNavItem
+  }
+
+  class SectionPageData {
+    +World World
+    +Section WorldSection
+    +Worlds WorldNavItem
+  }
+
+  class RegisterPageData {
+    +Error string
+    +Name string
+    +Email string
+  }
+
+  class ContactPageData {
+    +Success bool
+    +Error string
+  }
+
+  class HomeHandler {
+    +Home(w ResponseWriter, r Request)
+  }
+
+  class WorldHandler {
+    +WorldBySlug(w ResponseWriter, r Request)
+  }
+
+  class SectionHandler {
+    +WorldSectionBySlug(w ResponseWriter, r Request)
+  }
+
+  class UserHandler {
+    +RegisterForm(w ResponseWriter, r Request)
+    +RegisterSubmit(w ResponseWriter, r Request)
+  }
+
+  class ContactHandler {
+    +ContactSubmit(w ResponseWriter, r Request)
+  }
+
+  class Render {
+    -templateBase string
+    +render(w ResponseWriter, page string, data any)
+  }
+
+  Server --> HomeHandler : GET /
+  Server --> WorldHandler : GET /mundos/slug
+  Server --> SectionHandler : GET /mundos/slug/section
+  Server --> UserHandler : GET POST /registro
+  Server --> ContactHandler : POST /contacto
+
+  HomeHandler --> WorldRepository : OrderedWorlds()
+  WorldHandler --> WorldRepository : GetWorldBySlug()
+  SectionHandler --> WorldRepository : GetSectionBySlug()
+  UserHandler --> UserRepository : LoadUsers() SaveUsers()
+  ContactHandler --> ContactRepository : SaveContact()
+
+  HomeHandler ..> HomePageData : crea
+  WorldHandler ..> WorldPageData : crea
+  SectionHandler ..> SectionPageData : crea
+  UserHandler ..> RegisterPageData : crea
+  ContactHandler ..> ContactPageData : crea
+
+  HomeHandler --> Render : render()
+  WorldHandler --> Render : render()
+  SectionHandler --> Render : render()
+  UserHandler --> Render : render()
+  ContactHandler --> Render : render()
+
+  WorldPageData --> WorldNavItem : contiene
+  SectionPageData --> WorldNavItem : contiene
+
+  WorldRepository --> World : devuelve
+  UserRepository --> User : gestiona
+  ContactRepository --> ContactMessage : gestiona
+
+  World *-- WorldSection : tiene
+  WorldSection *-- SubSection : tiene
+    </div>
+  </div>
+
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: 'base',
+      themeVariables: {
+        primaryColor: '#bbdefb',
+        primaryTextColor: '#1a1a2e',
+        primaryBorderColor: '#1565c0',
+        lineColor: '#666',
+        secondaryColor: '#c8e6c9',
+        tertiaryColor: '#ffe0b2',
+        fontSize: '13px'
+      }
+    });
+  </script>
+</body>
+</html>
