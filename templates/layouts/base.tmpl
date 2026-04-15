@@ -8,14 +8,8 @@
     <link rel="stylesheet" href="/static/css/index.css">
 </head>
 <body>
-
     {{template "nav" .}}
-
-    <main>
-        {{block "content" .}}{{end}}
-    </main>
-
+    <main>{{block "content" .}}{{end}}</main>
     {{template "footer" .}}
-
 </body>
 </html>

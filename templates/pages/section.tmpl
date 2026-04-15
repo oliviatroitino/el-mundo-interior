@@ -1,0 +1,12 @@
+{{define "title"}}{{.Section.Title}} · {{.World.Title}}{{end}}
+
+{{define "content"}}
+<section class="section-page">
+  <p><a href="/mundos/{{.World.Slug}}">← Volver a {{.World.Title}}</a></p>
+
+  <header>
+    <h1>{{.Section.Title}}</h1>
+    {{if .Section.Description}}<p>{{.Section.Description}}</p>{{end}}
+  </header>
+</section>
+{{end}}

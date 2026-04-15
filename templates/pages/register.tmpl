@@ -1,0 +1,24 @@
+{{define "title"}}Registro{{end}}
+
+{{define "content"}}
+<section class="auth auth--register">
+  <h1>Crear cuenta</h1>
+
+  {{if .Error}}
+    <p class="form-error">{{.Error}}</p>
+  {{end}}
+
+  <form method="post" action="/registro">
+    <label for="name">Nombre</label>
+    <input id="name" name="name" type="text" value="{{.Name}}" required>
+
+    <label for="email">Email</label>
+    <input id="email" name="email" type="email" value="{{.Email}}" required>
+
+    <label for="password">Contraseña</label>
+    <input id="password" name="password" type="password" required>
+
+    <button type="submit">Registrarme</button>
+  </form>
+</section>
+{{end}}

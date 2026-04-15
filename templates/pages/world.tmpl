@@ -1,0 +1,22 @@
+{{define "title"}}{{.Title}}{{end}}
+
+{{define "content"}}
+<section class="world">
+  <header class="world__header">
+    {{if .Icon}}<span class="world__icon">{{.Icon}}</span>{{end}}
+    <h1>{{.Title}}</h1>
+    {{if .Description}}<p>{{.Description}}</p>{{end}}
+  </header>
+
+  <div class="world__sections">
+    {{range .Sections}}
+      <article class="section-card">
+        <h2><a href="/mundos/{{$.Slug}}/{{.Slug}}">{{.Title}}</a></h2>
+        {{if .Description}}<p>{{.Description}}</p>{{end}}
+      </article>
+    {{else}}
+      <p>No hay secciones disponibles.</p>
+    {{end}}
+  </div>
+</section>
+{{end}}

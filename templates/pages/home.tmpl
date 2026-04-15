@@ -1,0 +1,13 @@
+{{define "title"}}Inicio{{end}}
+
+{{define "content"}}
+<section class="home">
+  <h1>El Mundo Interior</h1>
+
+  <div class="cards-grid">
+    {{range .Worlds}}
+      {{template "post_card" .}}
+    {{end}}
+  </div>
+</section>
+{{end}}

@@ -1,0 +1,9 @@
+{{define "post_card"}}
+<article class="card">
+  <a href="/mundos/{{.Slug}}" class="card__link">
+    {{if .Icon}}<span class="card__icon">{{.Icon}}</span>{{end}}
+    <h3 class="card__title">{{.Title}}</h3>
+    {{if .Description}}<p class="card__desc">{{.Description}}</p>{{end}}
+  </a>
+</article>
+{{end}}
