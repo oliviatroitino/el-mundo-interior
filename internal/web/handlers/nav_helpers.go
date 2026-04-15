@@ -6,9 +6,14 @@ import (
 
 // buildWorldDropdown construye el dropdown de mundos para el nav.
 // activeSlug marca el mundo actualmente activo (vacío si no aplica).
+// Cuando hay un mundo activo, el label del dropdown muestra su nombre y SummaryIcon su icono.
 func buildWorldDropdown(activeSlug string) NavDropdown {
 	d := NavDropdown{Label: "Mundos"}
 	for _, w := range content.OrderedWorlds() {
+		if w.Slug == activeSlug {
+			d.Label = w.Title
+			d.SummaryIcon = w.Icon
+		}
 		d.Items = append(d.Items, NavItem{
 			Href:   "/mundos/" + w.Slug,
 			Label:  w.Title,
@@ -33,10 +38,14 @@ func buildSectionDropdown(sections []content.WorldSection, activeSlug string) Na
 	return d
 }
 
-// authLinks devuelve los enlaces de autenticación comunes (Entrar / Registro).
-func authLinks() []NavLink {
-	return []NavLink{
-		{Href: "/login", Label: "Entrar"},
-		{Href: "/registro", Label: "Registro"},
+// buildUserDropdown construye el dropdown de usuario (icono de persona) para páginas internas.
+func buildUserDropdown() NavDropdown {
+	return NavDropdown{
+		Class:       "nav__userdropdown",
+		SummaryIcon: "/assets/icons/users.svg",
+		Items: []NavItem{
+			{Href: "#", Label: "Perfil"},
+			{Href: "#", Label: "Cerrar sesión"},
+		},
 	}
 }

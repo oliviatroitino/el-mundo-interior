@@ -13,9 +13,13 @@ type NavItem struct {
 }
 
 // NavDropdown es un desplegable del nav con su título y sus items.
+// SummaryIcon permite mostrar una imagen en el botón del desplegable (e.g. planeta activo).
+// Class es la clase CSS del <details>; si está vacío se usa "nav__dropdown".
 type NavDropdown struct {
-	Label string
-	Items []NavItem
+	Label       string
+	SummaryIcon string // ruta a imagen mostrada en el <summary>, vacío si no aplica
+	Class       string // clase CSS del <details>, vacío → "nav__dropdown"
+	Items       []NavItem
 }
 
 // NavLink es un enlace simple (no desplegable) en el nav.
@@ -26,9 +30,20 @@ type NavLink struct {
 
 // NavData agrupa todos los elementos de la barra de navegación.
 // Cada handler construye el suyo propio para que el nav sea reutilizable.
+// HomeHref: si está relleno, se muestra el logo como enlace a esa URL.
 type NavData struct {
+	HomeHref  string // p.e. "/" en páginas internas; vacío en la home
 	Dropdowns []NavDropdown
 	Links     []NavLink
+}
+
+// Post representa una publicación de usuario.
+type Post struct {
+	User     string
+	Title    string
+	Text     string
+	Location string
+	Date     string
 }
 
 // HomePlanetItem contiene los datos de un mundo para la lista de planetas en la home.
@@ -71,6 +86,8 @@ type WorldPageData struct {
 	Icon        string
 	Sections    []content.WorldSection
 	Nav         NavData
+	MyPosts     []Post
+	OtherPosts  []Post
 }
 
 // SectionPageData contiene los datos para la página de una sección (/mundos/{slug}/{section}).

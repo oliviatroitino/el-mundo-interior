@@ -1,9 +1,18 @@
 {{define "post_card"}}
-<article class="card">
-  <a href="/mundos/{{.Slug}}" class="card__link">
-    {{if .Icon}}<span class="card__icon">{{.Icon}}</span>{{end}}
-    <h3 class="card__title">{{.Title}}</h3>
-    {{if .Description}}<p class="card__desc">{{.Description}}</p>{{end}}
-  </a>
+<article class="post card">
+    <header class="post__header">
+        <p class="post__user">@{{.User}}</p>
+        <p class="post__title">{{.Title}}</p>
+    </header>
+    <div class="post__content">
+        <p class="post__text">{{.Text}}</p>
+        <div class="post__media">
+            <img src="" alt="">
+        </div>
+    </div>
+    <footer class="post__footer">
+        {{if .Location}}<p class="post__location">{{.Location}}</p>{{end}}
+        {{if .Date}}<p class="post__date">{{.Date}}</p>{{end}}
+    </footer>
 </article>
 {{end}}

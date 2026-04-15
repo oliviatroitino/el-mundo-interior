@@ -1,22 +1,72 @@
 {{define "title"}}{{.Title}}{{end}}
+{{define "bodyclass"}}page page__{{.Slug}}{{end}}
 
 {{define "content"}}
-<section class="world">
-  <header class="world__header">
-    {{if .Icon}}<span class="world__icon">{{.Icon}}</span>{{end}}
-    <h1>{{.Title}}</h1>
-    {{if .Description}}<p>{{.Description}}</p>{{end}}
-  </header>
+<div class="container">
 
-  <div class="world__sections">
-    {{range .Sections}}
-      <article class="section-card">
-        <h2><a href="/mundos/{{$.Slug}}/{{.Slug}}">{{.Title}}</a></h2>
-        {{if .Description}}<p>{{.Description}}</p>{{end}}
-      </article>
-    {{else}}
-      <p>No hay secciones disponibles.</p>
-    {{end}}
-  </div>
-</section>
+    <!-- POST FORM -->
+    <section class="post-form">
+        <form class="post-form__form" action="#" method="post">
+            <div class="post-form__profile-pic">
+                <img src="/assets/icons/users.svg" alt="Foto de perfil">
+            </div>
+            <div class="post-form__input">
+                <textarea class="post-form__text" placeholder="Comparte tu experiencia..."></textarea>
+                <div class="post-form__options">
+                    <button type="button" class="post-form__upload" aria-label="Subir imagen">
+                        <img src="/assets/icons/attach.svg" alt="" aria-hidden="true">
+                    </button>
+                    <button type="button" class="post-form__location" aria-label="Agregar ubicación">
+                        <img src="/assets/icons/location.svg" alt="" aria-hidden="true">
+                    </button>
+                    <select class="post-form__section-select">
+                        <option value="">Sección</option>
+                        {{range .Sections}}
+                        <option value="{{.Slug}}">{{.Title}}</option>
+                        {{end}}
+                    </select>
+                    <button type="submit" class="post-form__submit" aria-label="Publicar">
+                        <img src="/assets/icons/send.svg" alt="" aria-hidden="true">
+                    </button>
+                </div>
+            </div>
+        </form>
+    </section>
+
+    <!-- SECTIONS -->
+    <section class="sections">
+        <div class="sections__list">
+            {{range .Sections}}
+            <a class="sections__item card" id="{{.Slug}}" href="{{.Path}}">
+                <h3 class="sections__item-title">{{.Title}}</h3>
+            </a>
+            {{end}}
+        </div>
+    </section>
+
+    <!-- MIS PUBLICACIONES -->
+    <section class="post-list">
+        <h2 class="post-list__title">Mis Publicaciones</h2>
+        {{range .MyPosts}}
+        {{template "post_card" .}}
+        {{end}}
+        <button class="btn btn--more" type="button">
+            <span class="btn__text">Cargar más</span>
+            <img class="btn__icon" src="/assets/icons/cargarmas.svg" alt="" aria-hidden="true">
+        </button>
+    </section>
+
+    <!-- PUBLICACIONES DE OTROS USUARIOS -->
+    <section class="post-list">
+        <h2 class="post-list__title">Publicaciones de otros usuarios</h2>
+        {{range .OtherPosts}}
+        {{template "post_card" .}}
+        {{end}}
+        <button class="btn btn--more post-list__load-more" type="button">
+            <span class="btn__text">Cargar más</span>
+            <img class="btn__icon" src="/assets/icons/cargarmas.svg" alt="" aria-hidden="true">
+        </button>
+    </section>
+
+</div>
 {{end}}

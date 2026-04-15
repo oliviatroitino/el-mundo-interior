@@ -1,10 +1,20 @@
 {{define "nav"}}
 <nav class="nav">
     <ul class="nav__list">
+        {{if .Nav.HomeHref}}
+        <li class="nav__item">
+            <a href="{{.Nav.HomeHref}}" class="nav__home" aria-label="Inicio">
+                <img src="/assets/image/avif/logo.avif" alt="Logo Introspecta" class="nav__logo">
+            </a>
+        </li>
+        {{end}}
         {{range .Nav.Dropdowns}}
         <li class="nav__item">
-            <details class="nav__dropdown">
-                <summary class="nav__toggle">{{.Label}}</summary>
+            <details class="{{if .Class}}{{.Class}}{{else}}nav__dropdown{{end}}">
+                <summary class="nav__toggle"{{if not .Label}} aria-label="Usuario"{{end}}>
+                    {{if .SummaryIcon}}<img src="{{.SummaryIcon}}" alt="{{.Label}}" class="nav__icon">{{end}}
+                    {{if .Label}}<span class="nav__toggle__title">{{.Label}}</span>{{end}}
+                </summary>
                 <ul class="nav__submenu">
                     {{range .Items}}
                     <li>

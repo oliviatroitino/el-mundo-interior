@@ -22,11 +22,12 @@ func WorldSectionBySlug(w http.ResponseWriter, r *http.Request) {
 		World:   world,
 		Section: section,
 		Nav: NavData{
+			HomeHref: "/",
 			Dropdowns: []NavDropdown{
 				buildWorldDropdown(worldSlug),
 				buildSectionDropdown(world.Sections, sectionSlug),
+				buildUserDropdown(),
 			},
-			Links: authLinks(),
 		},
 	}
 
