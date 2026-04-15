@@ -21,15 +21,13 @@ func WorldSectionBySlug(w http.ResponseWriter, r *http.Request) {
 	data := SectionPageData{
 		World:   world,
 		Section: section,
-	}
-
-	for _, item := range content.OrderedWorlds() {
-		data.Worlds = append(data.Worlds, WorldNavItem{
-			Slug:   item.Slug,
-			Title:  item.Title,
-			Icon:   item.Icon,
-			Active: item.Slug == worldSlug,
-		})
+		Nav: NavData{
+			Dropdowns: []NavDropdown{
+				buildWorldDropdown(worldSlug),
+				buildSectionDropdown(world.Sections, sectionSlug),
+			},
+			Links: authLinks(),
+		},
 	}
 
 	render(w, "templates/pages/section.tmpl", data)

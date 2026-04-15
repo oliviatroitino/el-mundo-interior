@@ -1,13 +1,44 @@
-{{define "title"}}Inicio{{end}}
+{{define "title"}}Introspecta{{end}}
+{{define "bodyclass"}}page page__home{{end}}
 
 {{define "content"}}
-<section class="home">
-  <h1>El Mundo Interior</h1>
+<header class="hero">
+    <div class="container">
+        <div class="hero__header">
+            <img src="/assets/image/avif/logo.avif" alt="Logo Introspecta" class="hero__logo">
+            <h1 class="hero__title" id="title">Introspecta</h1>
+        </div>
+        <h2 class="hero__description" id="description">Tu Mundo Interior</h2>
+        <div class="hero__buttons">
+            <button class="hero__button hero__button--login" type="button">Iniciar Sesión</button>
+            <button class="hero__button hero__button--register" type="button">Registrarse</button>
+        </div>
+    </div>
+</header>
 
-  <div class="cards-grid">
-    {{range .Worlds}}
-      {{template "post_card" .}}
-    {{end}}
-  </div>
-</section>
+<div class="container">
+    <section class="planet-list" id="planets">
+        {{range .Worlds}}
+            {{template "planet_card" .}}
+        {{end}}
+    </section>
+
+    <section class="community" id="other-users">
+        <h2 class="community__title">Valoraciones</h2>
+        <div class="community__list">
+            {{range .Reviews}}
+                {{template "review_card" .}}
+            {{end}}
+        </div>
+    </section>
+
+    <section class="plans" id="subscriptions">
+        <h2 class="plans__title">Suscripciones</h2>
+        <div class="plans__list">
+            {{range .Plans}}
+                {{template "plan_card" .}}
+            {{end}}
+        </div>
+    </section>
+</div>
 {{end}}

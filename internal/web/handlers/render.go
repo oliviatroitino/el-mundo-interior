@@ -14,6 +14,9 @@ var templateBase = []string{
 	"templates/partials/nav.tmpl",
 	"templates/partials/footer.tmpl",
 	"templates/partials/post_card.tmpl",
+	"templates/partials/planet_card.tmpl",
+	"templates/partials/review_card.tmpl",
+	"templates/partials/plan_card.tmpl",
 }
 
 // render parsea y ejecuta un template con los datos proporcionados.

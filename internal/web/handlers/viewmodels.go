@@ -4,18 +4,63 @@ package handlers
 
 import "el-mundo-interior/internal/content"
 
-// WorldNavItem representa un mundo en la barra de navegación superior.
-// Se usa en todas las páginas que muestran el menú de mundos.
-type WorldNavItem struct {
-	Slug   string
-	Title  string
-	Icon   string
-	Active bool // true si es el mundo que se está visitando actualmente
+// NavItem es un elemento dentro de un desplegable del nav.
+type NavItem struct {
+	Href   string
+	Label  string
+	Icon   string // ruta a imagen, vacío si no aplica
+	Active bool   // true si es la página actualmente activa
+}
+
+// NavDropdown es un desplegable del nav con su título y sus items.
+type NavDropdown struct {
+	Label string
+	Items []NavItem
+}
+
+// NavLink es un enlace simple (no desplegable) en el nav.
+type NavLink struct {
+	Href  string
+	Label string
+}
+
+// NavData agrupa todos los elementos de la barra de navegación.
+// Cada handler construye el suyo propio para que el nav sea reutilizable.
+type NavData struct {
+	Dropdowns []NavDropdown
+	Links     []NavLink
+}
+
+// HomePlanetItem contiene los datos de un mundo para la lista de planetas en la home.
+// IsReverse indica si la card debe mostrarse con imagen a la derecha (layout alternado).
+type HomePlanetItem struct {
+	Slug        string
+	Title       string
+	Description string
+	Icon        string
+	IsReverse   bool
+}
+
+// ReviewItem representa una valoración de usuario en la home.
+type ReviewItem struct {
+	Stars  string // e.g. "★★★★★"
+	Text   string
+	Author string
+}
+
+// PlanItem representa un plan de suscripción en la home.
+type PlanItem struct {
+	ID       string // id HTML, vacío si no aplica
+	Name     string
+	Features []string
 }
 
 // HomePageData contiene los datos para la página de inicio (/).
 type HomePageData struct {
-	Worlds []content.World // los 6 mundos para mostrar las cards
+	Nav     NavData
+	Worlds  []HomePlanetItem
+	Reviews []ReviewItem
+	Plans   []PlanItem
 }
 
 // WorldPageData contiene los datos para la página de un mundo (/mundos/{slug}).
@@ -25,14 +70,14 @@ type WorldPageData struct {
 	Description string
 	Icon        string
 	Sections    []content.WorldSection
-	Worlds      []WorldNavItem // para el nav
+	Nav         NavData
 }
 
 // SectionPageData contiene los datos para la página de una sección (/mundos/{slug}/{section}).
 type SectionPageData struct {
 	World   content.World
 	Section content.WorldSection
-	Worlds  []WorldNavItem // para el nav
+	Nav     NavData
 }
 
 // RegisterPageData contiene los datos para el formulario de registro (/registro).

@@ -1,0 +1,10 @@
+{{define "plan_card"}}
+<article class="plan card"{{if .ID}} id="{{.ID}}"{{end}}>
+    <h3>{{.Name}}</h3>
+    <ul>
+        {{range .Features}}
+        <li>{{.}}</li>
+        {{end}}
+    </ul>
+</article>
+{{end}}

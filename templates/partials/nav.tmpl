@@ -1,24 +1,26 @@
 {{define "nav"}}
-<nav class="navbar">
-    <a class="navbar__logo" href="/">El Mundo Interior</a>
-
-    {{if .Worlds}}
-    <ul class="navbar__worlds">
-        {{range .Worlds}}
-        <li>
-            <a class="navbar__world-link {{if .Active}}navbar__world-link--active{{end}}"
-               href="/mundos/{{.Slug}}">
-                <span>{{.Icon}}</span>
-                {{.Title}}
-            </a>
+<nav class="nav">
+    <ul class="nav__list">
+        {{range .Nav.Dropdowns}}
+        <li class="nav__item">
+            <details class="nav__dropdown">
+                <summary class="nav__toggle">{{.Label}}</summary>
+                <ul class="nav__submenu">
+                    {{range .Items}}
+                    <li>
+                        <a href="{{.Href}}"{{if .Active}} class="nav__item--active"{{end}}>
+                            {{if .Icon}}<img src="{{.Icon}}" alt="{{.Label}}" class="nav__icon" style="width:1.5em;vertical-align:middle;margin-right:0.5em;">{{end}}
+                            {{.Label}}
+                        </a>
+                    </li>
+                    {{end}}
+                </ul>
+            </details>
         </li>
         {{end}}
+        {{range .Nav.Links}}
+        <li class="nav__item"><a href="{{.Href}}">{{.Label}}</a></li>
+        {{end}}
     </ul>
-    {{end}}
-
-    <div class="navbar__auth">
-        <a href="/login">Entrar</a>
-        <a href="/registro">Registro</a>
-    </div>
 </nav>
 {{end}}

@@ -33,7 +33,7 @@ var Worlds = map[string]World{
 	"mundo-artistico": {
 		Slug:        "mundo-artistico",
 		Title:       "Mundo Artístico",
-		Description: "Espacio de creatividad y expresión personal a través del arte y la cultura.",
+		Description: "Es el espacio de creatividad y expresión personal. A través del arte, la cultura y las narrativas se exploran emociones, ideas y perspectivas que enriquecen la imaginación y la sensibilidad.",
 		Icon:        "/assets/image/avif/planeta1.avif",
 		Sections: []WorldSection{
 			{
@@ -74,7 +74,7 @@ var Worlds = map[string]World{
 	"mundo-espiritual": {
 		Slug:        "mundo-espiritual",
 		Title:       "Mundo Espiritual",
-		Description: "Conexion interior y practicas para cultivar calma, equilibrio y sentido.",
+		Description: "Se relaciona con la conexión interior y el sentido profundo de la vida. Incluye prácticas que cultivan la calma, la atención plena, el equilibrio energético y la reflexión filosófica o espiritual.",
 		Icon:        "/assets/image/avif/planeta2.avif",
 		Sections: []WorldSection{
 			{
@@ -115,7 +115,7 @@ var Worlds = map[string]World{
 	"mundo-fisico": {
 		Slug:        "mundo-fisico",
 		Title:       "Mundo Fisico",
-		Description: "Cuidado del cuerpo, descanso, salud y habitos para sostener bienestar.",
+		Description: "Se centra en el cuidado y la relación con el cuerpo. Incluye la conciencia corporal, la salud, la alimentación, el descanso y la gestión de la energía física para mantener bienestar y vitalidad.",
 		Icon:        "/assets/image/avif/planeta3.avif",
 		Sections: []WorldSection{
 			{
@@ -156,7 +156,7 @@ var Worlds = map[string]World{
 	"mundo-mental": {
 		Slug:        "mundo-mental",
 		Title:       "Mundo Mental",
-		Description: "Aprendizaje, atencion y percepcion para fortalecer capacidades cognitivas.",
+		Description: "Es el ámbito donde se desarrollan las capacidades cognitivas. Involucra la atención, la percepción, el pensamiento crítico y el aprendizaje, permitiendo comprender mejor la realidad y mejorar la forma de pensar.",
 		Icon:        "/assets/image/avif/planeta4.avif",
 		Sections: []WorldSection{
 			{Slug: "aprendizaje", Title: "Aprendizaje", Path: "/mundos/mundo-mental/aprendizaje"},
@@ -167,7 +167,7 @@ var Worlds = map[string]World{
 	"mundo-personal": {
 		Slug:        "mundo-personal",
 		Title:       "Mundo Personal",
-		Description: "Organizacion personal, habitos, diario y planificacion de proyectos.",
+		Description: "Se enfoca en la organización de la vida personal. Incluye el registro de experiencias, la construcción de hábitos, la planificación de proyectos y el seguimiento del crecimiento personal.",
 		Icon:        "/assets/image/avif/planeta5.avif",
 		Sections: []WorldSection{
 			{Slug: "diario", Title: "Diario Personal", Path: "/mundos/mundo-personal/diario"},
@@ -178,7 +178,7 @@ var Worlds = map[string]World{
 	"mundo-reflexivo": {
 		Slug:        "mundo-reflexivo",
 		Title:       "Mundo Reflexivo",
-		Description: "Autoconocimiento, gestion emocional y sentido para orientar tu desarrollo.",
+		Description: "Es el espacio de autoconocimiento y desarrollo interior. Aquí se exploran la identidad personal, las emociones, los valores y el propósito de vida para entender quién se es, cómo se siente uno y qué dirección se quiere tomar.",
 		Icon:        "/assets/image/avif/planeta6.avif",
 		Sections: []WorldSection{
 			{Slug: "autoconcepto", Title: "Autoconcepto", Path: "/mundos/mundo-reflexivo/autoconcepto"},

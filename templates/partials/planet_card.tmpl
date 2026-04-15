@@ -1,0 +1,15 @@
+{{define "planet_card"}}
+<a class="planet card{{if .IsReverse}} planet__reverse{{end}}" id="{{.Slug}}" href="/mundos/{{.Slug}}" aria-label="Ir al {{.Title}}">
+    <img src="{{.Icon}}" alt="{{.Title}}" class="planet__image">
+    <div class="planet__description">
+        <h2 class="planet__title">{{.Title}}</h2>
+        <p class="planet__text">{{.Description}}</p>
+        <div class="planet__actions">
+            <span class="btn btn--more">
+                <span class="btn__text">Descubrir más</span>
+                <span class="btn__arrow">→</span>
+            </span>
+        </div>
+    </div>
+</a>
+{{end}}
