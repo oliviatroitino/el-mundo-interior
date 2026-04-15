@@ -26,9 +26,13 @@ func buildWorldDropdown(activeSlug string) NavDropdown {
 
 // buildSectionDropdown construye el dropdown de secciones de un mundo para el nav.
 // activeSlug marca la sección actualmente activa (vacío si no aplica).
+// Cuando hay una sección activa, el label del dropdown muestra su nombre.
 func buildSectionDropdown(sections []content.WorldSection, activeSlug string) NavDropdown {
 	d := NavDropdown{Label: "Secciones"}
 	for _, s := range sections {
+		if s.Slug == activeSlug {
+			d.Label = s.Title
+		}
 		d.Items = append(d.Items, NavItem{
 			Href:   s.Path,
 			Label:  s.Title,

@@ -1,12 +1,63 @@
 {{define "title"}}{{.Section.Title}} · {{.World.Title}}{{end}}
+{{define "bodyclass"}}page page__{{.Section.Slug}}{{end}}
 
 {{define "content"}}
-<section class="section-page">
-  <p><a href="/mundos/{{.World.Slug}}">← Volver a {{.World.Title}}</a></p>
+<div class="container">
 
-  <header>
-    <h1>{{.Section.Title}}</h1>
-    {{if .Section.Description}}<p>{{.Section.Description}}</p>{{end}}
-  </header>
-</section>
+    <!-- SUBSECCIONES -->
+    <section class="subsections">
+        {{range .Section.SubSections}}
+        <article class="subsection card">
+            <h3 class="subsection__title">{{.Title}}</h3>
+            <ul class="subsection__links">
+                <li><a href="#">Ver herramientas</a></li>
+                <li><a href="#">Ver artículos e investigaciones</a></li>
+                <li><a href="#">Ver anuncios</a></li>
+            </ul>
+        </article>
+        {{end}}
+    </section>
+
+    <!-- REFLEXIÓN GUIADA -->
+    <section class="question-generator">
+        <h2 class="question-generator__title">Reflexión Guiada</h2>
+        <div class="question-generator__list">
+            {{range .Questions}}
+            <article class="question-generator__item card">
+                <p class="question-generator__question">{{.}}</p>
+            </article>
+            {{end}}
+            <div class="question-generator__more">
+                <button type="button" class="question-generator__more-link" aria-label="Generar pregunta">
+                    <img src="/assets/icons/cargarmas.svg" alt="Generar pregunta" class="question-generator__more-icon">
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- MIS PUBLICACIONES -->
+    <section class="post-list">
+        <h2 class="post-list__title">Mis Publicaciones</h2>
+        {{range .MyPosts}}
+        {{template "post_card" .}}
+        {{end}}
+        <button class="btn btn--more post-list__load-more" type="button">
+            <span class="btn__text">Cargar más</span>
+            <img class="btn__icon" src="/assets/icons/cargarmas.svg" alt="" aria-hidden="true">
+        </button>
+    </section>
+
+    <!-- PUBLICACIONES DE OTROS USUARIOS -->
+    <section class="post-list">
+        <h2 class="post-list__title">Publicaciones de otros usuarios</h2>
+        {{range .OtherPosts}}
+        {{template "post_card" .}}
+        {{end}}
+        <button class="btn btn--more post-list__load-more" type="button">
+            <span class="btn__text">Cargar más</span>
+            <img class="btn__icon" src="/assets/icons/cargarmas.svg" alt="" aria-hidden="true">
+        </button>
+    </section>
+
+</div>
 {{end}}

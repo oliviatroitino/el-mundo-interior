@@ -92,9 +92,12 @@ type WorldPageData struct {
 
 // SectionPageData contiene los datos para la página de una sección (/mundos/{slug}/{section}).
 type SectionPageData struct {
-	World   content.World
-	Section content.WorldSection
-	Nav     NavData
+	World      content.World
+	Section    content.WorldSection
+	Nav        NavData
+	Questions  []string
+	MyPosts    []Post
+	OtherPosts []Post
 }
 
 // RegisterPageData contiene los datos para el formulario de registro (/registro).
