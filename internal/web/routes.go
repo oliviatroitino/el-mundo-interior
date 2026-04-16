@@ -1,25 +1,42 @@
-// Package web contiene la lógica del servidor HTTP y manejo de rutas.
 package web
 
 import (
 	"net/http"
 
-	// Importamos el paquete de handlers donde están las funciones que responden a cada ruta
+	"el-mundo-interior/internal/content"
+	"el-mundo-interior/internal/users"
 	"el-mundo-interior/internal/web/handlers"
 )
 
-// routes() configura todas las rutas de la aplicación.
-// Retorna un http.Handler (gestor de rutas) que procesa las peticiones HTTP.
-func (s *Server) routes() http.Handler {  // Pertenece a Server (server.go), pero se define la lógica acá por ser rutas
-	// Creamos un nuevo gestor de rutas (multiplexer)
+func (s *Server) routes() http.Handler {
+	// Repositorios: cada uno recibe la conexión a la BD
+	postRepo := content.NewPostRepository(s.db)
+	userRepo := users.NewUserRepository(s.db)
+
+	// SessionStore: mapa en memoria token → userID, compartido por todos los handlers
+	sessions := handlers.NewSessionStore()
+
 	mux := http.NewServeMux()
 
-	// Rutas principales de la aplicación
-	mux.HandleFunc("GET /", handlers.Home)              // Página de inicio
-	mux.HandleFunc("GET /mundos/{slug}", handlers.WorldBySlug) // Página individual de cada mundo
-	mux.HandleFunc("GET /mundos/{slug}/{section}", handlers.WorldSectionBySlug) // Página de cada sección dentro de un mundo
+	// Home
+	mux.HandleFunc("GET /", handlers.Home)
 
-	// Rutas para servir archivos estáticos (CSS e imágenes)
+	// Mundos
+	mux.HandleFunc("GET /mundos/{slug}", handlers.WorldBySlug(postRepo, sessions))
+	mux.HandleFunc("POST /mundos/{slug}", handlers.CreatePost(postRepo, sessions))
+
+	// Secciones
+	mux.HandleFunc("GET /mundos/{slug}/{section}", handlers.WorldSectionBySlug(postRepo, sessions))
+	mux.HandleFunc("POST /mundos/{slug}/{section}", handlers.CreateSectionPost(postRepo, sessions))
+
+	// Autenticación
+	mux.HandleFunc("GET /registro", handlers.Register(userRepo))
+	mux.HandleFunc("POST /registro", handlers.Register(userRepo))
+	mux.HandleFunc("GET /login", handlers.Login(userRepo, sessions))
+	mux.HandleFunc("POST /login", handlers.Login(userRepo, sessions))
+	mux.HandleFunc("POST /logout", handlers.Logout(sessions))
+
+	// Archivos estáticos
 	mux.Handle("GET /css/", http.StripPrefix("/css/", http.FileServer(http.Dir("css"))))
 	mux.Handle("GET /assets/", http.StripPrefix("/assets/", http.FileServer(http.Dir("assets"))))
 

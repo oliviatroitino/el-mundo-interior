@@ -6,18 +6,20 @@
 package web
 
 import (
+	"database/sql"
 	"net/http"
 	"time"
 )
 
 // Server encapsula la configuración del servidor HTTP.
 type Server struct {
-	addr string           // Dirección en la que escucha (ej: ":8080")
-	http *http.Server    // Instancia del servidor HTTP de Go
+	addr string        // Dirección en la que escucha (ej: ":8080")
+	http *http.Server  // Instancia del servidor HTTP de Go
+	db   *sql.DB       // Conexión a la base de datos
 }
 
-func NewServer(addr string) *Server {
-	server := &Server{addr: addr}
+func NewServer(addr string, db *sql.DB) *Server {
+	server := &Server{addr: addr, db: db}
 	server.http = &http.Server{
 		Addr:              addr,
 		Handler:           server.routes(),

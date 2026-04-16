@@ -1,22 +1,27 @@
 // Package main es el punto de entrada de la aplicación.
-// Aquí se inicia el servidor HTTP y se mantiene escuchando en el puerto especificado.
 package main
 
 import (
 	"log"
 
-	// Importamos el paquete web interno que contiene la lógica del servidor
+	appdb "el-mundo-interior/internal/db"
 	appweb "el-mundo-interior/internal/web"
 )
 
 func main() {
-	// Creamos una nueva instancia del servidor en el puerto 8080
-	server := appweb.NewServer(":8080")
+	// Abrimos (o creamos) el fichero de base de datos.
+	// Si no existe, migrate() lo crea con las tablas vacías.
+	db, err := appdb.NewDB("./datos.db")
+	if err != nil {
+		log.Fatalf("error abriendo base de datos: %v", err)
+	}
+	defer db.Close()
 
-	// Informamos al usuario dónde se está ejecutando el servidor
+	// Creamos el servidor pasándole la conexión a la BD.
+	server := appweb.NewServer(":8080", db)
+
 	log.Printf("servidor escuchando en http://localhost%s", server.Addr())
 
-	// Iniciamos el servidor. Si hay un error, el programa termina con log.Fatal
 	if err := server.Start(); err != nil {
 		log.Fatal(err)
 	}

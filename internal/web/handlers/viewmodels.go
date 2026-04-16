@@ -104,6 +104,7 @@ type SectionPageData struct {
 // Error se muestra si el envío del formulario falla.
 // Name y Email se usan para repoblar los campos si hay error, para no perder lo escrito.
 type RegisterPageData struct {
+	Nav   NavData
 	Error string
 	Name  string
 	Email string
@@ -111,6 +112,7 @@ type RegisterPageData struct {
 
 // LoginPageData contiene los datos para el formulario de inicio de sesión (/login).
 type LoginPageData struct {
+	Nav   NavData
 	Error string
 	Email string
 }

@@ -6,12 +6,12 @@
 
     <!-- POST FORM -->
     <section class="post-form">
-        <form class="post-form__form" action="#" method="post">
+        <form class="post-form__form" action="/mundos/{{.Slug}}" method="post">
             <div class="post-form__profile-pic">
                 <img src="/assets/icons/users.svg" alt="Foto de perfil">
             </div>
             <div class="post-form__input">
-                <textarea class="post-form__text" placeholder="Comparte tu experiencia..."></textarea>
+                <textarea class="post-form__text" name="body" placeholder="Comparte tu experiencia..."></textarea>
                 <div class="post-form__options">
                     <button type="button" class="post-form__upload" aria-label="Subir imagen">
                         <img src="/assets/icons/attach.svg" alt="" aria-hidden="true">
@@ -19,7 +19,7 @@
                     <button type="button" class="post-form__location" aria-label="Agregar ubicación">
                         <img src="/assets/icons/location.svg" alt="" aria-hidden="true">
                     </button>
-                    <select class="post-form__section-select">
+                    <select class="post-form__section-select" name="section_slug">
                         <option value="">Sección</option>
                         {{range .Sections}}
                         <option value="{{.Slug}}">{{.Title}}</option>
