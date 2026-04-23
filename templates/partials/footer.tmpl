@@ -24,7 +24,36 @@
                 <textarea class="footer__contact-textarea" id="footer-message" name="message" required></textarea>
             </div>
             <button class="footer__contact-button" type="submit">Enviar</button>
+            <p id="footer-contact-ok" hidden>
+                ¡Mensaje enviado correctamente!<br>
+                Nos pondremos en contacto pronto.
+            </p>
         </form>
+        
     </div>
 </footer>
+<script>
+(function () {
+    var form = document.querySelector('.footer__contact');
+    if (!form) return;
+
+    form.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        fetch('/contacto', { method: 'POST', body: new FormData(form) })
+            .then(function (res) {
+                if (res.ok) {
+                    form.reset();
+                    var msg = document.getElementById('footer-contact-ok');
+                    if (msg) {
+                        msg.hidden = false;
+                        msg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        setTimeout(function () { msg.hidden = true; }, 4000);
+                    }
+                }
+            })
+            .catch(function () {});
+    });
+})();
+</script>
 {{end}}

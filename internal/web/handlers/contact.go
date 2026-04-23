@@ -1,20 +1,18 @@
 package handlers
 
 import (
+	"el-mundo-interior/internal/contact"
 	"net/http"
 	"strings"
 )
 
-// Contact handles GET and POST /contacto.
-func Contact() http.HandlerFunc {
+// Contact handles the footer contact form.
+// GET /contacto → redirect to home (not a navigable page).
+// POST /contacto → save message and return 200 OK (no redirect, JS handles the UI).
+func Contact(repo contact.Repository) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		if r.Method == http.MethodGet {
-			render(w, "templates/pages/contact.tmpl", ContactPageData{
-				Nav: NavData{
-					HomeHref: "/",
-				},
-				Success: r.URL.Query().Get("ok") == "1",
-			})
+			http.Redirect(w, r, "/", http.StatusSeeOther)
 			return
 		}
 
@@ -23,15 +21,15 @@ func Contact() http.HandlerFunc {
 		message := strings.TrimSpace(r.FormValue("message"))
 
 		if name == "" || email == "" || message == "" {
-			render(w, "templates/pages/contact.tmpl", ContactPageData{
-				Nav: NavData{
-					HomeHref: "/",
-				},
-				Error: "Todos los campos son obligatorios.",
-			})
+			http.Error(w, "Todos los campos son obligatorios.", http.StatusBadRequest)
 			return
 		}
 
-		http.Redirect(w, r, "/contacto?ok=1", http.StatusSeeOther)
+		if err := repo.Save(name, email, message); err != nil {
+			http.Error(w, "No se pudo guardar el mensaje.", http.StatusInternalServerError)
+			return
+		}
+
+		w.WriteHeader(http.StatusOK)
 	}
 }

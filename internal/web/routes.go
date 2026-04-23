@@ -3,6 +3,7 @@ package web
 import (
 	"net/http"
 
+	"el-mundo-interior/internal/contact"
 	"el-mundo-interior/internal/content"
 	"el-mundo-interior/internal/users"
 	"el-mundo-interior/internal/web/handlers"
@@ -12,6 +13,7 @@ func (s *Server) routes() http.Handler {
 	// Repositories: each one receives the DB connection.
 	postRepo := content.NewPostRepository(s.db)
 	userRepo := users.NewUserRepository(s.db)
+	contactRepo := contact.NewRepository(s.db)
 
 	// SessionStore: in-memory map token -> userID.
 	sessions := handlers.NewSessionStore()
@@ -37,8 +39,8 @@ func (s *Server) routes() http.Handler {
 	mux.HandleFunc("POST /logout", handlers.Logout(sessions))
 
 	// Contact
-	mux.HandleFunc("GET /contacto", handlers.Contact())
-	mux.HandleFunc("POST /contacto", handlers.Contact())
+	mux.HandleFunc("GET /contacto", handlers.Contact(contactRepo))
+	mux.HandleFunc("POST /contacto", handlers.Contact(contactRepo))
 
 	// Static files
 	mux.Handle("GET /css/", http.StripPrefix("/css/", http.FileServer(http.Dir("css"))))
