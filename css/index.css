@@ -250,32 +250,32 @@ p {
   }
 }
 
-.planet#artistico {
+.planet#mundo-artistico {
   --card-bg: #EFEBDC;
   --card-border: #4F3A2A;
 }
 
-.planet#espiritual {
+.planet#mundo-espiritual {
   --card-bg: #EDF8FB;
   --card-border: #96c4ce;
 }
 
-.planet#fisico {
+.planet#mundo-fisico {
   --card-bg: #FFF3DF;
   --card-border: #E7C998;
 }
 
-.planet#mental {
+.planet#mundo-mental {
   --card-bg: #E9FDFF;
   --card-border: #9EDFE4;
 }
 
-.planet#personal {
+.planet#mundo-personal {
   --card-bg: #F0E9E3;
   --card-border: #C2B3A4;
 }
 
-.planet#reflexivo {
+.planet#mundo-reflexivo {
   --card-bg: #E5EFED;
   --card-border: #9CB3AF;
 }
@@ -691,6 +691,23 @@ p {
 
 .nav__submenu li::marker {
   content: "";
+}
+
+.nav__submenu-form {
+  margin: 0;
+}
+
+.nav__submenu-action {
+  display: inline-flex;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 :root {

@@ -4,9 +4,7 @@ import (
 	"el-mundo-interior/internal/content"
 )
 
-// buildWorldDropdown construye el dropdown de mundos para el nav.
-// activeSlug marca el mundo actualmente activo (vacío si no aplica).
-// Cuando hay un mundo activo, el label del dropdown muestra su nombre y SummaryIcon su icono.
+// buildWorldDropdown builds the worlds dropdown for the nav.
 func buildWorldDropdown(activeSlug string) NavDropdown {
 	d := NavDropdown{Label: "Mundos"}
 	for _, w := range content.OrderedWorlds() {
@@ -24,9 +22,7 @@ func buildWorldDropdown(activeSlug string) NavDropdown {
 	return d
 }
 
-// buildSectionDropdown construye el dropdown de secciones de un mundo para el nav.
-// activeSlug marca la sección actualmente activa (vacío si no aplica).
-// Cuando hay una sección activa, el label del dropdown muestra su nombre.
+// buildSectionDropdown builds the sections dropdown for a world.
 func buildSectionDropdown(sections []content.WorldSection, activeSlug string) NavDropdown {
 	d := NavDropdown{Label: "Secciones"}
 	for _, s := range sections {
@@ -42,14 +38,14 @@ func buildSectionDropdown(sections []content.WorldSection, activeSlug string) Na
 	return d
 }
 
-// buildUserDropdown construye el dropdown de usuario (icono de persona) para páginas internas.
+// buildUserDropdown builds the user dropdown for internal pages.
 func buildUserDropdown() NavDropdown {
 	return NavDropdown{
 		Class:       "nav__userdropdown",
 		SummaryIcon: "/assets/icons/users.svg",
 		Items: []NavItem{
 			{Href: "#", Label: "Perfil"},
-			{Href: "#", Label: "Cerrar sesión"},
+			{Href: "/logout", Label: "Cerrar sesión", Method: "POST"},
 		},
 	}
 }

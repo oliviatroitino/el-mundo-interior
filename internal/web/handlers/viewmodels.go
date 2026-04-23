@@ -1,43 +1,39 @@
-// Package handlers contiene los view models: structs de datos que se pasan
-// a cada template para que pueda renderizarse. No contienen lógica, solo datos.
+// Package handlers contains view models passed to templates.
 package handlers
 
 import "el-mundo-interior/internal/content"
 
-// NavItem es un elemento dentro de un desplegable del nav.
+// NavItem is an item inside a nav dropdown.
 type NavItem struct {
 	Href   string
 	Label  string
-	Icon   string // ruta a imagen, vacío si no aplica
-	Active bool   // true si es la página actualmente activa
+	Icon   string // image path, empty when not used
+	Active bool   // true when this is the current page
+	Method string // empty or GET for links, POST for actions
 }
 
-// NavDropdown es un desplegable del nav con su título y sus items.
-// SummaryIcon permite mostrar una imagen en el botón del desplegable (e.g. planeta activo).
-// Class es la clase CSS del <details>; si está vacío se usa "nav__dropdown".
+// NavDropdown groups nav items under one summary.
 type NavDropdown struct {
 	Label       string
-	SummaryIcon string // ruta a imagen mostrada en el <summary>, vacío si no aplica
-	Class       string // clase CSS del <details>, vacío → "nav__dropdown"
+	SummaryIcon string // image path shown in <summary>, empty when not used
+	Class       string // CSS class for <details>, defaults to "nav__dropdown"
 	Items       []NavItem
 }
 
-// NavLink es un enlace simple (no desplegable) en el nav.
+// NavLink is a plain (non-dropdown) nav link.
 type NavLink struct {
 	Href  string
 	Label string
 }
 
-// NavData agrupa todos los elementos de la barra de navegación.
-// Cada handler construye el suyo propio para que el nav sea reutilizable.
-// HomeHref: si está relleno, se muestra el logo como enlace a esa URL.
+// NavData groups all elements needed to render the navbar.
 type NavData struct {
-	HomeHref  string // p.e. "/" en páginas internas; vacío en la home
+	HomeHref  string // e.g. "/" on internal pages, empty on home
 	Dropdowns []NavDropdown
 	Links     []NavLink
 }
 
-// Post representa una publicación de usuario.
+// Post represents a user publication.
 type Post struct {
 	User     string
 	Title    string
@@ -46,8 +42,7 @@ type Post struct {
 	Date     string
 }
 
-// HomePlanetItem contiene los datos de un mundo para la lista de planetas en la home.
-// IsReverse indica si la card debe mostrarse con imagen a la derecha (layout alternado).
+// HomePlanetItem contains world data used in home planet cards.
 type HomePlanetItem struct {
 	Slug        string
 	Title       string
@@ -56,21 +51,21 @@ type HomePlanetItem struct {
 	IsReverse   bool
 }
 
-// ReviewItem representa una valoración de usuario en la home.
+// ReviewItem represents a review shown on home.
 type ReviewItem struct {
 	Stars  string // e.g. "★★★★★"
 	Text   string
 	Author string
 }
 
-// PlanItem representa un plan de suscripción en la home.
+// PlanItem represents a subscription plan on home.
 type PlanItem struct {
-	ID       string // id HTML, vacío si no aplica
+	ID       string // HTML id, empty when not used
 	Name     string
 	Features []string
 }
 
-// HomePageData contiene los datos para la página de inicio (/).
+// HomePageData contains data for /.
 type HomePageData struct {
 	Nav     NavData
 	Worlds  []HomePlanetItem
@@ -78,7 +73,7 @@ type HomePageData struct {
 	Plans   []PlanItem
 }
 
-// WorldPageData contiene los datos para la página de un mundo (/mundos/{slug}).
+// WorldPageData contains data for /mundos/{slug}.
 type WorldPageData struct {
 	Slug        string
 	Title       string
@@ -90,7 +85,7 @@ type WorldPageData struct {
 	OtherPosts  []Post
 }
 
-// SectionPageData contiene los datos para la página de una sección (/mundos/{slug}/{section}).
+// SectionPageData contains data for /mundos/{slug}/{section}.
 type SectionPageData struct {
 	World      content.World
 	Section    content.WorldSection
@@ -100,9 +95,7 @@ type SectionPageData struct {
 	OtherPosts []Post
 }
 
-// RegisterPageData contiene los datos para el formulario de registro (/registro).
-// Error se muestra si el envío del formulario falla.
-// Name y Email se usan para repoblar los campos si hay error, para no perder lo escrito.
+// RegisterPageData contains data for /registro.
 type RegisterPageData struct {
 	Nav   NavData
 	Error string
@@ -110,15 +103,16 @@ type RegisterPageData struct {
 	Email string
 }
 
-// LoginPageData contiene los datos para el formulario de inicio de sesión (/login).
+// LoginPageData contains data for /login.
 type LoginPageData struct {
 	Nav   NavData
 	Error string
 	Email string
 }
 
-// ContactPageData contiene los datos para el formulario de contacto (/contacto).
+// ContactPageData contains data for /contacto.
 type ContactPageData struct {
-	Success bool   // true si el mensaje se envió correctamente
-	Error   string // mensaje de error si algo falló
+	Nav     NavData
+	Success bool
+	Error   string
 }

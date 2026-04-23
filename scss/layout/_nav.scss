@@ -80,6 +80,23 @@
   content: "";
 }
 
+.nav__submenu-form {
+  margin: 0;
+}
+
+.nav__submenu-action {
+  display: inline-flex;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+
 
 :root {
   --nav-height: 76px;
