@@ -5,15 +5,13 @@ import (
 	"net/http"
 )
 
-// Contact maneja GET y POST /contacto.
+// Contact maneja el formulario de contacto del footer.
+// GET /contacto → redirige a home (la página no es navegable directamente).
+// POST /contacto → guarda el mensaje y redirige de vuelta.
 func Contact(repo contact.Repository) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		if r.Method == http.MethodGet {
-			// ?sent=1 se añade tras un POST exitoso para mostrar el mensaje de confirmación
-			render(w, "templates/pages/contact.tmpl", ContactPageData{
-				Nav:     NavData{HomeHref: "/"},
-				Success: r.URL.Query().Get("sent") == "1",
-			})
+			http.Redirect(w, r, "/", http.StatusSeeOther)
 			return
 		}
 
@@ -21,23 +19,23 @@ func Contact(repo contact.Repository) http.HandlerFunc {
 		email := r.FormValue("email")
 		message := r.FormValue("message")
 
+		// En caso de error, volvemos a la página desde la que se envió el formulario.
+		// Si no hay Referer (caso raro), mandamos a home.
+		back := r.Referer()
+		if back == "" {
+			back = "/"
+		}
+
 		if name == "" || email == "" || message == "" {
-			render(w, "templates/pages/contact.tmpl", ContactPageData{
-				Nav:   NavData{HomeHref: "/"},
-				Error: "Todos los campos son obligatorios.",
-			})
+			http.Redirect(w, r, back, http.StatusSeeOther)
 			return
 		}
 
 		if err := repo.Save(name, email, message); err != nil {
-			render(w, "templates/pages/contact.tmpl", ContactPageData{
-				Nav:   NavData{HomeHref: "/"},
-				Error: "No se pudo enviar el mensaje. Inténtalo de nuevo.",
-			})
+			http.Redirect(w, r, back, http.StatusSeeOther)
 			return
 		}
 
-		// POST-Redirect-GET: redirige para que refrescar no reenvíe el formulario
-		http.Redirect(w, r, "/contacto?sent=1", http.StatusSeeOther)
+		http.Redirect(w, r, "/", http.StatusSeeOther)
 	}
 }

@@ -119,7 +119,6 @@ type LoginPageData struct {
 
 // ContactPageData contiene los datos para el formulario de contacto (/contacto).
 type ContactPageData struct {
-	Nav     NavData
 	Success bool   // true si el mensaje se envió correctamente
 	Error   string // mensaje de error si algo falló
 }
