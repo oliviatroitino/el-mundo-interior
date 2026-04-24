@@ -9,10 +9,12 @@
             <h1 class="hero__title" id="title">Introspecta</h1>
         </div>
         <h2 class="hero__description" id="description">Tu Mundo Interior</h2>
+        {{if not .LoggedIn}}
         <div class="hero__buttons">
-            <button class="hero__button hero__button--login" type="button">Iniciar Sesión</button>
-            <button class="hero__button hero__button--register" type="button">Registrarse</button>
+            <button class="hero__button hero__button--login" type="button" onclick="window.location.href='/login'">Iniciar Sesión</button>
+            <button class="hero__button hero__button--register" type="button" onclick="window.location.href='/registro'">Registrarse</button>
         </div>
+        {{end}}
     </div>
 </header>
 

@@ -48,7 +48,7 @@ func Login(userRepo users.UserRepository, sessions *SessionStore) http.HandlerFu
 		}
 
 		// Crear sesión y enviar cookie al navegador
-		token, err := sessions.Create(user.ID)
+		token, err := sessions.Create(user.ID, user.Name)
 		if err != nil {
 			http.Error(w, "error creando sesión", http.StatusInternalServerError)
 			return

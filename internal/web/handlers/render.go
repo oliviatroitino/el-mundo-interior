@@ -4,6 +4,7 @@ package handlers
 import (
 	"errors"
 	"html/template"
+	"log"
 	"net/http"
 )
 
@@ -44,6 +45,7 @@ func render(w http.ResponseWriter, page string, data any) {
 	// en templates/layouts/base.tmpl con {{define "base"}}
 	if err := tpl.ExecuteTemplate(w, "base", data); err != nil {
 		if !errors.Is(err, http.ErrAbortHandler) {
+			log.Printf("error ejecutando template %s: %v", page, err)
 			http.Error(w, "error renderizando página", http.StatusInternalServerError)
 		}
 	}

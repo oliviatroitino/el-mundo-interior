@@ -13,6 +13,7 @@ type Post struct {
 	Title       string
 	Body        string
 	Location    string
+	MediaPath   string // ruta relativa al archivo subido, vacía si no hay
 	CreatedAt   time.Time
 }
 

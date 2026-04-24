@@ -10,28 +10,28 @@ import (
 )
 
 func (s *Server) routes() http.Handler {
-	// Repositorios: cada uno recibe la conexión a la BD
+	// Repositories: each one receives the DB connection.
 	postRepo := content.NewPostRepository(s.db)
 	userRepo := users.NewUserRepository(s.db)
 	contactRepo := contact.NewRepository(s.db)
 
-	// SessionStore: mapa en memoria token → userID, compartido por todos los handlers
+	// SessionStore: in-memory map token -> userID.
 	sessions := handlers.NewSessionStore()
 
 	mux := http.NewServeMux()
 
 	// Home
-	mux.HandleFunc("GET /", handlers.Home)
+	mux.HandleFunc("GET /", handlers.Home(sessions))
 
-	// Mundos
+	// Worlds
 	mux.HandleFunc("GET /mundos/{slug}", handlers.WorldBySlug(postRepo, sessions))
 	mux.HandleFunc("POST /mundos/{slug}", handlers.CreatePost(postRepo, sessions))
 
-	// Secciones
+	// Sections
 	mux.HandleFunc("GET /mundos/{slug}/{section}", handlers.WorldSectionBySlug(postRepo, sessions))
 	mux.HandleFunc("POST /mundos/{slug}/{section}", handlers.CreateSectionPost(postRepo, sessions))
 
-	// Autenticación
+	// Auth
 	mux.HandleFunc("GET /registro", handlers.Register(userRepo))
 	mux.HandleFunc("POST /registro", handlers.Register(userRepo))
 	mux.HandleFunc("GET /login", handlers.Login(userRepo, sessions))
@@ -45,6 +45,7 @@ func (s *Server) routes() http.Handler {
 	// Archivos estáticos
 	mux.Handle("GET /css/", http.StripPrefix("/css/", http.FileServer(http.Dir("css"))))
 	mux.Handle("GET /assets/", http.StripPrefix("/assets/", http.FileServer(http.Dir("assets"))))
+	mux.Handle("GET /uploads/", http.StripPrefix("/uploads/", http.FileServer(http.Dir("assets/uploads"))))
 
 	return mux
 }

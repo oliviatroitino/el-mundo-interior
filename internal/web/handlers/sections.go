@@ -23,7 +23,7 @@ func WorldSectionBySlug(posts content.PostRepository, sessions *SessionStore) ht
 			log.Printf("error cargando posts de sección %s/%s: %v", worldSlug, sectionSlug, err)
 		}
 
-		currentUserID, loggedIn := sessions.GetUserID(r)
+		currentUserID, userName, loggedIn := sessions.GetUser(r)
 		var myPosts, otherPosts []Post
 		for _, p := range allPosts {
 			if loggedIn && p.UserID == currentUserID {
@@ -37,12 +37,9 @@ func WorldSectionBySlug(posts content.PostRepository, sessions *SessionStore) ht
 			World:   world,
 			Section: section,
 			Nav: NavData{
-				HomeHref: "/",
-				Dropdowns: []NavDropdown{
-					buildWorldDropdown(worldSlug),
-					buildSectionDropdown(world.Sections, sectionSlug),
-					buildUserDropdown(),
-				},
+				HomeHref:     "/",
+				NavDropdowns: []NavDropdown{buildWorldDropdown(worldSlug), buildSectionDropdown(world.Sections, sectionSlug)},
+				UserDropdown: func() *NavDropdown { ud := buildUserDropdown(userName); return &ud }(),
 			},
 			Questions: []string{
 				"¿Qué emoción quieres transmitir con esta expresión?",
@@ -70,19 +67,26 @@ func CreateSectionPost(posts content.PostRepository, sessions *SessionStore) htt
 			return
 		}
 
+		r.ParseMultipartForm(10 << 20)
 		body := r.FormValue("body")
 		if body == "" {
 			http.Redirect(w, r, "/mundos/"+worldSlug+"/"+sectionSlug, http.StatusSeeOther)
 			return
 		}
 
-		_, err := posts.Create(content.Post{
+		mediaPath, err := saveUpload(r, "media")
+		if err != nil {
+			log.Printf("error guardando archivo: %v", err)
+		}
+
+		_, err = posts.Create(content.Post{
 			UserID:      userID,
 			WorldSlug:   worldSlug,
 			SectionSlug: sectionSlug,
 			Title:       deriveTitle(body),
 			Body:        body,
 			Location:    r.FormValue("location"),
+			MediaPath:   mediaPath,
 		})
 		if err != nil {
 			log.Printf("error creando post en sección: %v", err)
