@@ -8,7 +8,7 @@
             </a>
         </li>
         {{end}}
-        {{range .Nav.Dropdowns}}
+        {{range .Nav.NavDropdowns}}
         <li class="nav__item">
             <details class="{{if .Class}}{{.Class}}{{else}}nav__dropdown{{end}}">
                 <summary class="nav__toggle"{{if not .Label}} aria-label="Usuario"{{end}}>
@@ -39,6 +39,29 @@
         {{end}}
         {{range .Nav.Links}}
         <li class="nav__item"><a href="{{.Href}}">{{.Label}}</a></li>
+        {{end}}
+        {{with .Nav.UserDropdown}}
+        <li class="nav__item">
+            <details class="{{if .Class}}{{.Class}}{{else}}nav__dropdown{{end}}">
+                <summary class="nav__toggle"{{if not .Label}} aria-label="Usuario"{{end}}>
+                    {{if .SummaryIcon}}<img src="{{.SummaryIcon}}" alt="{{.Label}}" class="nav__icon">{{end}}
+                    {{if .Label}}<span class="nav__toggle__title">{{.Label}}</span>{{end}}
+                </summary>
+                <ul class="nav__submenu">
+                    {{range .Items}}
+                    <li>
+                        {{if eq .Method "POST"}}
+                        <form method="post" action="{{.Href}}" class="nav__submenu-form">
+                            <button type="submit" class="nav__submenu-action{{if .Active}} nav__item--active{{end}}">{{.Label}}</button>
+                        </form>
+                        {{else}}
+                        <a href="{{.Href}}" class="nav__submenu-action{{if .Active}} nav__item--active{{end}}">{{.Label}}</a>
+                        {{end}}
+                    </li>
+                    {{end}}
+                </ul>
+            </details>
+        </li>
         {{end}}
     </ul>
 </nav>

@@ -6,6 +6,7 @@
     </header>
     <div class="post__content">
         <p class="post__text">{{.Text}}</p>
+        {{if .MediaPath}}<img class="post__media" src="{{.MediaPath}}" alt="Archivo adjunto">{{end}}
     </div>
     <footer class="post__footer">
         {{if .Location}}<p class="post__location">{{.Location}}</p>{{end}}

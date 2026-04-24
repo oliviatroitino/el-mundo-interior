@@ -21,7 +21,7 @@ func (s *Server) routes() http.Handler {
 	mux := http.NewServeMux()
 
 	// Home
-	mux.HandleFunc("GET /", handlers.Home)
+	mux.HandleFunc("GET /", handlers.Home(sessions))
 
 	// Worlds
 	mux.HandleFunc("GET /mundos/{slug}", handlers.WorldBySlug(postRepo, sessions))
@@ -45,6 +45,7 @@ func (s *Server) routes() http.Handler {
 	// Static files
 	mux.Handle("GET /css/", http.StripPrefix("/css/", http.FileServer(http.Dir("css"))))
 	mux.Handle("GET /assets/", http.StripPrefix("/assets/", http.FileServer(http.Dir("assets"))))
+	mux.Handle("GET /uploads/", http.StripPrefix("/uploads/", http.FileServer(http.Dir("assets/uploads"))))
 
 	return mux
 }

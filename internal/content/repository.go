@@ -19,7 +19,7 @@ func NewPostRepository(db *sql.DB) PostRepository {
 func (r *sqlitePostRepository) GetByWorld(worldSlug string) ([]Post, error) {
 	rows, err := r.db.Query(`
 		SELECT p.id, p.user_id, u.name, p.world_slug, p.section_slug,
-		       p.title, p.body, p.location, p.created_at
+		       p.title, p.body, p.location, p.media_path, p.created_at
 		FROM posts p
 		JOIN users u ON u.id = p.user_id
 		WHERE p.world_slug = ?
@@ -37,7 +37,7 @@ func (r *sqlitePostRepository) GetByWorld(worldSlug string) ([]Post, error) {
 func (r *sqlitePostRepository) GetBySection(worldSlug, sectionSlug string) ([]Post, error) {
 	rows, err := r.db.Query(`
 		SELECT p.id, p.user_id, u.name, p.world_slug, p.section_slug,
-		       p.title, p.body, p.location, p.created_at
+		       p.title, p.body, p.location, p.media_path, p.created_at
 		FROM posts p
 		JOIN users u ON u.id = p.user_id
 		WHERE p.world_slug = ? AND p.section_slug = ?
@@ -54,9 +54,9 @@ func (r *sqlitePostRepository) GetBySection(worldSlug, sectionSlug string) ([]Po
 // Create inserta un nuevo post y devuelve su ID asignado.
 func (r *sqlitePostRepository) Create(post Post) (int, error) {
 	result, err := r.db.Exec(`
-		INSERT INTO posts (user_id, world_slug, section_slug, title, body, location)
-		VALUES (?, ?, ?, ?, ?, ?)
-	`, post.UserID, post.WorldSlug, post.SectionSlug, post.Title, post.Body, post.Location)
+		INSERT INTO posts (user_id, world_slug, section_slug, title, body, location, media_path)
+		VALUES (?, ?, ?, ?, ?, ?, ?)
+	`, post.UserID, post.WorldSlug, post.SectionSlug, post.Title, post.Body, post.Location, post.MediaPath)
 	if err != nil {
 		return 0, fmt.Errorf("creando post: %w", err)
 	}
@@ -69,12 +69,15 @@ func scanPosts(rows *sql.Rows) ([]Post, error) {
 	var posts []Post
 	for rows.Next() {
 		var p Post
+		var location, mediaPath sql.NullString
 		if err := rows.Scan(
 			&p.ID, &p.UserID, &p.UserName, &p.WorldSlug, &p.SectionSlug,
-			&p.Title, &p.Body, &p.Location, &p.CreatedAt,
+			&p.Title, &p.Body, &location, &mediaPath, &p.CreatedAt,
 		); err != nil {
 			return nil, fmt.Errorf("leyendo post: %w", err)
 		}
+		p.Location = location.String
+		p.MediaPath = mediaPath.String
 		posts = append(posts, p)
 	}
 	return posts, rows.Err()

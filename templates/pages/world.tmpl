@@ -6,17 +6,19 @@
 
     <!-- POST FORM -->
     <section class="post-form">
-        <form class="post-form__form" action="/mundos/{{.Slug}}" method="post">
+        <form class="post-form__form" action="/mundos/{{.Slug}}" method="post" enctype="multipart/form-data">
             <div class="post-form__profile-pic">
                 <img src="/assets/icons/users.svg" alt="Foto de perfil">
             </div>
             <div class="post-form__input">
                 <textarea class="post-form__text" name="body" placeholder="Comparte tu experiencia..."></textarea>
+                <input type="text" class="post-form__location-input" name="location" placeholder="Ubicación..." style="display:none;">
+                <input type="file" id="post-media" name="media" accept="image/*,video/*,.pdf" style="display:none;">
                 <div class="post-form__options">
-                    <button type="button" class="post-form__upload" aria-label="Subir imagen">
+                    <button type="button" class="post-form__upload" aria-label="Subir archivo" onclick="document.getElementById('post-media').click()">
                         <img src="/assets/icons/attach.svg" alt="" aria-hidden="true">
                     </button>
-                    <button type="button" class="post-form__location" aria-label="Agregar ubicación">
+                    <button type="button" class="post-form__location" aria-label="Agregar ubicación" onclick="var i=this.closest('form').querySelector('.post-form__location-input');i.style.display=i.style.display==='none'?'block':'none'">
                         <img src="/assets/icons/location.svg" alt="" aria-hidden="true">
                     </button>
                     <select class="post-form__section-select" name="section_slug">

@@ -38,14 +38,15 @@ func buildSectionDropdown(sections []content.WorldSection, activeSlug string) Na
 	return d
 }
 
-// buildUserDropdown builds the user dropdown for internal pages.
-func buildUserDropdown() NavDropdown {
+// buildUserDropdown builds the user dropdown for logged-in users.
+func buildUserDropdown(userName string) NavDropdown {
 	return NavDropdown{
 		Class:       "nav__userdropdown",
 		SummaryIcon: "/assets/icons/users.svg",
 		Items: []NavItem{
-			{Href: "#", Label: "Perfil"},
+			{Href: "#", Label: "¡Hola, " + userName + "!"},
 			{Href: "/logout", Label: "Cerrar sesión", Method: "POST"},
 		},
 	}
 }
+

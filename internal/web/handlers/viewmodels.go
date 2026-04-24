@@ -28,18 +28,20 @@ type NavLink struct {
 
 // NavData groups all elements needed to render the navbar.
 type NavData struct {
-	HomeHref  string // e.g. "/" on internal pages, empty on home
-	Dropdowns []NavDropdown
-	Links     []NavLink
+	HomeHref     string        // e.g. "/" on internal pages, empty on home
+	NavDropdowns []NavDropdown // dropdowns de navegación (Mundos, Secciones)
+	Links        []NavLink     // links planos (Valoraciones, Suscripciones)
+	UserDropdown *NavDropdown  // dropdown de usuario, siempre al final
 }
 
 // Post represents a user publication.
 type Post struct {
-	User     string
-	Title    string
-	Text     string
-	Location string
-	Date     string
+	User      string
+	Title     string
+	Text      string
+	Location  string
+	MediaPath string
+	Date      string
 }
 
 // HomePlanetItem contains world data used in home planet cards.
@@ -67,10 +69,11 @@ type PlanItem struct {
 
 // HomePageData contains data for /.
 type HomePageData struct {
-	Nav     NavData
-	Worlds  []HomePlanetItem
-	Reviews []ReviewItem
-	Plans   []PlanItem
+	Nav      NavData
+	LoggedIn bool
+	Worlds   []HomePlanetItem
+	Reviews  []ReviewItem
+	Plans    []PlanItem
 }
 
 // WorldPageData contains data for /mundos/{slug}.
