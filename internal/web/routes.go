@@ -38,11 +38,11 @@ func (s *Server) routes() http.Handler {
 	mux.HandleFunc("POST /login", handlers.Login(userRepo, sessions))
 	mux.HandleFunc("POST /logout", handlers.Logout(sessions))
 
-	// Contact
+	// Contacto
 	mux.HandleFunc("GET /contacto", handlers.Contact(contactRepo))
 	mux.HandleFunc("POST /contacto", handlers.Contact(contactRepo))
 
-	// Static files
+	// Archivos estáticos
 	mux.Handle("GET /css/", http.StripPrefix("/css/", http.FileServer(http.Dir("css"))))
 	mux.Handle("GET /assets/", http.StripPrefix("/assets/", http.FileServer(http.Dir("assets"))))
 	mux.Handle("GET /uploads/", http.StripPrefix("/uploads/", http.FileServer(http.Dir("assets/uploads"))))
