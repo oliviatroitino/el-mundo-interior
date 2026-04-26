@@ -1,0 +1,93 @@
+@use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
+
+.auth {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1.5rem 0;
+
+    h1 {
+        font-size: $font-xl;
+        margin-bottom: $space-lg;
+        text-align: center;
+    }
+
+    form {
+        background: $color-card-background;
+        border: 2px solid $color-border-container;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        padding: 2.5rem;
+        width: 90%;
+        max-width: 26rem;
+        display: flex;
+        flex-direction: column;
+        gap: $space-md;
+
+        @include desktop {
+            padding: 3rem;
+        }
+    }
+
+    label {
+        font-weight: $font-weight-semibold;
+        font-size: $font-base;
+    }
+
+    input {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 0.6rem 0.8rem;
+        border: 1.5px solid $color-border-container;
+        border-radius: 8px;
+        background: $color-background;
+        font-size: $font-base;
+
+        &:focus {
+            outline: none;
+            border-color: $color-navbar-border;
+        }
+    }
+
+    &__checkbox {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.5rem;
+        font-size: 0.9rem;
+        font-weight: $font-weight-normal;
+        cursor: pointer;
+
+        input[type="checkbox"] {
+            width: auto;
+            margin-top: 0.2rem;
+            flex-shrink: 0;
+        }
+    }
+
+    button[type="submit"] {
+        margin-top: $space-sm;
+        padding: 0.7rem;
+        background: $color-navbar;
+        border: 2px solid $color-navbar-border;
+        border-radius: 8px;
+        font-size: $font-base;
+        font-weight: $font-weight-semibold;
+        cursor: pointer;
+
+        &:hover {
+            background: $color-navbar-border;
+        }
+    }
+}
+
+.form-error {
+    background: #fde8e8;
+    border: 1.5px solid #e57373;
+    border-radius: 8px;
+    color: #b71c1c;
+    font-size: $font-base;
+    padding: 0.6rem 1rem;
+    text-align: center;
+    margin: 0;
+}

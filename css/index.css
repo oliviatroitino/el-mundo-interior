@@ -75,6 +75,89 @@ p {
   line-height: 1.6;
 }
 
+.auth {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.5rem 0;
+}
+.auth h1 {
+  font-size: 1.95rem;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+.auth form {
+  background: #d5dfee;
+  border: 2px solid #8DA8D0;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 2.5rem;
+  width: 90%;
+  max-width: 26rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+@media (min-width: 1024px) {
+  .auth form {
+    padding: 3rem;
+  }
+}
+.auth label {
+  font-weight: 600;
+  font-size: 1rem;
+}
+.auth input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.6rem 0.8rem;
+  border: 1.5px solid #8DA8D0;
+  border-radius: 8px;
+  background: #F0F8FF;
+  font-size: 1rem;
+}
+.auth input:focus {
+  outline: none;
+  border-color: #9494b9;
+}
+.auth__checkbox {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 400;
+  cursor: pointer;
+}
+.auth__checkbox input[type=checkbox] {
+  width: auto;
+  margin-top: 0.2rem;
+  flex-shrink: 0;
+}
+.auth button[type=submit] {
+  margin-top: 0.5rem;
+  padding: 0.7rem;
+  background: #c6c6e2;
+  border: 2px solid #9494b9;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+.auth button[type=submit]:hover {
+  background: #9494b9;
+}
+
+.form-error {
+  background: #fde8e8;
+  border: 1.5px solid #e57373;
+  border-radius: 8px;
+  color: #b71c1c;
+  font-size: 1rem;
+  padding: 0.6rem 1rem;
+  text-align: center;
+  margin: 0;
+}
+
 /* creación botones */
 /* =========================
    BOTÓN BASE REUTILIZABLE
@@ -449,7 +532,7 @@ p {
 
 .footer {
   background-color: #c6c6e2;
-  padding: 5vw;
+  padding: 2rem 5vw;
   box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.1);
 }
 .footer__container {

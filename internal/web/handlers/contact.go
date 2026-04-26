@@ -2,6 +2,7 @@ package handlers
 
 import (
 	"el-mundo-interior/internal/contact"
+	"log"
 	"net/http"
 	"strings"
 )
@@ -26,10 +27,12 @@ func Contact(repo contact.Repository) http.HandlerFunc {
 		}
 
 		if err := repo.Save(name, email, message); err != nil {
+			log.Printf("contacto: error guardando mensaje: %v", err)
 			http.Error(w, "No se pudo guardar el mensaje.", http.StatusInternalServerError)
 			return
 		}
 
+		log.Printf("contacto: mensaje recibido correctamente")
 		w.WriteHeader(http.StatusOK)
 	}
 }

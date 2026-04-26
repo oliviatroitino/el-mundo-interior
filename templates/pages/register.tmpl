@@ -4,11 +4,7 @@
 <section class="auth auth--register">
   <h1>Crear cuenta</h1>
 
-  {{if .Error}}
-    <p class="form-error">{{.Error}}</p>
-  {{end}}
-
-  <form method="post" action="/registro">
+  <form method="post" action="/registro" novalidate id="register-form">
     <label for="name">Nombre</label>
     <input id="name" name="name" type="text" value="{{.Name}}" required>
 
@@ -18,7 +14,29 @@
     <label for="password">Contraseña</label>
     <input id="password" name="password" type="password" required>
 
+    <label class="auth__checkbox">
+      <input type="checkbox" name="privacy" required>
+      He leído y acepto la política de privacidad. Mis datos serán tratados conforme al RGPD y no serán cedidos a terceros.
+    </label>
+
     <button type="submit">Registrarme</button>
+
+    {{if .Error}}
+    <p class="form-error">{{.Error}}</p>
+    {{end}}
   </form>
 </section>
+<script>
+document.getElementById('register-form').addEventListener('submit', function(e) {
+    var checkbox = this.querySelector('input[name="privacy"]');
+    if (!checkbox.checked) {
+        e.preventDefault();
+        this.querySelectorAll('.form-error').forEach(function(el) { el.remove(); });
+        var err = document.createElement('p');
+        err.className = 'form-error form-error-js';
+        err.textContent = 'Debes aceptar la política de privacidad.';
+        this.appendChild(err);
+    }
+});
+</script>
 {{end}}

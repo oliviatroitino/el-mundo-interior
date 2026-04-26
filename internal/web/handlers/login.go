@@ -4,6 +4,7 @@ import (
 	"database/sql"
 	"el-mundo-interior/internal/users"
 	"errors"
+	"log"
 	"net/http"
 
 	"golang.org/x/crypto/bcrypt"
@@ -25,10 +26,10 @@ func Login(userRepo users.UserRepository, sessions *SessionStore) http.HandlerFu
 
 		user, err := userRepo.GetByEmail(email)
 		if err != nil {
-			// sql.ErrNoRows significa que el email no existe; cualquier error muestra el mismo mensaje
 			if !errors.Is(err, sql.ErrNoRows) {
-				// error inesperado de BD
+				log.Printf("login: error inesperado en BD: %v", err)
 			}
+			log.Printf("login: intento fallido (usuario no encontrado)")
 			render(w, "templates/pages/login.tmpl", LoginPageData{
 				Nav:   NavData{HomeHref: "/"},
 				Error: "Email o contraseña incorrectos.",
@@ -39,6 +40,7 @@ func Login(userRepo users.UserRepository, sessions *SessionStore) http.HandlerFu
 
 		// Comparar la contraseña con el hash guardado
 		if err := bcrypt.CompareHashAndPassword([]byte(user.PasswordHash), []byte(password)); err != nil {
+			log.Printf("login: intento fallido para userID=%d (contraseña incorrecta)", user.ID)
 			render(w, "templates/pages/login.tmpl", LoginPageData{
 				Nav:   NavData{HomeHref: "/"},
 				Error: "Email o contraseña incorrectos.",
@@ -50,9 +52,11 @@ func Login(userRepo users.UserRepository, sessions *SessionStore) http.HandlerFu
 		// Crear sesión y enviar cookie al navegador
 		token, err := sessions.Create(user.ID, user.Name)
 		if err != nil {
+			log.Printf("login: error creando sesión para userID=%d: %v", user.ID, err)
 			http.Error(w, "error creando sesión", http.StatusInternalServerError)
 			return
 		}
+		log.Printf("login: sesión iniciada para userID=%d", user.ID)
 		sessions.SetCookie(w, token)
 
 		http.Redirect(w, r, "/", http.StatusSeeOther)

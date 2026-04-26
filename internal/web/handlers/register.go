@@ -2,6 +2,7 @@ package handlers
 
 import (
 	"el-mundo-interior/internal/users"
+	"log"
 	"net/http"
 	"regexp"
 
@@ -27,11 +28,22 @@ func Register(userRepo users.UserRepository) http.HandlerFunc {
 		}
 
 		// POST: leer campos del formulario
+		r.ParseForm()
 		name := r.FormValue("name")
 		email := r.FormValue("email")
 		password := r.FormValue("password")
 
 		// Validación básica
+		if _, ok := r.Form["privacy"]; !ok {
+			render(w, "templates/pages/register.tmpl", RegisterPageData{
+				Nav:   NavData{HomeHref: "/"},
+				Error: "Debes aceptar la política de privacidad.",
+				Name:  name,
+				Email: email,
+			})
+			return
+		}
+
 		if name == "" || email == "" || password == "" {
 			render(w, "templates/pages/register.tmpl", RegisterPageData{
 				Nav:   NavData{HomeHref: "/"},
@@ -78,6 +90,7 @@ func Register(userRepo users.UserRepository) http.HandlerFunc {
 		// Hashear la contraseña antes de guardarla
 		hash, err := bcrypt.GenerateFromPassword([]byte(password), bcrypt.DefaultCost)
 		if err != nil {
+			log.Printf("registro: error hasheando contraseña: %v", err)
 			render(w, "templates/pages/register.tmpl", RegisterPageData{
 				Nav:   NavData{HomeHref: "/"},
 				Error: "Error al procesar la contraseña.",
@@ -89,6 +102,7 @@ func Register(userRepo users.UserRepository) http.HandlerFunc {
 
 		_, err = userRepo.Create(name, email, string(hash))
 		if err != nil {
+			log.Printf("registro: error creando usuario en BD: %v", err)
 			render(w, "templates/pages/register.tmpl", RegisterPageData{
 				Nav:   NavData{HomeHref: "/"},
 				Error: "El correo ya está registrado.",
@@ -98,6 +112,7 @@ func Register(userRepo users.UserRepository) http.HandlerFunc {
 			return
 		}
 
+		log.Printf("registro: nuevo usuario creado correctamente")
 		http.Redirect(w, r, "/login", http.StatusSeeOther)
 	}
 }
