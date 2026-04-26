@@ -2,6 +2,7 @@ package handlers
 
 import (
 	"el-mundo-interior/internal/contact"
+	"log"
 	"net/http"
 )
 
@@ -32,10 +33,12 @@ func Contact(repo contact.Repository) http.HandlerFunc {
 		}
 
 		if err := repo.Save(name, email, message); err != nil {
+			log.Printf("contacto: error guardando mensaje: %v", err)
 			http.Redirect(w, r, back, http.StatusSeeOther)
 			return
 		}
 
+		log.Printf("contacto: mensaje recibido correctamente")
 		http.Redirect(w, r, "/", http.StatusSeeOther)
 	}
 }
