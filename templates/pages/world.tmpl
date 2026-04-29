@@ -49,26 +49,40 @@
     <!-- MIS PUBLICACIONES -->
     <section class="post-list">
         <h2 class="post-list__title">Mis Publicaciones</h2>
-        {{range .MyPosts}}
-        {{template "post_card" .}}
-        {{end}}
-        <button class="btn btn--more" type="button">
-            <span class="btn__text">Cargar más</span>
-            <img class="btn__icon" src="/assets/icons/cargarmas.svg" alt="" aria-hidden="true">
-        </button>
+        <ul id="my-posts" class="post-list__items" data-world="{{.Slug}}"></ul>
     </section>
 
     <!-- PUBLICACIONES DE OTROS USUARIOS -->
     <section class="post-list">
         <h2 class="post-list__title">Publicaciones de otros usuarios</h2>
-        {{range .OtherPosts}}
-        {{template "post_card" .}}
-        {{end}}
-        <button class="btn btn--more post-list__load-more" type="button">
-            <span class="btn__text">Cargar más</span>
-            <img class="btn__icon" src="/assets/icons/cargarmas.svg" alt="" aria-hidden="true">
-        </button>
+        <ul id="other-posts" class="post-list__items"></ul>
     </section>
 
 </div>
+
+<!-- PLANTILLA DE CARD (invisible hasta que JS la clona) -->
+<template id="post-tpl">
+    <li class="post-list__item">
+        <article class="post card">
+            <header class="post__header">
+                <p class="post__user"></p>
+                <p class="post__title"></p>
+            </header>
+            <div class="post__content">
+                <p class="post__text"></p>
+                <img class="post__media" alt="Archivo adjunto" hidden>
+            </div>
+            <footer class="post__footer">
+                <p class="post__location" hidden></p>
+                <p class="post__date"></p>
+                <div class="post__actions" hidden>
+                    <button class="btn btn--edit" type="button">Editar</button>
+                    <button class="btn btn--delete" type="button">Borrar</button>
+                </div>
+            </footer>
+        </article>
+    </li>
+</template>
+
+<script src="/assets/js/posts.js" defer></script>
 {{end}}
