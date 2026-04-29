@@ -107,34 +107,30 @@ class PostsManager {
     }
   }
 
-  // Sustituye el contenido del post por un formulario de edición inline
-  // con textarea (body), campo de ubicación y selector de sección.
-  // Al guardar llama a PATCH y restaura la vista con los nuevos valores.
+  // Reemplaza el contenido de la card por un formulario igual al de crear posts,
+  // con los valores actuales pre-rellenados. Al guardar llama a PATCH y restaura la card.
   handleEdit(li) {
-    const id      = li.dataset.id
-    const textEl  = li.querySelector('.post__text')
-    const locEl   = li.querySelector('.post__location')
-    const editBtn = li.querySelector('.btn--edit')
+    const id          = li.dataset.id
+    const article     = li.querySelector('article')
+    const originalHTML = article.innerHTML
 
-    // — Textarea para el cuerpo —
+    // — Textarea con el texto actual —
     const textarea     = document.createElement('textarea')
-    textarea.className = 'post__edit-input'
-    textarea.value     = textEl.textContent
-    textEl.replaceWith(textarea)
+    textarea.className = 'post-form__text'
+    textarea.value     = li.querySelector('.post__text')?.textContent ?? ''
 
-    // — Input para la ubicación —
-    const locInput     = document.createElement('input')
-    locInput.type      = 'text'
-    locInput.className = 'post__edit-location'
+    // — Input de ubicación siempre visible (en edición no tiene sentido ocultarlo) —
+    const locInput       = document.createElement('input')
+    locInput.type        = 'text'
+    locInput.className   = 'post-form__location-input'
     locInput.placeholder = 'Ubicación...'
-    locInput.value     = li.dataset.location
-    locEl.replaceWith(locInput)
-    locInput.hidden = false
+    locInput.value       = li.dataset.location
+    locInput.style.display = 'block'
 
-    // — Select para la sección (clona opciones del formulario principal) —
-    const sourceSelect  = this.form?.querySelector('[name="section_slug"]')
-    const sectionSelect = document.createElement('select')
-    sectionSelect.className = 'post__edit-section'
+    // — Select de sección (copia opciones del formulario principal) —
+    const sectionSelect     = document.createElement('select')
+    sectionSelect.className = 'post-form__section-select'
+    const sourceSelect      = this.form?.querySelector('[name="section_slug"]')
     if (sourceSelect) {
       Array.from(sourceSelect.options).forEach(opt => {
         const o       = document.createElement('option')
@@ -144,14 +140,24 @@ class PostsManager {
         sectionSelect.appendChild(o)
       })
     }
-    textarea.after(sectionSelect)
 
-    // — Botón Guardar (reemplaza Editar) —
-    const saveBtn       = document.createElement('button')
-    saveBtn.type        = 'button'
-    saveBtn.className   = 'btn btn--save'
-    saveBtn.textContent = 'Guardar'
-    editBtn.replaceWith(saveBtn)
+    // — Botón guardar con texto explícito —
+    const saveBtn         = document.createElement('button')
+    saveBtn.type          = 'button'
+    saveBtn.className     = 'btn btn--save'
+    saveBtn.textContent   = 'Guardar'
+
+    const options     = document.createElement('div')
+    options.className = 'post-form__options'
+    options.append(locInput, sectionSelect, saveBtn)
+
+    const wrapper     = document.createElement('div')
+    wrapper.className = 'post-form__input'
+    wrapper.append(textarea, options)
+
+    article.innerHTML = ''
+    article.appendChild(wrapper)
+    textarea.focus()
 
     saveBtn.addEventListener('click', async () => {
       const newBody     = textarea.value.trim()
@@ -165,42 +171,24 @@ class PostsManager {
         const res = await fetch(`/api/posts/${id}`, {
           method:  'PATCH',
           headers: { 'Content-Type': 'application/json' },
-          body:    JSON.stringify({
-            body:         newBody,
-            location:     newLocation,
-            section_slug: newSection,
-          }),
+          body:    JSON.stringify({ body: newBody, location: newLocation, section_slug: newSection }),
         })
         if (!res.ok) throw new Error('Error del servidor')
-
         const updated = await res.json()
 
-        // Restaurar el texto actualizado
-        const newText       = document.createElement('p')
-        newText.className   = 'post__text'
-        newText.textContent = updated.body
-        textarea.replaceWith(newText)
-
-        // Restaurar la ubicación actualizada
-        const newLoc       = document.createElement('p')
-        newLoc.className   = 'post__location'
-        newLoc.textContent = updated.location ?? ''
-        newLoc.hidden      = !updated.location
-        locInput.replaceWith(newLoc)
-
-        // Guardar nuevos valores en data attributes
         li.dataset.section  = updated.section_slug ?? ''
         li.dataset.location = updated.location ?? ''
 
-        sectionSelect.remove()
+        // Restaurar la card con los nuevos valores
+        article.innerHTML = originalHTML
+        article.querySelector('.post__text').textContent = updated.body
+        const locEl    = article.querySelector('.post__location')
+        locEl.textContent = updated.location ?? ''
+        locEl.hidden      = !updated.location
 
-        // Restaurar botón Editar
-        const newEditBtn       = document.createElement('button')
-        newEditBtn.type        = 'button'
-        newEditBtn.className   = 'btn btn--edit'
-        newEditBtn.textContent = 'Editar'
-        newEditBtn.addEventListener('click', () => this.handleEdit(li))
-        saveBtn.replaceWith(newEditBtn)
+        // Reconectar listeners (innerHTML los elimina)
+        article.querySelector('.btn--edit').addEventListener('click', () => this.handleEdit(li))
+        article.querySelector('.btn--delete').addEventListener('click', () => this.handleDelete(li))
       } catch (err) {
         console.error('Error actualizando post:', err)
       } finally {
