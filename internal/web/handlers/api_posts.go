@@ -147,7 +147,9 @@ func ApiUpdatePost(posts content.PostRepository, sessions *SessionStore) http.Ha
 		}
 
 		var input struct {
-			Body string `json:"body"`
+			Body        string `json:"body"`
+			Location    string `json:"location"`
+			SectionSlug string `json:"section_slug"`
 		}
 		if err := json.NewDecoder(r.Body).Decode(&input); err != nil {
 			writeError(w, http.StatusBadRequest, "JSON inválido")
@@ -158,15 +160,17 @@ func ApiUpdatePost(posts content.PostRepository, sessions *SessionStore) http.Ha
 			return
 		}
 
-		if err := posts.Update(id, userID, input.Body); err != nil {
+		if err := posts.Update(id, userID, input.Body, input.Location, input.SectionSlug); err != nil {
 			log.Printf("error actualizando post %d: %v", id, err)
 			writeError(w, http.StatusForbidden, "no se puede actualizar el post")
 			return
 		}
 
 		writeJSON(w, http.StatusOK, map[string]any{
-			"id":   id,
-			"body": input.Body,
+			"id":           id,
+			"body":         input.Body,
+			"location":     input.Location,
+			"section_slug": input.SectionSlug,
 		})
 	}
 }

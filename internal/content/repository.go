@@ -64,12 +64,12 @@ func (r *sqlitePostRepository) Create(post Post) (int, error) {
 	return int(id), err
 }
 
-// Update modifica el cuerpo de un post solo si pertenece al usuario indicado.
-func (r *sqlitePostRepository) Update(id, userID int, body string) error {
+// Update modifica los campos editables de un post solo si pertenece al usuario indicado.
+func (r *sqlitePostRepository) Update(id, userID int, body, location, sectionSlug string) error {
 	result, err := r.db.Exec(`
-		UPDATE posts SET body = ?, title = SUBSTR(?, 1, 60)
+		UPDATE posts SET body = ?, title = SUBSTR(?, 1, 60), location = ?, section_slug = ?
 		WHERE id = ? AND user_id = ?
-	`, body, body, id, userID)
+	`, body, body, location, sectionSlug, id, userID)
 	if err != nil {
 		return fmt.Errorf("actualizando post: %w", err)
 	}
