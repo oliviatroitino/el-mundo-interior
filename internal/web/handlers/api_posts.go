@@ -12,14 +12,15 @@ import (
 
 // apiPost es la representación JSON de un post para la API.
 type apiPost struct {
-	ID        int    `json:"id"`
-	UserName  string `json:"user_name"`
-	WorldSlug string `json:"world_slug"`
-	Body      string `json:"body"`
-	Location  string `json:"location,omitempty"`
-	MediaPath string `json:"media_path,omitempty"`
-	Date      string `json:"date"`
-	Mine      bool   `json:"mine"`
+	ID          int    `json:"id"`
+	UserName    string `json:"user_name"`
+	WorldSlug   string `json:"world_slug"`
+	SectionSlug string `json:"section_slug"`
+	Body        string `json:"body"`
+	Location    string `json:"location,omitempty"`
+	MediaPath   string `json:"media_path,omitempty"`
+	Date        string `json:"date"`
+	Mine        bool   `json:"mine"`
 }
 
 // writeJSON serializa v como JSON y lo envía con el código de estado dado.
@@ -37,14 +38,15 @@ func writeError(w http.ResponseWriter, status int, msg string) {
 // toAPIPost convierte un content.Post en apiPost, marcando mine si es del usuario actual.
 func toAPIPost(p content.Post, currentUserID int) apiPost {
 	return apiPost{
-		ID:        p.ID,
-		UserName:  p.UserName,
-		WorldSlug: p.WorldSlug,
-		Body:      p.Body,
-		Location:  p.Location,
-		MediaPath: p.MediaPath,
-		Date:      p.CreatedAt.Format("2006-01-02"),
-		Mine:      p.UserID == currentUserID,
+		ID:          p.ID,
+		UserName:    p.UserName,
+		WorldSlug:   p.WorldSlug,
+		SectionSlug: p.SectionSlug,
+		Body:        p.Body,
+		Location:    p.Location,
+		MediaPath:   p.MediaPath,
+		Date:        p.CreatedAt.Format("2006-01-02"),
+		Mine:        p.UserID == currentUserID,
 	}
 }
 

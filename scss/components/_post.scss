@@ -38,6 +38,82 @@
         max-width: 100%;
         max-height: 300px;
         object-fit: contain;
+
+        &[hidden] { display: none; }
+    }
+}
+
+// El formulario de edición ocupa todo el ancho de la card
+.post .post-form__input {
+    width: 100%;
+}
+
+// Inputs del formulario de edición inline
+.post__edit-input,
+.post__edit-location,
+.post__edit-section {
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0.5vw;
+    padding: 0.4rem 0.6rem;
+    border: 1px solid $color-border-container;
+    border-radius: 6px;
+    background: white;
+    font-size: $font-base;
+    color: $color-text;
+    font-family: inherit;
+}
+
+.post__edit-input {
+    min-height: 6rem;
+    resize: vertical;
+}
+
+// Contenedor de botones editar/borrar en el footer de la card
+.post__actions {
+    display: flex;
+    gap: 0.4rem;
+    align-items: center;
+}
+
+// Modificadores de color para los botones de acción
+.btn--edit {
+    border-color: $color-border-container;
+    font-size: 0.8rem;
+    padding: 0.4rem 0.8rem;
+}
+
+.btn--save {
+    border-color: #4a7c59;
+    color: #4a7c59;
+    font-size: 0.8rem;
+    padding: 0.4rem 0.8rem;
+
+    &:hover {
+        background: #4a7c59;
+        color: white;
+    }
+
+    &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
+}
+
+.btn--delete {
+    border-color: #a33;
+    color: #a33;
+    font-size: 0.8rem;
+    padding: 0.4rem 0.8rem;
+
+    &:hover {
+        background: #a33;
+        color: white;
+    }
+
+    &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
     }
 }
 

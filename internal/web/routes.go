@@ -50,6 +50,7 @@ func (s *Server) routes() http.Handler {
 
 	// Archivos estáticos — servidos con caché stale-while-revalidate
 	mux.Handle("GET /css/", withCache(http.StripPrefix("/css/", http.FileServer(http.Dir("css")))))
+	mux.Handle("GET /js/", withCache(http.StripPrefix("/js/", http.FileServer(http.Dir("js")))))
 	mux.Handle("GET /assets/", withCache(http.StripPrefix("/assets/", http.FileServer(http.Dir("assets")))))
 	mux.Handle("GET /uploads/", http.StripPrefix("/uploads/", http.FileServer(http.Dir("assets/uploads"))))
 
