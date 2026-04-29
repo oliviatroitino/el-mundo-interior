@@ -25,4 +25,8 @@ type PostRepository interface {
 	GetBySection(worldSlug, sectionSlug string) ([]Post, error)
 	// Create inserta un nuevo post y devuelve su ID.
 	Create(post Post) (int, error)
+	// Update modifica el cuerpo de un post. Solo tiene efecto si el post pertenece a userID.
+	Update(id, userID int, body string) error
+	// Delete elimina un post. Solo tiene efecto si el post pertenece a userID.
+	Delete(id, userID int) error
 }

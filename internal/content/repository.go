@@ -64,6 +64,41 @@ func (r *sqlitePostRepository) Create(post Post) (int, error) {
 	return int(id), err
 }
 
+// Update modifica el cuerpo de un post solo si pertenece al usuario indicado.
+func (r *sqlitePostRepository) Update(id, userID int, body string) error {
+	result, err := r.db.Exec(`
+		UPDATE posts SET body = ?, title = SUBSTR(?, 1, 60)
+		WHERE id = ? AND user_id = ?
+	`, body, body, id, userID)
+	if err != nil {
+		return fmt.Errorf("actualizando post: %w", err)
+	}
+	rows, err := result.RowsAffected()
+	if err != nil {
+		return err
+	}
+	if rows == 0 {
+		return fmt.Errorf("post %d no encontrado o no pertenece al usuario", id)
+	}
+	return nil
+}
+
+// Delete elimina un post solo si pertenece al usuario indicado.
+func (r *sqlitePostRepository) Delete(id, userID int) error {
+	result, err := r.db.Exec(`DELETE FROM posts WHERE id = ? AND user_id = ?`, id, userID)
+	if err != nil {
+		return fmt.Errorf("borrando post: %w", err)
+	}
+	rows, err := result.RowsAffected()
+	if err != nil {
+		return err
+	}
+	if rows == 0 {
+		return fmt.Errorf("post %d no encontrado o no pertenece al usuario", id)
+	}
+	return nil
+}
+
 // scanPosts lee las filas del resultado y las convierte en []Post.
 func scanPosts(rows *sql.Rows) ([]Post, error) {
 	var posts []Post
