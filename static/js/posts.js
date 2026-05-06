@@ -4,7 +4,8 @@ class PostsManager {
     this.otherList = document.getElementById('other-posts')
     this.template  = document.getElementById('post-tpl')
     this.form      = document.querySelector('.post-form__form')
-    this.worldSlug = this.myList?.dataset.world
+    this.worldSlug   = this.myList?.dataset.world
+    this.sectionSlug = this.myList?.dataset.section ?? ''
   }
 
   init() {
@@ -41,7 +42,10 @@ class PostsManager {
     this.myList.appendChild(loading)
 
     try {
-      const res   = await fetch(`/api/posts?world=${this.worldSlug}`)
+      const url   = this.sectionSlug
+        ? `/api/posts?world=${this.worldSlug}&section=${this.sectionSlug}`
+        : `/api/posts?world=${this.worldSlug}`
+      const res   = await fetch(url)
       const posts = await res.json()
 
       posts.forEach(post => {
@@ -158,11 +162,13 @@ class PostsManager {
     locInput.value       = li.dataset.location
     locInput.style.display = 'block'
 
-    // — Select de sección (copia opciones del formulario principal) —
-    const sectionSelect     = document.createElement('select')
-    sectionSelect.className = 'post-form__section-select'
-    const sourceSelect      = this.form?.querySelector('[name="section_slug"]')
+    // — Select de sección: del formulario de crear posts, o del select oculto de la sección —
+    const sourceSelect  = this.form?.querySelector('[name="section_slug"]')
+                       ?? document.getElementById('sections-data')
+    let sectionSelect   = null
     if (sourceSelect) {
+      sectionSelect           = document.createElement('select')
+      sectionSelect.className = 'post-form__section-select'
       Array.from(sourceSelect.options).forEach(opt => {
         const o       = document.createElement('option')
         o.value       = opt.value
@@ -180,7 +186,7 @@ class PostsManager {
 
     const options     = document.createElement('div')
     options.className = 'post-form__options'
-    options.append(locInput, sectionSelect, saveBtn)
+    options.append(locInput, ...(sectionSelect ? [sectionSelect] : []), saveBtn)
 
     const wrapper     = document.createElement('div')
     wrapper.className = 'post-form__input'
@@ -193,7 +199,7 @@ class PostsManager {
     saveBtn.addEventListener('click', async () => {
       const newBody     = textarea.value.trim()
       const newLocation = locInput.value.trim()
-      const newSection  = sectionSelect.value
+      const newSection  = sectionSelect ? sectionSelect.value : li.dataset.section
 
       if (!newBody) return
 

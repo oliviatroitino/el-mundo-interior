@@ -49,10 +49,10 @@ func (s *Server) routes() http.Handler {
 	mux.HandleFunc("POST /contacto", handlers.Contact(contactRepo))
 
 	// Archivos estáticos — servidos con caché stale-while-revalidate
-	mux.Handle("GET /css/", withCache(http.StripPrefix("/css/", http.FileServer(http.Dir("css")))))
-	mux.Handle("GET /js/", withCache(http.StripPrefix("/js/", http.FileServer(http.Dir("js")))))
-	mux.Handle("GET /assets/", withCache(http.StripPrefix("/assets/", http.FileServer(http.Dir("assets")))))
-	mux.Handle("GET /uploads/", http.StripPrefix("/uploads/", http.FileServer(http.Dir("assets/uploads"))))
+	mux.Handle("GET /css/", withCache(http.StripPrefix("/css/", http.FileServer(http.Dir("static/css")))))
+	mux.Handle("GET /js/", withCache(http.StripPrefix("/js/", http.FileServer(http.Dir("static/js")))))
+	mux.Handle("GET /assets/", withCache(http.StripPrefix("/assets/", http.FileServer(http.Dir("static/assets")))))
+	mux.Handle("GET /uploads/", http.StripPrefix("/uploads/", http.FileServer(http.Dir("static/assets/uploads"))))
 
 	return mux
 }
