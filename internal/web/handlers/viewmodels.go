@@ -34,16 +34,6 @@ type NavData struct {
 	UserDropdown *NavDropdown  // dropdown de usuario, siempre al final
 }
 
-// Post represents a user publication.
-type Post struct {
-	User      string
-	Title     string
-	Text      string
-	Location  string
-	MediaPath string
-	Date      string
-}
-
 // HomePlanetItem contains world data used in home planet cards.
 type HomePlanetItem struct {
 	Slug        string
@@ -84,18 +74,14 @@ type WorldPageData struct {
 	Icon        string
 	Sections    []content.WorldSection
 	Nav         NavData
-	MyPosts     []Post
-	OtherPosts  []Post
 }
 
 // SectionPageData contains data for /mundos/{slug}/{section}.
 type SectionPageData struct {
-	World      content.World
-	Section    content.WorldSection
-	Nav        NavData
-	Questions  []string
-	MyPosts    []Post
-	OtherPosts []Post
+	World     content.World
+	Section   content.WorldSection
+	Nav       NavData
+	Questions []string
 }
 
 // RegisterPageData contains data for /registro.
