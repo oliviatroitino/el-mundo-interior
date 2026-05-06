@@ -6,13 +6,7 @@
   align-items: center;
   text-decoration: none;
   color: inherit;
-  transition: transform 0.2s ease;
   flex-direction: column;
-
-  &:hover {
-    transform: translateY(-2px);
-    filter: brightness(0.95);
-  }
 
   &__image {
     width: clamp(140px, 18vw, 180px);

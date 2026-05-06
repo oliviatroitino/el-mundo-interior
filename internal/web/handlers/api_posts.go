@@ -59,8 +59,15 @@ func ApiGetPosts(posts content.PostRepository, sessions *SessionStore) http.Hand
 			writeError(w, http.StatusBadRequest, "parámetro world requerido")
 			return
 		}
+		sectionSlug := r.URL.Query().Get("section")
 
-		allPosts, err := posts.GetByWorld(worldSlug)
+		var allPosts []content.Post
+		var err error
+		if sectionSlug != "" {
+			allPosts, err = posts.GetBySection(worldSlug, sectionSlug)
+		} else {
+			allPosts, err = posts.GetByWorld(worldSlug)
+		}
 		if err != nil {
 			log.Printf("error obteniendo posts: %v", err)
 			writeError(w, http.StatusInternalServerError, "error obteniendo posts")

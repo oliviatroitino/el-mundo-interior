@@ -41,6 +41,14 @@ img[src$=".svg"] {
   text-align: right;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
 @font-face {
   font-family: logoFont;
   src: url(../assets/fonts/amoera-Regular.ttf);
@@ -115,10 +123,12 @@ p {
   border-radius: 8px;
   background: #F0F8FF;
   font-size: 1rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 .auth input:focus {
   outline: none;
   border-color: #9494b9;
+  box-shadow: 0 0 0 3px rgba(148, 148, 185, 0.25);
 }
 .auth__checkbox {
   display: flex;
@@ -142,6 +152,7 @@ p {
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
+  transition: background 0.2s ease;
 }
 .auth button[type=submit]:hover {
   background: #9494b9;
@@ -189,6 +200,11 @@ p {
 
 .btn:hover {
   text-decoration: none;
+}
+
+.btn:focus-visible {
+  outline: 3px solid #4a7c59;
+  outline-offset: 3px;
 }
 
 .btn span {
@@ -302,12 +318,7 @@ p {
   align-items: center;
   text-decoration: none;
   color: inherit;
-  transition: transform 0.2s ease;
   flex-direction: column;
-}
-.planet:hover {
-  transform: translateY(-2px);
-  filter: brightness(0.95);
 }
 .planet__image {
   width: clamp(140px, 18vw, 180px);
@@ -610,8 +621,13 @@ p {
   border: 2px solid var(--card-border, #8DA8D0);
   overflow: hidden;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.25s ease, transform 0.25s ease;
   padding: 40px;
   margin: 20px;
+}
+.card:hover {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
 }
 
 .plans__list {
@@ -708,6 +724,7 @@ p {
   display: block;
   text-decoration: none;
   color: inherit;
+  transition: transform 0.25s ease, filter 0.25s ease;
 }
 .sections__item:hover {
   transform: translateY(-2px);

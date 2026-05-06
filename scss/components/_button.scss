@@ -37,6 +37,11 @@
   text-decoration: none;
 }
 
+.btn:focus-visible {
+  outline: 3px solid #4a7c59;
+  outline-offset: 3px;
+}
+
 .btn span {
   text-decoration: none;
 }

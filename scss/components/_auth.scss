@@ -43,10 +43,12 @@
         border-radius: 8px;
         background: $color-background;
         font-size: $font-base;
+        transition: border-color 0.2s ease, box-shadow 0.2s ease;
 
         &:focus {
             outline: none;
             border-color: $color-navbar-border;
+            box-shadow: 0 0 0 3px rgba(148, 148, 185, 0.25);
         }
     }
 
@@ -74,6 +76,7 @@
         font-size: $font-base;
         font-weight: $font-weight-semibold;
         cursor: pointer;
+        transition: background 0.2s ease;
 
         &:hover {
             background: $color-navbar-border;
