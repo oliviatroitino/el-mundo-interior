@@ -160,7 +160,7 @@ class PostsManager {
     locInput.className   = 'post-form__location-input'
     locInput.placeholder = 'Ubicación...'
     locInput.value       = li.dataset.location
-    locInput.style.display = 'block'
+    locInput.classList.add('is-visible')
 
     // — Select de sección: del formulario de crear posts, o del select oculto de la sección —
     const sourceSelect  = this.form?.querySelector('[name="section_slug"]')
