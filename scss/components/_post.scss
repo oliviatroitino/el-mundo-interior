@@ -43,6 +43,22 @@
     }
 }
 
+// Banner de error flotante en la parte inferior de la pantalla
+.post-error {
+    position: fixed;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #a33;
+    color: white;
+    padding: 0.8rem 1.6rem;
+    border-radius: 8px;
+    font-size: $font-base;
+    z-index: 100;
+
+    &[hidden] { display: none; }
+}
+
 // El formulario de edición ocupa todo el ancho de la card
 .post .post-form__input {
     width: 100%;

@@ -9,8 +9,17 @@ class PostsManager {
 
   init() {
     if (!this.myList) return
+    this.errorBanner = document.getElementById('post-error')
     this.loadPosts()
     this.form?.addEventListener('submit', (e) => this.handleSubmit(e))
+  }
+
+  // Muestra un mensaje de error al usuario durante 4 segundos.
+  showError(message) {
+    this.errorBanner.textContent = message
+    this.errorBanner.hidden = false
+    clearTimeout(this._errorTimer)
+    this._errorTimer = setTimeout(() => { this.errorBanner.hidden = true }, 4000)
   }
 
   // Pide los posts a la API y los renderiza en sus contenedores.
@@ -33,7 +42,7 @@ class PostsManager {
       this.showEmptyState(this.myList, 'Aún no has publicado nada en este mundo.')
       this.showEmptyState(this.otherList, 'Aún no hay publicaciones de otros usuarios.')
     } catch (err) {
-      console.error('Error cargando posts:', err)
+      this.showError('Error al cargar las publicaciones. Inténtalo de nuevo.')
     } finally {
       loading.remove()
     }
@@ -114,7 +123,7 @@ class PostsManager {
       this.myList.prepend(this.createCard(post))
       form.reset()
     } catch (err) {
-      console.error('Error creando post:', err)
+      this.showError('Error al publicar. Inténtalo de nuevo.')
     } finally {
       submitBtn.disabled = false
     }
@@ -203,7 +212,7 @@ class PostsManager {
         article.querySelector('.btn--edit').addEventListener('click', () => this.handleEdit(li))
         article.querySelector('.btn--delete').addEventListener('click', () => this.handleDelete(li))
       } catch (err) {
-        console.error('Error actualizando post:', err)
+        this.showError('Error al editar la publicación. Inténtalo de nuevo.')
       } finally {
         saveBtn.disabled = false
       }
@@ -220,7 +229,7 @@ class PostsManager {
       if (!res.ok) throw new Error('Error del servidor')
       li.remove()
     } catch (err) {
-      console.error('Error borrando post:', err)
+      this.showError('Error al borrar la publicación. Inténtalo de nuevo.')
       deleteBtn.disabled = false
     }
   }
