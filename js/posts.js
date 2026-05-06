@@ -12,6 +12,16 @@ class PostsManager {
     this.errorBanner = document.getElementById('post-error')
     this.loadPosts()
     this.form?.addEventListener('submit', (e) => this.handleSubmit(e))
+
+    // Botón de archivo: abre el input file oculto
+    const fileInput  = this.form?.querySelector('#post-media')
+    this.form?.querySelector('.post-form__upload')
+      ?.addEventListener('click', () => fileInput?.click())
+
+    // Botón de ubicación: muestra/oculta el input aplicando una clase CSS
+    const locInput = this.form?.querySelector('.post-form__location-input')
+    this.form?.querySelector('.post-form__location')
+      ?.addEventListener('click', () => locInput?.classList.toggle('is-visible'))
   }
 
   // Muestra un mensaje de error al usuario durante 4 segundos.
@@ -38,13 +48,12 @@ class PostsManager {
         const card = this.createCard(post)
         post.mine ? this.myList.appendChild(card) : this.otherList.appendChild(card)
       })
-
-      this.showEmptyState(this.myList, 'Aún no has publicado nada en este mundo.')
-      this.showEmptyState(this.otherList, 'Aún no hay publicaciones de otros usuarios.')
     } catch (err) {
       this.showError('Error al cargar las publicaciones. Inténtalo de nuevo.')
     } finally {
       loading.remove()
+      this.showEmptyState(this.myList, 'Aún no has publicado nada en este mundo.')
+      this.showEmptyState(this.otherList, 'Aún no hay publicaciones de otros usuarios.')
     }
   }
 
