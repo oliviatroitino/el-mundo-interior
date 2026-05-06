@@ -184,6 +184,14 @@
         flex: 1;
     }
 
+    &__location-input {
+        display: none;
+
+        &.is-visible {
+            display: block;
+        }
+    }
+
     @include desktop {
         margin-top: 10vh;
     }

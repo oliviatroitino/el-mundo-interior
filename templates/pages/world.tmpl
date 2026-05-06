@@ -12,13 +12,13 @@
             </div>
             <div class="post-form__input">
                 <textarea class="post-form__text" name="body" placeholder="Comparte tu experiencia..."></textarea>
-                <input type="text" class="post-form__location-input" name="location" placeholder="Ubicación..." style="display:none;">
-                <input type="file" id="post-media" name="media" accept="image/*,video/*,.pdf" style="display:none;">
+                <input type="text" class="post-form__location-input" name="location" placeholder="Ubicación...">
+                <input type="file" id="post-media" name="media" accept="image/*,video/*,.pdf" hidden>
                 <div class="post-form__options">
-                    <button type="button" class="post-form__upload" aria-label="Subir archivo" onclick="document.getElementById('post-media').click()">
+                    <button type="button" class="post-form__upload" aria-label="Subir archivo">
                         <img src="/assets/icons/attach.svg" alt="" aria-hidden="true">
                     </button>
-                    <button type="button" class="post-form__location" aria-label="Agregar ubicación" onclick="var i=this.closest('form').querySelector('.post-form__location-input');i.style.display=i.style.display==='none'?'block':'none'">
+                    <button type="button" class="post-form__location" aria-label="Agregar ubicación">
                         <img src="/assets/icons/location.svg" alt="" aria-hidden="true">
                     </button>
                     <select class="post-form__section-select" name="section_slug">
