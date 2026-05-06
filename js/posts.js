@@ -29,10 +29,23 @@ class PostsManager {
         const card = this.createCard(post)
         post.mine ? this.myList.appendChild(card) : this.otherList.appendChild(card)
       })
+
+      this.showEmptyState(this.myList, 'Aún no has publicado nada en este mundo.')
+      this.showEmptyState(this.otherList, 'Aún no hay publicaciones de otros usuarios.')
     } catch (err) {
       console.error('Error cargando posts:', err)
     } finally {
       loading.remove()
+    }
+  }
+
+  // Muestra un mensaje en la lista si está vacía tras cargar los posts.
+  showEmptyState(list, message) {
+    if (list.children.length === 0) {
+      const empty = document.createElement('li')
+      empty.className = 'post-list__empty'
+      empty.textContent = message
+      list.appendChild(empty)
     }
   }
 

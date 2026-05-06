@@ -57,6 +57,12 @@
         flex-direction: column;
         gap: 1rem;
     }
+
+    &__empty {
+        color: gray;
+        font-style: italic;
+        padding: 0.5rem 0;
+    }
 }
 
 // Inputs del formulario de edición inline
