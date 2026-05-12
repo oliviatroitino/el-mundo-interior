@@ -142,64 +142,44 @@ class PostsManager {
     }
   }
 
-  // Reemplaza el contenido de la card por un formulario igual al de crear posts,
-  // con los valores actuales pre-rellenados. Al guardar llama a PATCH y restaura la card.
+  // Clona el <template> de edición, rellena los campos con los valores actuales
+  // y registra el botón guardar para llamar a PATCH y restaurar la card.
   handleEdit(li) {
-    const id          = li.dataset.id
-    const article     = li.querySelector('article')
+    const id           = li.dataset.id
+    const article      = li.querySelector('article')
     const originalHTML = article.innerHTML
 
-    // — Textarea con el texto actual —
-    const textarea     = document.createElement('textarea')
-    textarea.className = 'post-form__text'
-    textarea.value     = li.querySelector('.post__text')?.textContent ?? ''
+    const clone      = document.getElementById('post-edit-tpl').content.cloneNode(true)
+    const textarea   = clone.querySelector('.post-form__text')
+    const locInput   = clone.querySelector('.post-form__location-input')
+    const sectionSel = clone.querySelector('.post-form__section-select')
+    const saveBtn    = clone.querySelector('.btn--save')
 
-    // — Input de ubicación siempre visible (en edición no tiene sentido ocultarlo) —
-    const locInput       = document.createElement('input')
-    locInput.type        = 'text'
-    locInput.className   = 'post-form__location-input'
-    locInput.placeholder = 'Ubicación...'
-    locInput.value       = li.dataset.location
-    locInput.classList.add('is-visible')
+    textarea.value = li.querySelector('.post__text')?.textContent ?? ''
+    locInput.value = li.dataset.location
 
-    // — Select de sección: del formulario de crear posts, o del select oculto de la sección —
-    const sourceSelect  = this.form?.querySelector('[name="section_slug"]')
-                       ?? document.getElementById('sections-data')
-    let sectionSelect   = null
+    const sourceSelect = this.form?.querySelector('[name="section_slug"]')
+                      ?? document.getElementById('sections-data')
     if (sourceSelect) {
-      sectionSelect           = document.createElement('select')
-      sectionSelect.className = 'post-form__section-select'
       Array.from(sourceSelect.options).forEach(opt => {
         const o       = document.createElement('option')
         o.value       = opt.value
         o.textContent = opt.textContent
         if (opt.value === li.dataset.section) o.selected = true
-        sectionSelect.appendChild(o)
+        sectionSel.appendChild(o)
       })
+    } else {
+      sectionSel.remove()
     }
 
-    // — Botón guardar con texto explícito —
-    const saveBtn         = document.createElement('button')
-    saveBtn.type          = 'button'
-    saveBtn.className     = 'btn btn--save'
-    saveBtn.textContent   = 'Guardar'
-
-    const options     = document.createElement('div')
-    options.className = 'post-form__options'
-    options.append(locInput, ...(sectionSelect ? [sectionSelect] : []), saveBtn)
-
-    const wrapper     = document.createElement('div')
-    wrapper.className = 'post-form__input'
-    wrapper.append(textarea, options)
-
     article.innerHTML = ''
-    article.appendChild(wrapper)
+    article.appendChild(clone)
     textarea.focus()
 
     saveBtn.addEventListener('click', async () => {
       const newBody     = textarea.value.trim()
       const newLocation = locInput.value.trim()
-      const newSection  = sectionSelect ? sectionSelect.value : li.dataset.section
+      const newSection  = sectionSel.isConnected ? sectionSel.value : li.dataset.section
 
       if (!newBody) return
 
@@ -216,14 +196,12 @@ class PostsManager {
         li.dataset.section  = updated.section_slug ?? ''
         li.dataset.location = updated.location ?? ''
 
-        // Restaurar la card con los nuevos valores
         article.innerHTML = originalHTML
         article.querySelector('.post__text').textContent = updated.body
-        const locEl    = article.querySelector('.post__location')
+        const locEl       = article.querySelector('.post__location')
         locEl.textContent = updated.location ?? ''
         locEl.hidden      = !updated.location
 
-        // Reconectar listeners (innerHTML los elimina)
         article.querySelector('.btn--edit').addEventListener('click', () => this.handleEdit(li))
         article.querySelector('.btn--delete').addEventListener('click', () => this.handleDelete(li))
       } catch (err) {

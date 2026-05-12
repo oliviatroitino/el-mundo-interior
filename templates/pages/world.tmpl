@@ -60,6 +60,18 @@
 
 </div>
 
+<!-- PLANTILLA DE FORMULARIO DE EDICIÓN (invisible hasta que JS la clona) -->
+<template id="post-edit-tpl">
+    <div class="post-form__input">
+        <textarea class="post-form__text"></textarea>
+        <div class="post-form__options">
+            <input type="text" class="post-form__location-input is-visible" placeholder="Ubicación...">
+            <select class="post-form__section-select"></select>
+            <button type="button" class="btn btn--save">Guardar</button>
+        </div>
+    </div>
+</template>
+
 <!-- PLANTILLA DE CARD (invisible hasta que JS la clona) -->
 <template id="post-tpl">
     <li class="post-list__item">
