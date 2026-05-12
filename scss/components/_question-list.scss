@@ -1,39 +1,69 @@
+@use "../abstracts/variables" as *;
+
 .question-generator {
+  margin-bottom: 7vh;
 
-    &__item{
-        padding: 10px;
-        text-align: center;
-        margin-left: 15vw;
-        margin-right: 15vw;
-    }
+  &__title {
+    text-align: center;
+    font-weight: $font-weight-light;
+    color: $color-text-muted;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    margin-bottom: 1.5rem;
+  }
 
-    &__title {
-        text-align: center;
-    }
+  &__list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
 
-    margin-bottom: 7vh;
+  &__item {
+    padding: 1rem 1.5rem;
+    text-align: center;
+    max-width: 40rem;
+    width: 100%;
+    background: $color-card-background;
+    border: 1.5px solid $color-border;
+    border-radius: $radius-md;
+    box-shadow: $shadow-sm;
+  }
 
-    &__more {
-      display: flex;
-      justify-content: flex-end;
-      margin-top: .5rem;
-      margin-left: 15vw;   // mismo margen que las cards
-      margin-right: 15vw;  // mismo margen que las cards
+  &__question {
+    margin: 0;
+    font-style: italic;
+    font-weight: $font-weight-light;
+    color: $color-text;
+    line-height: $line-height-base;
+  }
 
-      &-link {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        background: transparent;
-        border: 0;
-        padding: 0;
-        cursor: pointer;
+  &__more {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+
+    &-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: transparent;
+      border: none;
+      padding: 0.4rem;
+      cursor: pointer;
+      opacity: 0.45;
+      transition: opacity 0.2s ease;
+
+      &:hover {
+        opacity: 0.9;
       }
-
-      &-icon {
-        width: 1.8rem;
-        height: 1.8rem;
-        object-fit: contain;
-      }
     }
+
+    &-icon {
+      width: 1.8rem;
+      height: 1.8rem;
+      object-fit: contain;
+    }
+  }
 }

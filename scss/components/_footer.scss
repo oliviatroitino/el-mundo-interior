@@ -2,37 +2,48 @@
 @use "../abstracts/mixins" as *;
 
 .footer {
-    background-color: $color-navbar;
-    padding: 2rem 5vw;
-    box-shadow: 0 -4px 12px rgba(0,0,0,0.1);
+  background-color: $color-navbar;
+  border-top: 1.5px solid $color-navbar-border;
+  padding: 2rem 5vw;
 
-    &__container {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
+  &__container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  &__contact-field {
+    display: grid;
+    grid-template-columns: 15vw 65vw;
+    gap: 0.5rem;
+    align-items: center;
+
+    @include desktop {
+      grid-template-columns: 5vw 15vw;
     }
+  }
 
-    &__contact-field {
-        display: grid;
+  &__contact-input,
+  &__contact-textarea {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0.5rem 0.75rem;
+    border: 1.5px solid $color-border;
+    border-radius: $radius-sm;
+    background: $color-background;
+    font-family: inherit;
+    font-size: $font-base;
+    color: $color-text;
+    transition: border-color 0.2s ease;
 
-        grid-template-columns: 15vw 65vw;
-
-        @include desktop {
-            grid-template-columns: 5vw 15vw;
-        }
-
-        gap: 10px;
-        align-items: center;
+    &:focus {
+      outline: none;
+      border-color: $color-accent;
     }
+  }
 
-    &__contact-input, &__contact-textarea {
-        width: 100%;
-        box-sizing: border-box;
-    }
-
-    &__contact-textarea {
-        resize: vertical;
-    }
-
+  &__contact-textarea {
+    resize: vertical;
+  }
 }
-

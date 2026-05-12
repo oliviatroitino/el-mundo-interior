@@ -1,64 +1,74 @@
-/* COLORES */
-/* Tipografía principal */
-$color-text: #353839; // Onyx (negro suave)
-/* Fondo de la página */
-$color-background: #F0F8FF; // Alice Blue
-/* Barra de navegación */
-$color-navbar: #c6c6e2;
-$color-navbar-border: #9494b9;
-/* Bordes de contenedores */
-$color-border-container: #8DA8D0; // Wisteria Blue
-/* Fondo de las tarjetas */
-$color-card-background: #d5dfee; 
+// PALETA PRINCIPAL
+$color-background:   #FAF7F2;
+$color-text:         #3D3530;
+$color-text-muted:   #7A6E68;
 
-// Colores planetas
-$color-planet-1: rgb(222, 214, 203);
-$color-planet-2: #D9EFF3;
-$color-planet-3: #FCE5C5;
-$color-planet-4: #D4F4F5;
-$color-planet-5: #D5CCC3;
-$color-planet-6: #B9CAC7;
+// SUPERFICIE
+$color-card-background: #FDFBF7;
+$color-border:           #E0D8CE;
 
-$color-card-1: #EFEBDC;
-$color-card-border-1: #4F3A2A;
-$color-card-2: #EDF8FB;
-$color-card-border-2: #96c4ce;
-$color-card-3: #FFF3DF;
-$color-card-border-3: #E7C998;
-$color-card-4: #E9FDFF;
-$color-card-border-4: #9EDFE4;
-$color-card-5: #F0E9E3;
-$color-card-border-5: #C2B3A4;
-$color-card-6: #E5EFED;
-$color-card-border-6: #9CB3AF;
+// NAVBAR
+$color-navbar:        #EDE8E0;
+$color-navbar-border: #D0C8BC;
 
+// ACENTOS
+$color-accent:        #7A9E7E;  // salvia
+$color-accent-dark:   #5C7D60;
+$color-secondary:     #A89FC0;  // lavanda
 
-/* ESPACIADO */
+// MUNDOS — fondo de página y de card
+$color-planet-1: #F2EDE6;  // artístico
+$color-planet-2: #E8EDF5;  // espiritual
+$color-planet-3: #ECF4EB;  // físico
+$color-planet-4: #EFE9F5;  // mental
+$color-planet-5: #F5EDE8;  // personal
+$color-planet-6: #E8F2EE;  // reflexivo
+
+$color-card-1: #FBF7F2;  $color-card-border-1: #CEC0B0;
+$color-card-2: #F2F5FB;  $color-card-border-2: #A8B8CC;
+$color-card-3: #F2F8F1;  $color-card-border-3: #A8C4A8;
+$color-card-4: #F5F0FB;  $color-card-border-4: #B8A8CC;
+$color-card-5: #FBF4F0;  $color-card-border-5: #CCA8A8;
+$color-card-6: #F0F8F4;  $color-card-border-6: #A8C4B8;
+
+// ESTADO
+$color-error:        #B05550;
+$color-error-bg:     #FDF0EF;
+$color-error-border: #D8A8A4;
+
+// ESPACIADO
+$space-xs: 0.25rem;
 $space-sm: 0.5rem;
 $space-md: 1rem;
 $space-lg: 2rem;
+$space-xl: 4rem;
 
-
-/* CONTENEDOR */
+// CONTENEDOR
 $container-width: 72rem;
 
-/* BREAKPOINT: RESPONSIVE*/
+// BREAKPOINT
 $bp-desktop: 1024px;
 
+// TIPOGRAFÍA
+$font-base:   1rem;
+$font-medium: 1.2rem;
+$font-large:  1.5rem;
+$font-xl:     1.875rem;
+$font-logo:   5rem;
 
-/* TIPOGRAFÍA */
-$font-base: 1rem;
-$font-medium: 1.25rem;
-$font-large: 1.56rem;
-$font-xl: 1.95rem;
-$font-logo: 6rem;
+$line-height-base: 1.7;
 
+$font-weight-light:    300;
+$font-weight-normal:   400;
+$font-weight-semibold: 500;
+$font-weight-bold:     600;
 
-/* INTERLINEADO */
-$line-height-base: 1.5;
+// RADIO
+$radius-sm: 8px;
+$radius-md: 16px;
+$radius-lg: 24px;
 
-
-/* PESOS */
-$font-weight-normal: 400;
-$font-weight-semibold: 600;
-$font-weight-bold: 700;
+// SOMBRAS (cálidas, no negras)
+$shadow-sm: 0 2px 8px  rgba(100, 80, 60, 0.07);
+$shadow-md: 0 4px 16px rgba(100, 80, 60, 0.10);
+$shadow-lg: 0 8px 32px rgba(100, 80, 60, 0.14);

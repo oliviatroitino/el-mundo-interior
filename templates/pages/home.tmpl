@@ -11,8 +11,8 @@
         <h2 class="hero__description" id="description">Tu Mundo Interior</h2>
         {{if not .LoggedIn}}
         <div class="hero__buttons">
-            <button class="hero__button hero__button--login" type="button" onclick="window.location.href='/login'">Iniciar Sesión</button>
-            <button class="hero__button hero__button--register" type="button" onclick="window.location.href='/registro'">Registrarse</button>
+            <a class="hero__button" href="/login">Iniciar Sesión</a>
+            <a class="hero__button" href="/registro">Registrarse</a>
         </div>
         {{end}}
     </div>

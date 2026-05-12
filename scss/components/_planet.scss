@@ -1,12 +1,48 @@
 @use "../abstracts/mixins" as *;
 @use "../abstracts/variables" as *;
 
+.planet-list {
+  display: flex;
+  flex-direction: column;
+  gap: $space-lg;
+
+  @include desktop {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+}
+
 .planet {
   display: flex;
   align-items: center;
   text-decoration: none;
   color: inherit;
   flex-direction: column;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: $shadow-lg;
+  }
+
+  &__title {
+    font-size: $font-large;
+    font-weight: $font-weight-light;
+    margin: 0 0 0.5rem;
+    letter-spacing: -0.01em;
+  }
+
+  &__text {
+    font-size: $font-base;
+    color: $color-text-muted;
+    font-weight: $font-weight-light;
+    line-height: $line-height-base;
+    margin: 0 0 1rem;
+  }
+
+  &__actions {
+    margin-top: auto;
+  }
 
   &__image {
     width: clamp(140px, 18vw, 180px);
@@ -24,6 +60,7 @@
 
   @include desktop {
     flex-direction: row;
+
     &__reverse {
       flex-direction: row-reverse;
     }
@@ -41,32 +78,9 @@
   }
 }
 
-.planet#mundo-artistico {
-  --card-bg: #{$color-card-1};
-  --card-border: #{$color-card-border-1};
-}
-
-.planet#mundo-espiritual {
-  --card-bg: #{$color-card-2};
-  --card-border: #{$color-card-border-2};
-}
-
-.planet#mundo-fisico {
-  --card-bg: #{$color-card-3};
-  --card-border: #{$color-card-border-3};
-}
-
-.planet#mundo-mental {
-  --card-bg: #{$color-card-4};
-  --card-border: #{$color-card-border-4};
-}
-
-.planet#mundo-personal {
-  --card-bg: #{$color-card-5};
-  --card-border: #{$color-card-border-5};
-}
-
-.planet#mundo-reflexivo {
-  --card-bg: #{$color-card-6};
-  --card-border: #{$color-card-border-6};
-}
+.planet#mundo-artistico  { --card-bg: #{$color-card-1}; --card-border: #{$color-card-border-1}; }
+.planet#mundo-espiritual { --card-bg: #{$color-card-2}; --card-border: #{$color-card-border-2}; }
+.planet#mundo-fisico     { --card-bg: #{$color-card-3}; --card-border: #{$color-card-border-3}; }
+.planet#mundo-mental     { --card-bg: #{$color-card-4}; --card-border: #{$color-card-border-4}; }
+.planet#mundo-personal   { --card-bg: #{$color-card-5}; --card-border: #{$color-card-border-5}; }
+.planet#mundo-reflexivo  { --card-bg: #{$color-card-6}; --card-border: #{$color-card-border-6}; }

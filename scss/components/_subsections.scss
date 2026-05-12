@@ -1,40 +1,54 @@
 @use "../abstracts/mixins" as *;
 @use "../abstracts/variables" as *;
 
-.subsections, .sections__list {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    margin-bottom: 5vh;
-    align-items: stretch;
+.subsections,
+.sections__list {
+  display: flex;
+  align-items: stretch;
+  flex-direction: column;
+  margin-bottom: 5vh;
 
-    @include desktop {
-        flex-direction: row;
-    }
+  @include desktop {
+    flex-direction: row;
+  }
 }
 
 .subsections {
-    margin-top: 10vh;
+  margin-top: 8vh;
 }
 
-.subsection, .sections__item {
-    flex: 1;
+.subsection,
+.sections__item {
+  flex: 1;
 }
 
 .sections__item {
-    display: block;
-    text-decoration: none;
-    color: inherit;
-    transition: transform 0.25s ease, filter 0.25s ease;
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 
-    &:hover {
-        transform: translateY(-2px);
-        filter: brightness(0.95);
-    }
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(100, 80, 60, 0.12);
+  }
+}
+
+.sections__item-title,
+.subsection__title {
+  font-size: $font-medium;
+  font-weight: $font-weight-semibold;
+  margin: 0;
+  color: $color-text;
 }
 
 .subsection__links a {
-  color: #1f4d8f;
+  color: $color-accent-dark;
   text-decoration: underline;
   text-underline-offset: 3px;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: $color-accent;
+  }
 }

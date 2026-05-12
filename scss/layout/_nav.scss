@@ -1,125 +1,123 @@
 @use "../abstracts/variables" as *;
-@use "../abstracts/mixins" as *; 
+@use "../abstracts/mixins" as *;
+
+:root {
+  --nav-height: 70px;
+}
 
 .nav {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 1000; /* Recomendación de IA: Mantener el navbar por encima de otros elementos usando un valor alto de z-index */
-  background-color: var(--card-bg, #{$color-navbar});
-  border-bottom: 2px solid var(--card-border, #{$color-navbar-border});
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  min-height: var(--nav-height);
+  background-color: $color-navbar;
+  border-bottom: 1.5px solid $color-navbar-border;
+  box-shadow: $shadow-sm;
 
-    &__toggle {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-
-        // Recomendaciones de IA: Agregar de vuelta el triangulito del toggle despues de usar flex
-        gap: 0.4rem;
-        cursor: pointer;
-
-        // The native summary marker is hidden when using flex, so we render our own.
-            &::before {
-            content: "▾";
-            font-size: $font-medium;
-            line-height: 1;
-            transition: transform 0.2s ease;
-        }
-
-        &::-webkit-details-marker {
-            display: none;
-        }
-
-        &__title {
-            margin-left: 8px;
-        }
-    }
-}
-
-.nav details[open] > .nav__toggle::before {
-    transform: rotate(180deg);
-}
-
-.nav__list {
-    list-style-type: none;
+  &__list {
+    list-style: none;
     margin: 0;
     padding: 0;
     overflow: hidden;
     display: flex;
     justify-content: space-around;
-}
+    align-items: center;
+  }
 
-.nav__item {
-    margin: 20px;
-}
+  &__item {
+    margin: 1rem;
+  }
 
-.nav__icon {
-    width: 24px;
-    height: 24px;
-    max-width: 24px;
+  &__icon {
+    width: 22px;
+    height: 22px;
+    max-width: 22px;
     object-fit: contain;
-}
-.nav__logo {
-    height: 2.5em; /* Ajusta el tamaño del logo */
-    margin-left: 0.5em; /* Espaciado entre "Inicio" y el logo */
-    vertical-align: middle; /* Alinea el logo con el texto */
+  }
+
+  &__logo {
+    height: 2.2em;
+    margin-left: 0.5em;
+    vertical-align: middle;
+  }
+
+  &__home {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  &__home-icon {
+    width: 1.6rem;
+    height: 1.6rem;
+    object-fit: contain;
+  }
+
+  &__toggle {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.4rem;
+    cursor: pointer;
+
+    &::before {
+      content: "▾";
+      font-size: $font-medium;
+      line-height: 1;
+      transition: transform 0.2s ease;
+    }
+
+    &::-webkit-details-marker {
+      display: none;
+    }
+
+    &__title {
+      margin-left: 6px;
+    }
+  }
+
+  &__submenu {
+    list-style: none;
+    padding-left: 0;
+    margin-left: 0;
+
+    li {
+      list-style: none;
+    }
+
+    li::marker {
+      content: "";
+    }
+  }
+
+  &__submenu-form {
+    margin: 0;
+  }
+
+  &__submenu-action {
+    display: inline-flex;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    border: 0;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    text-decoration: none;
+    cursor: pointer;
+    transition: color 0.2s ease;
+
+    &:hover {
+      color: $color-accent-dark;
+    }
+  }
 }
 
-.nav__submenu {
-  list-style: none;
-  padding-left: 0;
-  margin-left: 0;
-}
-
-.nav__submenu li {
-  list-style: none;
-}
-
-.nav__submenu li::marker {
-  content: "";
-}
-
-.nav__submenu-form {
-  margin: 0;
-}
-
-.nav__submenu-action {
-  display: inline-flex;
-  align-items: center;
-  padding: 0;
-  margin: 0;
-  border: 0;
-  background: transparent;
-  color: inherit;
-  font: inherit;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-
-:root {
-  --nav-height: 76px;
-}
-
-.nav {
-  min-height: var(--nav-height);
+.nav details[open] > .nav__toggle::before {
+  transform: rotate(180deg);
 }
 
 .page .main {
-  margin-top: calc(var(--nav-height) + 16px); // separación extra bajo el nav
+  margin-top: calc(var(--nav-height) + 16px);
 }
-
-
-.nav__home {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.nav__home-icon {
-  width: 1.8rem;   // antes 1.2rem aprox
-  height: 1.8rem;
-  object-fit: contain;
-}
-
