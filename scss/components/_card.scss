@@ -2,12 +2,15 @@
 
 .card {
     background: var(--card-bg, #{$color-card-background});
-    border-radius: 12px;
-    border: 2px solid var(--card-border, #{$color-border-container});
-    overflow: hidden;
+    border-radius: $radius-md;
+    border: 1.5px solid var(--card-border, #{$color-border});
+    box-shadow: $shadow-sm;
+    padding: 2rem;
+    margin: 0.75rem;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
 
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-
-    padding: 40px;
-    margin: 20px;
+    &:hover {
+        box-shadow: $shadow-md;
+        transform: translateY(-3px);
+    }
 }

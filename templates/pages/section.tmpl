@@ -38,26 +38,70 @@
     <!-- MIS PUBLICACIONES -->
     <section class="post-list">
         <h2 class="post-list__title">Mis Publicaciones</h2>
-        {{range .MyPosts}}
-        {{template "post_card" .}}
-        {{end}}
-        <button class="btn btn--more post-list__load-more" type="button">
-            <span class="btn__text">Cargar más</span>
-            <img class="btn__icon" src="/assets/icons/cargarmas.svg" alt="" aria-hidden="true">
-        </button>
+        <ul id="my-posts" class="post-list__items"
+            data-world="{{.World.Slug}}"
+            data-section="{{.Section.Slug}}"></ul>
     </section>
 
     <!-- PUBLICACIONES DE OTROS USUARIOS -->
     <section class="post-list">
         <h2 class="post-list__title">Publicaciones de otros usuarios</h2>
-        {{range .OtherPosts}}
-        {{template "post_card" .}}
-        {{end}}
-        <button class="btn btn--more post-list__load-more" type="button">
-            <span class="btn__text">Cargar más</span>
-            <img class="btn__icon" src="/assets/icons/cargarmas.svg" alt="" aria-hidden="true">
-        </button>
+        <ul id="other-posts" class="post-list__items"></ul>
     </section>
 
 </div>
+
+<!-- PLANTILLA DE PREGUNTA (invisible hasta que JS la clona) -->
+<template id="question-tpl">
+    <article class="question-generator__item card">
+        <p class="question-generator__question"></p>
+    </article>
+</template>
+
+<!-- PLANTILLA DE FORMULARIO DE EDICIÓN (invisible hasta que JS la clona) -->
+<template id="post-edit-tpl">
+    <div class="post-form__input">
+        <textarea class="post-form__text"></textarea>
+        <div class="post-form__options">
+            <input type="text" class="post-form__location-input is-visible" placeholder="Ubicación...">
+            <select class="post-form__section-select"></select>
+            <button type="button" class="btn btn--save">Guardar</button>
+        </div>
+    </div>
+</template>
+
+<!-- PLANTILLA DE CARD (invisible hasta que JS la clona) -->
+<template id="post-tpl">
+    <li class="post-list__item">
+        <article class="post card">
+            <header class="post__header">
+                <p class="post__user"></p>
+            </header>
+            <div class="post__content">
+                <p class="post__text"></p>
+                <img class="post__media" alt="Archivo adjunto" hidden>
+            </div>
+            <footer class="post__footer">
+                <p class="post__location" hidden></p>
+                <p class="post__date"></p>
+                <div class="post__actions" hidden>
+                    <button class="btn btn--edit" type="button">Editar</button>
+                    <button class="btn btn--delete" type="button">Borrar</button>
+                </div>
+            </footer>
+        </article>
+    </li>
+</template>
+
+<select id="sections-data" hidden>
+    <option value="">Sección</option>
+    {{range .World.Sections}}
+    <option value="{{.Slug}}">{{.Title}}</option>
+    {{end}}
+</select>
+
+<div id="post-error" class="post-error" hidden></div>
+
+<script src="/js/questions.js" defer></script>
+<script src="/js/posts.js" defer></script>
 {{end}}

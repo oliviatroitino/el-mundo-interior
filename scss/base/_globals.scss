@@ -1,12 +1,18 @@
 @use "../abstracts/variables" as *;
 
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
+  background-color: $color-background;
+  color: $color-text;
 }
 
 ul {
   padding-left: 0;
-  margin-left: 1vw;
+  margin: 0;
 }
 
 a {
@@ -14,7 +20,6 @@ a {
   color: inherit;
 }
 
-/* Force SVG icons to render in black globally. */
 img[src$=".svg"] {
   filter: brightness(0) saturate(100%);
 }
@@ -28,3 +33,11 @@ img[src$=".svg"] {
   text-align: right;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

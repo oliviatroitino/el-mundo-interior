@@ -38,14 +38,22 @@ func (s *Server) routes() http.Handler {
 	mux.HandleFunc("POST /login", handlers.Login(userRepo, sessions))
 	mux.HandleFunc("POST /logout", handlers.Logout(sessions))
 
+	// API REST
+	mux.HandleFunc("GET /api/posts", handlers.ApiGetPosts(postRepo, sessions))
+	mux.HandleFunc("POST /api/posts", handlers.ApiCreatePost(postRepo, sessions))
+	mux.HandleFunc("PATCH /api/posts/{id}", handlers.ApiUpdatePost(postRepo, sessions))
+	mux.HandleFunc("DELETE /api/posts/{id}", handlers.ApiDeletePost(postRepo, sessions))
+	mux.HandleFunc("GET /api/questions", handlers.ApiGetQuestion())
+
 	// Contacto
 	mux.HandleFunc("GET /contacto", handlers.Contact(contactRepo))
 	mux.HandleFunc("POST /contacto", handlers.Contact(contactRepo))
 
 	// Archivos estáticos — servidos con caché stale-while-revalidate
-	mux.Handle("GET /css/", withCache(http.StripPrefix("/css/", http.FileServer(http.Dir("css")))))
-	mux.Handle("GET /assets/", withCache(http.StripPrefix("/assets/", http.FileServer(http.Dir("assets")))))
-	mux.Handle("GET /uploads/", http.StripPrefix("/uploads/", http.FileServer(http.Dir("assets/uploads"))))
+	mux.Handle("GET /css/", withCache(http.StripPrefix("/css/", http.FileServer(http.Dir("static/css")))))
+	mux.Handle("GET /js/", withCache(http.StripPrefix("/js/", http.FileServer(http.Dir("static/js")))))
+	mux.Handle("GET /assets/", withCache(http.StripPrefix("/assets/", http.FileServer(http.Dir("static/assets")))))
+	mux.Handle("GET /uploads/", http.StripPrefix("/uploads/", http.FileServer(http.Dir("static/assets/uploads"))))
 
 	return mux
 }

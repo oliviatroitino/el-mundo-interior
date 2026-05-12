@@ -18,20 +18,7 @@ func WorldSectionBySlug(posts content.PostRepository, sessions *SessionStore) ht
 			return
 		}
 
-		allPosts, err := posts.GetBySection(worldSlug, sectionSlug)
-		if err != nil {
-			log.Printf("error cargando posts de sección %s/%s: %v", worldSlug, sectionSlug, err)
-		}
-
-		currentUserID, userName, loggedIn := sessions.GetUser(r)
-		var myPosts, otherPosts []Post
-		for _, p := range allPosts {
-			if loggedIn && p.UserID == currentUserID {
-				myPosts = append(myPosts, toViewPost(p))
-			} else {
-				otherPosts = append(otherPosts, toViewPost(p))
-			}
-		}
+		_, userName, _ := sessions.GetUser(r)
 
 		data := SectionPageData{
 			World:   world,
@@ -41,14 +28,7 @@ func WorldSectionBySlug(posts content.PostRepository, sessions *SessionStore) ht
 				NavDropdowns: []NavDropdown{buildWorldDropdown(worldSlug), buildSectionDropdown(world.Sections, sectionSlug)},
 				UserDropdown: func() *NavDropdown { ud := buildUserDropdown(userName); return &ud }(),
 			},
-			Questions: []string{
-				"¿Qué emoción quieres transmitir con esta expresión?",
-				"¿Qué momento de la realidad estás eligiendo capturar y por qué merece ser observado?",
-				"¿Qué historia puede entenderse sin necesidad de palabras?",
-				"¿Qué herramienta o técnica te permitiría expresar mejor la idea que tienes ahora?",
-			},
-			MyPosts:    myPosts,
-			OtherPosts: otherPosts,
+			Questions: Questions[:4],
 		}
 
 		render(w, "templates/pages/section.tmpl", data)

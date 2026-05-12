@@ -2,92 +2,114 @@
 @use "../abstracts/mixins" as *;
 
 .auth {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem 0;
+
+  h1 {
+    font-size: $font-xl;
+    font-weight: $font-weight-light;
+    margin-bottom: $space-lg;
+    text-align: center;
+    letter-spacing: -0.01em;
+  }
+
+  form {
+    background: $color-card-background;
+    border: 1.5px solid $color-border;
+    border-radius: $radius-md;
+    box-shadow: $shadow-sm;
+    padding: 2.5rem;
+    width: 90%;
+    max-width: 26rem;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    padding: 1.5rem 0;
+    gap: $space-md;
 
-    h1 {
-        font-size: $font-xl;
-        margin-bottom: $space-lg;
-        text-align: center;
+    @include desktop {
+      padding: 3rem;
+    }
+  }
+
+  label {
+    font-weight: $font-weight-semibold;
+    font-size: $font-base;
+    color: $color-text;
+  }
+
+  input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0.65rem 0.9rem;
+    border: 1.5px solid $color-border;
+    border-radius: $radius-sm;
+    background: $color-background;
+    font-family: inherit;
+    font-size: $font-base;
+    color: $color-text;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+
+    &::placeholder {
+      color: $color-text-muted;
+      font-weight: $font-weight-light;
     }
 
-    form {
-        background: $color-card-background;
-        border: 2px solid $color-border-container;
-        border-radius: 12px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        padding: 2.5rem;
-        width: 90%;
-        max-width: 26rem;
-        display: flex;
-        flex-direction: column;
-        gap: $space-md;
+    &:focus {
+      outline: none;
+      border-color: $color-accent;
+      box-shadow: 0 0 0 3px rgba(122, 158, 126, 0.2);
+    }
+  }
 
-        @include desktop {
-            padding: 3rem;
-        }
+  &__checkbox {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    font-weight: $font-weight-normal;
+    cursor: pointer;
+
+    input[type="checkbox"] {
+      width: auto;
+      margin-top: 0.2rem;
+      flex-shrink: 0;
+      accent-color: $color-accent;
+    }
+  }
+
+  button[type="submit"] {
+    margin-top: $space-sm;
+    padding: 0.75rem;
+    background: $color-accent;
+    border: 1.5px solid $color-accent;
+    border-radius: $radius-sm;
+    font-family: inherit;
+    font-size: $font-base;
+    font-weight: $font-weight-semibold;
+    color: #fff;
+    cursor: pointer;
+    transition: background 0.2s ease, border-color 0.2s ease;
+
+    &:hover {
+      background: $color-accent-dark;
+      border-color: $color-accent-dark;
     }
 
-    label {
-        font-weight: $font-weight-semibold;
-        font-size: $font-base;
+    &:focus-visible {
+      outline: 2.5px solid $color-accent;
+      outline-offset: 3px;
     }
-
-    input {
-        width: 100%;
-        box-sizing: border-box;
-        padding: 0.6rem 0.8rem;
-        border: 1.5px solid $color-border-container;
-        border-radius: 8px;
-        background: $color-background;
-        font-size: $font-base;
-
-        &:focus {
-            outline: none;
-            border-color: $color-navbar-border;
-        }
-    }
-
-    &__checkbox {
-        display: flex;
-        align-items: flex-start;
-        gap: 0.5rem;
-        font-size: 0.9rem;
-        font-weight: $font-weight-normal;
-        cursor: pointer;
-
-        input[type="checkbox"] {
-            width: auto;
-            margin-top: 0.2rem;
-            flex-shrink: 0;
-        }
-    }
-
-    button[type="submit"] {
-        margin-top: $space-sm;
-        padding: 0.7rem;
-        background: $color-navbar;
-        border: 2px solid $color-navbar-border;
-        border-radius: 8px;
-        font-size: $font-base;
-        font-weight: $font-weight-semibold;
-        cursor: pointer;
-
-        &:hover {
-            background: $color-navbar-border;
-        }
-    }
+  }
 }
 
 .form-error {
-    background: #fde8e8;
-    border: 1.5px solid #e57373;
-    border-radius: 8px;
-    color: #b71c1c;
-    font-size: $font-base;
-    padding: 0.6rem 1rem;
-    text-align: center;
-    margin: 0;
+  background: $color-error-bg;
+  border: 1.5px solid $color-error-border;
+  border-radius: $radius-sm;
+  color: $color-error;
+  font-size: $font-base;
+  padding: 0.6rem 1rem;
+  text-align: center;
+  margin: 0;
 }

@@ -9,12 +9,11 @@ import (
 )
 
 // templateBase son los archivos que se parsean siempre en todas las páginas:
-// el layout base, y los partials compartidos (nav, footer, post card).
+// el layout base, y los partials compartidos (nav, footer, cards).
 var templateBase = []string{
 	"templates/layouts/base.tmpl",
 	"templates/partials/nav.tmpl",
 	"templates/partials/footer.tmpl",
-	"templates/partials/post_card.tmpl",
 	"templates/partials/planet_card.tmpl",
 	"templates/partials/review_card.tmpl",
 	"templates/partials/plan_card.tmpl",
