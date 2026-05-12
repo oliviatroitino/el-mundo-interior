@@ -43,6 +43,7 @@ func (s *Server) routes() http.Handler {
 	mux.HandleFunc("POST /api/posts", handlers.ApiCreatePost(postRepo, sessions))
 	mux.HandleFunc("PATCH /api/posts/{id}", handlers.ApiUpdatePost(postRepo, sessions))
 	mux.HandleFunc("DELETE /api/posts/{id}", handlers.ApiDeletePost(postRepo, sessions))
+	mux.HandleFunc("GET /api/questions", handlers.ApiGetQuestion())
 
 	// Contacto
 	mux.HandleFunc("GET /contacto", handlers.Contact(contactRepo))

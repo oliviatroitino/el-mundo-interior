@@ -28,12 +28,7 @@ func WorldSectionBySlug(posts content.PostRepository, sessions *SessionStore) ht
 				NavDropdowns: []NavDropdown{buildWorldDropdown(worldSlug), buildSectionDropdown(world.Sections, sectionSlug)},
 				UserDropdown: func() *NavDropdown { ud := buildUserDropdown(userName); return &ud }(),
 			},
-			Questions: []string{
-				"¿Qué emoción quieres transmitir con esta expresión?",
-				"¿Qué momento de la realidad estás eligiendo capturar y por qué merece ser observado?",
-				"¿Qué historia puede entenderse sin necesidad de palabras?",
-				"¿Qué herramienta o técnica te permitiría expresar mejor la idea que tienes ahora?",
-			},
+			Questions: Questions[:4],
 		}
 
 		render(w, "templates/pages/section.tmpl", data)

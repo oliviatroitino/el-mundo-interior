@@ -51,6 +51,13 @@
 
 </div>
 
+<!-- PLANTILLA DE PREGUNTA (invisible hasta que JS la clona) -->
+<template id="question-tpl">
+    <article class="question-generator__item card">
+        <p class="question-generator__question"></p>
+    </article>
+</template>
+
 <!-- PLANTILLA DE FORMULARIO DE EDICIÓN (invisible hasta que JS la clona) -->
 <template id="post-edit-tpl">
     <div class="post-form__input">
@@ -95,5 +102,6 @@
 
 <div id="post-error" class="post-error" hidden></div>
 
+<script src="/js/questions.js" defer></script>
 <script src="/js/posts.js" defer></script>
 {{end}}

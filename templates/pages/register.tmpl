@@ -21,6 +21,7 @@
 
     <button type="submit">Registrarme</button>
 
+    <p id="privacy-error" class="form-error" hidden>Debes aceptar la política de privacidad.</p>
     {{if .Error}}
     <p class="form-error">{{.Error}}</p>
     {{end}}
@@ -28,15 +29,10 @@
 </section>
 <script>
 document.getElementById('register-form').addEventListener('submit', function(e) {
-    var checkbox = this.querySelector('input[name="privacy"]');
-    if (!checkbox.checked) {
-        e.preventDefault();
-        this.querySelectorAll('.form-error').forEach(function(el) { el.remove(); });
-        var err = document.createElement('p');
-        err.className = 'form-error form-error-js';
-        err.textContent = 'Debes aceptar la política de privacidad.';
-        this.appendChild(err);
-    }
+    var checkbox   = this.querySelector('input[name="privacy"]');
+    var err        = document.getElementById('privacy-error');
+    err.hidden     = checkbox.checked;
+    if (!checkbox.checked) e.preventDefault();
 });
 </script>
 {{end}}
