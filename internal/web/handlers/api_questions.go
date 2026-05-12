@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"math/rand"
 	"net/http"
+	"strconv"
 )
 
 var Questions = []string{
@@ -29,11 +30,24 @@ var Questions = []string{
 	"¿De qué manera el miedo está dando forma a tus decisiones ahora mismo?",
 }
 
-// ApiGetQuestion maneja GET /api/questions y devuelve una pregunta aleatoria.
+// ApiGetQuestion maneja GET /api/questions?count=N y devuelve N preguntas aleatorias sin repetición.
 func ApiGetQuestion() http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		q := Questions[rand.Intn(len(Questions))]
+		count := 4
+		if n, err := strconv.Atoi(r.URL.Query().Get("count")); err == nil && n > 0 {
+			count = n
+		}
+		if count > len(Questions) {
+			count = len(Questions)
+		}
+
+		perm := rand.Perm(len(Questions))
+		result := make([]string, count)
+		for i := range count {
+			result[i] = Questions[perm[i]]
+		}
+
 		w.Header().Set("Content-Type", "application/json")
-		json.NewEncoder(w).Encode(map[string]string{"question": q})
+		json.NewEncoder(w).Encode(map[string][]string{"questions": result})
 	}
 }

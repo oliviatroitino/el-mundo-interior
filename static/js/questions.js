@@ -8,14 +8,19 @@
   btn.addEventListener('click', async () => {
     btn.disabled = true
     try {
-      const res            = await fetch('/api/questions')
-      const { question }   = await res.json()
+      const res             = await fetch('/api/questions?count=4')
+      const { questions }   = await res.json()
 
-      const clone = tpl.content.cloneNode(true)
-      clone.querySelector('.question-generator__question').textContent = question
-      list.insertBefore(clone, list.querySelector('.question-generator__more'))
+      list.querySelectorAll('.question-generator__item').forEach(el => el.remove())
+
+      const more = list.querySelector('.question-generator__more')
+      questions.forEach(question => {
+        const clone = tpl.content.cloneNode(true)
+        clone.querySelector('.question-generator__question').textContent = question
+        list.insertBefore(clone, more)
+      })
     } catch (err) {
-      console.error('Error al cargar pregunta:', err)
+      console.error('Error al cargar preguntas:', err)
     } finally {
       btn.disabled = false
     }
