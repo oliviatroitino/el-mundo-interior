@@ -99,9 +99,3 @@ type LoginPageData struct {
 	Email string
 }
 
-// ContactPageData contains data for /contacto.
-type ContactPageData struct {
-	Nav     NavData
-	Success bool
-	Error   string
-}
