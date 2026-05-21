@@ -1,6 +1,12 @@
 package content
 
-import "time"
+import (
+	"errors"
+	"time"
+)
+
+// ErrNotOwner se devuelve cuando un post no existe o no pertenece al usuario.
+var ErrNotOwner = errors.New("post no encontrado o no pertenece al usuario")
 
 // Post representa una publicación de usuario almacenada en la base de datos.
 // UserName se rellena con un JOIN al consultar, para no necesitar una query extra.

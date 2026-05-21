@@ -78,7 +78,7 @@ func (r *sqlitePostRepository) Update(id, userID int, body, location, sectionSlu
 		return err
 	}
 	if rows == 0 {
-		return fmt.Errorf("post %d no encontrado o no pertenece al usuario", id)
+		return ErrNotOwner
 	}
 	return nil
 }
@@ -94,7 +94,7 @@ func (r *sqlitePostRepository) Delete(id, userID int) error {
 		return err
 	}
 	if rows == 0 {
-		return fmt.Errorf("post %d no encontrado o no pertenece al usuario", id)
+		return ErrNotOwner
 	}
 	return nil
 }

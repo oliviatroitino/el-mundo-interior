@@ -2,6 +2,7 @@ package handlers
 
 import (
 	"el-mundo-interior/internal/content"
+	"fmt"
 	"io"
 	"log"
 	"net/http"
@@ -10,6 +11,15 @@ import (
 
 	"github.com/google/uuid"
 )
+
+// allowedImageTypes maps detected MIME types to the extension we store.
+var allowedImageTypes = map[string]string{
+	"image/jpeg": ".jpg",
+	"image/png":  ".png",
+	"image/gif":  ".gif",
+	"image/webp": ".webp",
+	"image/avif": ".avif",
+}
 
 // WorldBySlug maneja GET /mundos/{slug}.
 func WorldBySlug(posts content.PostRepository, sessions *SessionStore) http.HandlerFunc {
@@ -53,7 +63,10 @@ func CreatePost(posts content.PostRepository, sessions *SessionStore) http.Handl
 			return
 		}
 
-		r.ParseMultipartForm(10 << 20) // 10 MB máx
+		if err := r.ParseMultipartForm(10 << 20); err != nil {
+			http.Error(w, "error procesando formulario", http.StatusBadRequest)
+			return
+		}
 		body := r.FormValue("body")
 		sectionSlug := r.FormValue("section_slug")
 
@@ -87,18 +100,30 @@ func CreatePost(posts content.PostRepository, sessions *SessionStore) http.Handl
 // saveUpload guarda el archivo del campo fieldName en assets/uploads/ y
 // devuelve la ruta pública relativa (p.ej. "/uploads/abc123.jpg").
 // Devuelve "" si no se subió ningún archivo.
+// Rechaza archivos cuyo MIME type real no sea una imagen permitida.
 func saveUpload(r *http.Request, fieldName string) (string, error) {
-	file, header, err := r.FormFile(fieldName)
+	file, _, err := r.FormFile(fieldName)
 	if err != nil {
 		return "", nil // sin archivo adjunto
 	}
 	defer file.Close()
 
+	// Detectar el tipo real leyendo los primeros 512 bytes.
+	buf := make([]byte, 512)
+	n, err := file.Read(buf)
+	if err != nil && n == 0 {
+		return "", err
+	}
+	mimeType := http.DetectContentType(buf[:n])
+	ext, ok := allowedImageTypes[mimeType]
+	if !ok {
+		return "", fmt.Errorf("tipo de archivo no permitido: %s", mimeType)
+	}
+
 	if err := os.MkdirAll("static/assets/uploads", 0755); err != nil {
 		return "", err
 	}
 
-	ext := filepath.Ext(header.Filename)
 	name := uuid.NewString() + ext
 	dst, err := os.Create(filepath.Join("static/assets/uploads", name))
 	if err != nil {
@@ -106,6 +131,10 @@ func saveUpload(r *http.Request, fieldName string) (string, error) {
 	}
 	defer dst.Close()
 
+	// Escribir los bytes ya leídos y el resto del archivo.
+	if _, err := dst.Write(buf[:n]); err != nil {
+		return "", err
+	}
 	if _, err := io.Copy(dst, file); err != nil {
 		return "", err
 	}

@@ -30,7 +30,7 @@ func main() {
 	defer db.Close()
 
 	addr := ":" + port
-	server := appweb.NewServer(addr, db)
+	server := appweb.NewServer(addr, db, secret)
 
 	log.Printf("servidor escuchando en http://localhost%s", server.Addr())
 

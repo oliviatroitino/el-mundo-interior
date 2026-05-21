@@ -13,13 +13,14 @@ import (
 
 // Server encapsula la configuración del servidor HTTP.
 type Server struct {
-	addr string        // Dirección en la que escucha (ej: ":8080")
-	http *http.Server  // Instancia del servidor HTTP de Go
-	db   *sql.DB       // Conexión a la base de datos
+	addr   string       // Dirección en la que escucha (ej: ":8080")
+	http   *http.Server // Instancia del servidor HTTP de Go
+	db     *sql.DB      // Conexión a la base de datos
+	secret string       // Clave para firmar cookies de sesión
 }
 
-func NewServer(addr string, db *sql.DB) *Server {
-	server := &Server{addr: addr, db: db}
+func NewServer(addr string, db *sql.DB, secret string) *Server {
+	server := &Server{addr: addr, db: db, secret: secret}
 	server.http = &http.Server{
 		Addr:              addr,
 		Handler:           server.routes(),

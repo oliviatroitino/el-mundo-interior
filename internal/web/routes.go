@@ -15,8 +15,8 @@ func (s *Server) routes() http.Handler {
 	userRepo := users.NewUserRepository(s.db)
 	contactRepo := contact.NewRepository(s.db)
 
-	// SessionStore: in-memory map token -> userID.
-	sessions := handlers.NewSessionStore()
+	// SessionStore: in-memory map token -> userID, signed with SESSION_SECRET.
+	sessions := handlers.NewSessionStore(s.secret)
 
 	mux := http.NewServeMux()
 

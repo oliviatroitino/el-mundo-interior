@@ -3,6 +3,7 @@ package handlers
 import (
 	"el-mundo-interior/internal/content"
 	"log"
+	"math/rand"
 	"net/http"
 )
 
@@ -20,6 +21,12 @@ func WorldSectionBySlug(posts content.PostRepository, sessions *SessionStore) ht
 
 		_, userName, _ := sessions.GetUser(r)
 
+		perm := rand.Perm(len(Questions))
+		questions := make([]string, 4)
+		for i := range questions {
+			questions[i] = Questions[perm[i]]
+		}
+
 		data := SectionPageData{
 			World:   world,
 			Section: section,
@@ -28,7 +35,7 @@ func WorldSectionBySlug(posts content.PostRepository, sessions *SessionStore) ht
 				NavDropdowns: []NavDropdown{buildWorldDropdown(worldSlug), buildSectionDropdown(world.Sections, sectionSlug)},
 				UserDropdown: func() *NavDropdown { ud := buildUserDropdown(userName); return &ud }(),
 			},
-			Questions: Questions[:4],
+			Questions: questions,
 		}
 
 		render(w, "templates/pages/section.tmpl", data)
@@ -47,7 +54,10 @@ func CreateSectionPost(posts content.PostRepository, sessions *SessionStore) htt
 			return
 		}
 
-		r.ParseMultipartForm(10 << 20)
+		if err := r.ParseMultipartForm(10 << 20); err != nil {
+			http.Error(w, "error procesando formulario", http.StatusBadRequest)
+			return
+		}
 		body := r.FormValue("body")
 		if body == "" {
 			http.Redirect(w, r, "/mundos/"+worldSlug+"/"+sectionSlug, http.StatusSeeOther)

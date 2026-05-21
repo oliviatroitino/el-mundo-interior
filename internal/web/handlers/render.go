@@ -2,7 +2,7 @@
 package handlers
 
 import (
-	"errors"
+	"bytes"
 	"html/template"
 	"log"
 	"net/http"
@@ -38,14 +38,14 @@ func render(w http.ResponseWriter, page string, data any) {
 		return
 	}
 
-	w.Header().Set("Content-Type", "text/html; charset=utf-8")
-
-	// Ejecutamos el template "base", que es el punto de entrada definido
-	// en templates/layouts/base.tmpl con {{define "base"}}
-	if err := tpl.ExecuteTemplate(w, "base", data); err != nil {
-		if !errors.Is(err, http.ErrAbortHandler) {
-			log.Printf("error ejecutando template %s: %v", page, err)
-			http.Error(w, "error renderizando página", http.StatusInternalServerError)
-		}
+	// Renderizamos en un buffer para no escribir una respuesta parcial si falla.
+	var buf bytes.Buffer
+	if err := tpl.ExecuteTemplate(&buf, "base", data); err != nil {
+		log.Printf("error ejecutando template %s: %v", page, err)
+		http.Error(w, "error renderizando página", http.StatusInternalServerError)
+		return
 	}
+
+	w.Header().Set("Content-Type", "text/html; charset=utf-8")
+	buf.WriteTo(w)
 }

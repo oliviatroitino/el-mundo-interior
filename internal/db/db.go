@@ -4,7 +4,6 @@ package db
 import (
 	"database/sql"
 	"fmt"
-	"strings"
 
 	_ "modernc.org/sqlite" // registra el driver "sqlite" en database/sql
 )
@@ -65,8 +64,14 @@ func migrate(db *sql.DB) error {
 	}
 
 	// Añade media_path si no existía todavía (ALTER TABLE no soporta IF NOT EXISTS en SQLite).
-	if _, err := db.Exec(`ALTER TABLE posts ADD COLUMN media_path TEXT`); err != nil {
-		if !strings.Contains(err.Error(), "duplicate column") {
+	// Comprobamos con PRAGMA table_info para evitar depender del texto del error.
+	var exists bool
+	err := db.QueryRow(`SELECT COUNT(*) FROM pragma_table_info('posts') WHERE name = 'media_path'`).Scan(&exists)
+	if err != nil {
+		return fmt.Errorf("comprobando columna media_path: %w", err)
+	}
+	if !exists {
+		if _, err := db.Exec(`ALTER TABLE posts ADD COLUMN media_path TEXT`); err != nil {
 			return fmt.Errorf("añadiendo media_path: %w", err)
 		}
 	}

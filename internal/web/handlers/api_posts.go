@@ -2,13 +2,26 @@ package handlers
 
 import (
 	"encoding/json"
+	"errors"
 	"log"
 	"net/http"
 	"strconv"
+	"strings"
 	"time"
 
 	"el-mundo-interior/internal/content"
 )
+
+// requireJSON rechaza peticiones cuyo Content-Type no sea application/json.
+// Esto previene CSRF via formularios HTML (que no pueden enviar ese tipo).
+func requireJSON(w http.ResponseWriter, r *http.Request) bool {
+	ct := r.Header.Get("Content-Type")
+	if !strings.HasPrefix(ct, "application/json") {
+		writeError(w, http.StatusUnsupportedMediaType, "Content-Type debe ser application/json")
+		return false
+	}
+	return true
+}
 
 // apiPost es la representación JSON de un post para la API.
 type apiPost struct {
@@ -27,7 +40,9 @@ type apiPost struct {
 func writeJSON(w http.ResponseWriter, status int, v any) {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(status)
-	json.NewEncoder(w).Encode(v)
+	if err := json.NewEncoder(w).Encode(v); err != nil {
+		log.Printf("writeJSON: error serializando respuesta: %v", err)
+	}
 }
 
 // writeError envía un JSON {"error": msg} con el código de estado dado.
@@ -89,7 +104,10 @@ func ApiGetPosts(posts content.PostRepository, sessions *SessionStore) http.Hand
 // Lee un JSON con world_slug, body, section_slug y location, crea el post y devuelve 201.
 func ApiCreatePost(posts content.PostRepository, sessions *SessionStore) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		userID, ok := sessions.GetUserID(r)
+		if !requireJSON(w, r) {
+			return
+		}
+		userID, userName, ok := sessions.GetUser(r)
 		if !ok {
 			writeError(w, http.StatusUnauthorized, "sesión requerida")
 			return
@@ -124,7 +142,6 @@ func ApiCreatePost(posts content.PostRepository, sessions *SessionStore) http.Ha
 			return
 		}
 
-		_, userName, _ := sessions.GetUser(r)
 		created := apiPost{
 			ID:        id,
 			UserName:  userName,
@@ -143,6 +160,9 @@ func ApiCreatePost(posts content.PostRepository, sessions *SessionStore) http.Ha
 // Lee un JSON con body, actualiza el post y devuelve el post modificado.
 func ApiUpdatePost(posts content.PostRepository, sessions *SessionStore) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
+		if !requireJSON(w, r) {
+			return
+		}
 		userID, ok := sessions.GetUserID(r)
 		if !ok {
 			writeError(w, http.StatusUnauthorized, "sesión requerida")
@@ -170,8 +190,12 @@ func ApiUpdatePost(posts content.PostRepository, sessions *SessionStore) http.Ha
 		}
 
 		if err := posts.Update(id, userID, input.Body, input.Location, input.SectionSlug); err != nil {
-			log.Printf("error actualizando post %d: %v", id, err)
-			writeError(w, http.StatusForbidden, "no se puede actualizar el post")
+			if errors.Is(err, content.ErrNotOwner) {
+				writeError(w, http.StatusForbidden, "no se puede actualizar el post")
+			} else {
+				log.Printf("error actualizando post %d: %v", id, err)
+				writeError(w, http.StatusInternalServerError, "error actualizando post")
+			}
 			return
 		}
 
@@ -201,8 +225,12 @@ func ApiDeletePost(posts content.PostRepository, sessions *SessionStore) http.Ha
 		}
 
 		if err := posts.Delete(id, userID); err != nil {
-			log.Printf("error borrando post %d: %v", id, err)
-			writeError(w, http.StatusForbidden, "no se puede borrar el post")
+			if errors.Is(err, content.ErrNotOwner) {
+				writeError(w, http.StatusForbidden, "no se puede borrar el post")
+			} else {
+				log.Printf("error borrando post %d: %v", id, err)
+				writeError(w, http.StatusInternalServerError, "error borrando post")
+			}
 			return
 		}
 

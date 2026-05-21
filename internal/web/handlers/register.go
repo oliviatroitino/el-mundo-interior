@@ -28,7 +28,10 @@ func Register(userRepo users.UserRepository) http.HandlerFunc {
 		}
 
 		// POST: leer campos del formulario
-		r.ParseForm()
+		if err := r.ParseForm(); err != nil {
+			http.Error(w, "error procesando formulario", http.StatusBadRequest)
+			return
+		}
 		name := r.FormValue("name")
 		email := r.FormValue("email")
 		password := r.FormValue("password")

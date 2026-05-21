@@ -4,6 +4,7 @@ import (
 	"el-mundo-interior/internal/contact"
 	"log"
 	"net/http"
+	"strings"
 )
 
 // Contact maneja el formulario de contacto del footer.
@@ -20,14 +21,19 @@ func Contact(repo contact.Repository) http.HandlerFunc {
 		email := r.FormValue("email")
 		message := r.FormValue("message")
 
-		// En caso de error, volvemos a la página desde la que se envió el formulario.
-		// Si no hay Referer (caso raro), mandamos a home.
-		back := r.Referer()
-		if back == "" {
-			back = "/"
+		// Volvemos a la página de origen solo si es una ruta local (empieza con /
+		// pero no con //). Esto evita redirecciones abiertas via Referer externo.
+		back := "/"
+		if ref := r.Referer(); strings.HasPrefix(ref, "/") && !strings.HasPrefix(ref, "//") {
+			back = ref
 		}
 
 		if name == "" || email == "" || message == "" {
+			http.Redirect(w, r, back, http.StatusSeeOther)
+			return
+		}
+
+		if !reEmail.MatchString(email) {
 			http.Redirect(w, r, back, http.StatusSeeOther)
 			return
 		}
